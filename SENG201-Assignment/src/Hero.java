@@ -2,6 +2,6 @@
 public class Hero {
 	
 	public String name;
-	//All good?
+	//All good? yes
 	
 }

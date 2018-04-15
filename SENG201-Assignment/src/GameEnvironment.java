@@ -5,10 +5,11 @@ public class GameEnvironment {
 	private String teamName;
 	private int numCities;
 	private int numHeros;
+	private Scanner sc = new Scanner(System.in);
+	private boolean stopGame = false;
 	
-	public boolean introduction() {
+	public void introduction() {
 		
-		Scanner sc = new Scanner(System.in);
 		do {
 			System.out.println("Pick a name for your team of heros between 2 and 10 character long.");
 			System.out.print("Input('q' to exit): ");
@@ -16,8 +17,8 @@ public class GameEnvironment {
 			String result = sc.next();
 			if (result.equals(Character.toString('q'))) {
 				System.out.println(farewell());
-				sc.close();
-				return false;
+				stopGame = true;
+				return;
 			} else {
 				teamName = result;
 			}
@@ -30,8 +31,8 @@ public class GameEnvironment {
 			String result = sc.next();
 			if (result.equals(Character.toString('q'))) {
 				System.out.println(farewell());
-				sc.close();
-				return false;
+				stopGame = true;
+				return;
 			} else {
 				numCities = Integer.parseInt(result);
 			}
@@ -44,8 +45,8 @@ public class GameEnvironment {
 			String result = sc.next();
 			if (result.equals(Character.toString('q'))) {
 				System.out.println(farewell());
-				sc.close();
-				return false;
+				stopGame = true;
+				return;
 			} else {
 				numHeros = Integer.parseInt(result);
 			}
@@ -54,8 +55,8 @@ public class GameEnvironment {
 		System.out.println(teamName);
 		System.out.println(numCities);
 		System.out.println(numHeros);
-		sc.close();
-		return true;
+
+
 
 	}
 	
@@ -70,7 +71,9 @@ public class GameEnvironment {
 	
 	public static void main(String[] args) {
 		GameEnvironment myGame = new GameEnvironment();
-		myGame.introduction();
+		while (!myGame.stopGame) {
+			myGame.introduction();
+		}
 	}
 	
 

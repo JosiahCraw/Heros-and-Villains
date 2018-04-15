@@ -7,6 +7,7 @@ public class GameEnvironment {
 	private int numHeros;
 	private Scanner sc = new Scanner(System.in);
 	private boolean stopGame = false;
+	private Team gameTeam = new Team();
 	
 	public void introduction() {
 		
@@ -56,8 +57,14 @@ public class GameEnvironment {
 		System.out.println(numCities);
 		System.out.println(numHeros);
 
-
-
+	}
+	
+	public void buildTeam(String teamName, int numHeros) {
+		gameTeam.setName(teamName);
+		gameTeam.setMaxSize(numHeros);
+		
+		
+		
 	}
 	
 	public String farewell() {

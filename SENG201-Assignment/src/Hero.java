@@ -1,6 +1,13 @@
 public class Hero {
 	
-	private String name;
-	//All good? yes
+	private String heroName;
+	
+	public Hero(String name) {
+		heroName = name;
+	}
+	
+	public String getName() {
+		return heroName;
+	}
 	
 }

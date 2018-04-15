@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class GameEnvironment {
 	
-	public String teamName;
-	public int numCities;
-	public int numHeros;
+	private String teamName;
+	private int numCities;
+	private int numHeros;
 	
 	public boolean introduction() {
 		

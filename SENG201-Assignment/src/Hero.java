@@ -1,6 +1,6 @@
 public class Hero {
 	
-	public String name;
+	private String name;
 	//All good? yes
 	
 }

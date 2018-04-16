@@ -11,6 +11,10 @@ public class Team {
 		teamName = name;
 		maxSize = size;
 	}
+	
+	public Team() {
+	}
+	
 	public int getMaxSize(){
 		return maxSize;
 	}

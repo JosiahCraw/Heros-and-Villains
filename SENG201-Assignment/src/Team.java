@@ -29,6 +29,7 @@ public class Team {
 	
 	public void setMaxSize(int size) {
 		maxSize = size;
+		//testing making a change on lab computer
 	}
 	
 	public void addHero(Hero toAdd) {

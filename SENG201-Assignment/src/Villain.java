@@ -44,7 +44,7 @@ public class Villain {
     }
     public void heal(int healAmount) {
         if (villainIsDead) {
-            //Error cannot heal villain is dead
+            //Error cannot heal, villain is dead
         }
         villainHealth += healAmount;
         villainIsAtMaxHealth = checkIfMaxHealth();

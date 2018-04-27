@@ -32,7 +32,7 @@ public class Team {
 		//testing making a change on lab computer
 	}
 	
-	public void addHero(Hero toAdd) {
+	public boolean addHero(Hero toAdd) {
 		//pass
 	}
 	

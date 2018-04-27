@@ -1,6 +1,8 @@
 public class Hero {
 	
 	private String heroName;
+	private int heroHealth;
+
 	
 	public Hero(String name) {
 		heroName = name;
@@ -9,5 +11,5 @@ public class Hero {
 	public String getName() {
 		return heroName;
 	}
-	
+
 }

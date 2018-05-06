@@ -5,7 +5,7 @@ import Heroes_Villains.display.Display;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-public class Game implements Runnable{
+public class Game implements Runnable{ //Runnable allows the class to use threads
 
     private Display display;
     private Thread gameThread;
@@ -23,23 +23,28 @@ public class Game implements Runnable{
     }
 
     private void render(){
+        //Creating the buffer for the output frames
         buffer = display.getCanvas().getBufferStrategy();
-        if (buffer == null){
+        if (buffer == null){ //If not buffer exists create one
             display.getCanvas().createBufferStrategy(3);
             return;
         }
         graphics = buffer.getDrawGraphics();
+        //Graphics
 
+        //Graphics end
+        buffer.show();
+        graphics.dispose();
 
     }
 
-    private void init(){
+    private void init(){ //Function run by run()
         display = new Display(title, width, height);
 
     }
 
     @Override
-    public void run() {
+    public void run() { //Following function is run when the thread is started
         init();
         while(running){
             update();

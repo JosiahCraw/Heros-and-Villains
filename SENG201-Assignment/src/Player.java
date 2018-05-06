@@ -5,7 +5,7 @@ public class Player {
     String playerName;
     String playerCity; //Do we want to create object city??
 
-    public Player(String name,) {
+    public Player(String name) {
         playerName = name;
         playerXPos = 0;
         playerYPos = 0;

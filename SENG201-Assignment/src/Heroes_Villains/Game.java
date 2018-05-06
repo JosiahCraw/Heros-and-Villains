@@ -31,6 +31,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         }
         graphics = buffer.getDrawGraphics();
         //Graphics
+        graphics.clearRect(0, 0, width, height);
 
         //Graphics end
         buffer.show();

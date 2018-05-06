@@ -34,7 +34,6 @@ public class Team {
 	
 	public boolean addHero(Hero toAdd) {
 		//pass
-        return true; //just to stop errors
+		return true; //just to stop errors
 	}
-	
 }

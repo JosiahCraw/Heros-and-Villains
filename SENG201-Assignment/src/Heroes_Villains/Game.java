@@ -18,6 +18,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     private BufferStrategy buffer;
     private Graphics graphics;
 
+
     private void update(){
 
     }

@@ -20,10 +20,12 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     private Graphics graphics;
 
     private int x;
+    private int y;
 
 
     private void update(){
         x++;
+        y++;
     }
 
     private void render(){
@@ -37,6 +39,8 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         //Graphics
         graphics.clearRect(0, 0, width, height);
         graphics.drawImage(Assets.purple, x, 100, null);
+        graphics.drawImage(Assets.black, 0, y, null);
+        graphics.drawImage(Assets.player, 300, 500, null);
 
         //Graphics end
         buffer.show();

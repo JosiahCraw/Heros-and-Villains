@@ -1,6 +1,7 @@
 package Heroes_Villains;
 
 import Heroes_Villains.display.Display;
+import Heroes_Villains.graphics.Assets;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -18,9 +19,11 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     private BufferStrategy buffer;
     private Graphics graphics;
 
+    private int x;
+
 
     private void update(){
-
+        x++;
     }
 
     private void render(){
@@ -33,6 +36,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         graphics = buffer.getDrawGraphics();
         //Graphics
         graphics.clearRect(0, 0, width, height);
+        graphics.drawImage(Assets.purple, x, 100, null);
 
         //Graphics end
         buffer.show();
@@ -42,15 +46,32 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
     private void init(){ //Function run by run()
         display = new Display(title, width, height);
+        Assets.init();
 
     }
 
     @Override
     public void run() { //Following function is run when the thread is started
         init();
+
+        final int  FPS = 60;
+        final long FPS_TIME = 1000000000 / FPS;
+        long timeAtLastLoop = System.nanoTime();
+
         while(running){
+            long timeNow = System.nanoTime();
+            long updateTime = timeNow - timeAtLastLoop;
+            timeAtLastLoop = timeNow;
+            double changeInTime = updateTime / ((double)FPS_TIME);
+
+            //Running game updates
             update();
             render();
+            try {
+                Thread.sleep( (timeAtLastLoop-System.nanoTime() + FPS_TIME)/1000000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         stop();
 

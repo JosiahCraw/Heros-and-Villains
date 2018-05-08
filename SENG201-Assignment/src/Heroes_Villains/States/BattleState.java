@@ -4,9 +4,9 @@ import Heroes_Villains.Game;
 
 import java.awt.*;
 
-public class MenuState extends State {
+public class BattleState extends State {
 
-    public MenuState(Game game) {
+    public BattleState(Game game) {
         super(game);
     }
 

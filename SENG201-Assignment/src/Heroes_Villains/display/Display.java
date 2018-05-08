@@ -33,11 +33,16 @@ public class Display {
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setMaximumSize(new Dimension(width, height));
         canvas.setMinimumSize(new Dimension(width, height));
+        canvas.setFocusable(false);
 
         //Adding canvas to frame
         frame.add(canvas);
         frame.pack();
 
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 
     public Canvas getCanvas() {

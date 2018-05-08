@@ -1,5 +1,10 @@
 package Heroes_Villains;
 
+import Heroes_Villains.Listener.KeyboardListener;
+import Heroes_Villains.States.GameState;
+import Heroes_Villains.States.MenuState;
+import Heroes_Villains.States.State;
+import Heroes_Villains.States.StateHandler;
 import Heroes_Villains.display.Display;
 import Heroes_Villains.graphics.Assets;
 
@@ -13,19 +18,24 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     private String title;
     private boolean running = false;
 
+    //State Variables
+    private State gameState, menuState;
+    private StateHandler stateHandler = new StateHandler();
+
+    //Keyboard Listener
+    private KeyboardListener keyboardListener;
+
     public int width, height;
 
     //Graphics variables
     private BufferStrategy buffer;
     private Graphics graphics;
 
-    private int x;
-    private int y;
-
-
     private void update(){
-        x++;
-        y++;
+        keyboardListener.update();
+        if(stateHandler.state != null) {
+            stateHandler.state.update();
+        }
     }
 
     private void render(){
@@ -38,9 +48,10 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         graphics = buffer.getDrawGraphics();
         //Graphics
         graphics.clearRect(0, 0, width, height);
-        graphics.drawImage(Assets.purple, x, 100, null);
-        graphics.drawImage(Assets.black, 0, y, null);
-        graphics.drawImage(Assets.player, 300, 500, null);
+        if(stateHandler.state != null) {
+            stateHandler.state.render(graphics);
+        }
+
 
         //Graphics end
         buffer.show();
@@ -50,8 +61,11 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
     private void init(){ //Function run by run()
         display = new Display(title, width, height);
+        display.getFrame().addKeyListener(keyboardListener);
         Assets.init();
-
+        gameState = new GameState(this);
+        menuState = new MenuState(this);
+        stateHandler.setState(gameState);
     }
 
     @Override
@@ -59,11 +73,11 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         init();
 
         final int  FPS = 60;
-        final long FPS_TIME = 1000000000 / FPS;
-        long timeAtLastLoop = System.nanoTime();
+        final long FPS_TIME = 1000000 / FPS;
+        long timeAtLastLoop = System.currentTimeMillis();
 
         while(running){
-            long timeNow = System.nanoTime();
+            long timeNow = System.currentTimeMillis();
             long updateTime = timeNow - timeAtLastLoop;
             timeAtLastLoop = timeNow;
             double changeInTime = updateTime / ((double)FPS_TIME);
@@ -72,8 +86,11 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
             update();
             render();
             try {
-                Thread.sleep( (timeAtLastLoop-System.nanoTime() + FPS_TIME)/1000000);
+                Thread.sleep((timeAtLastLoop - System.currentTimeMillis() + FPS_TIME)/1000000);
             } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
         }
@@ -109,8 +126,10 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         this.width = width;
         this.height = height;
         this.title = title;
-
-
+        keyboardListener = new KeyboardListener();
         }
 
+    public KeyboardListener getKeyboardListener() {
+        return keyboardListener;
     }
+}

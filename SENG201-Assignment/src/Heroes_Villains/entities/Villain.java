@@ -1,4 +1,4 @@
-package Heroes_Villains.Entities;
+package Heroes_Villains.entities;
 
 public class Villain extends Living {
 }

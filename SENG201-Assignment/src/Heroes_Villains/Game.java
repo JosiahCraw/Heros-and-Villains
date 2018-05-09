@@ -74,13 +74,11 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
         final int  FPS = 60;
         final long FPS_TIME = 1000000 / FPS;
-        long timeAtLastLoop = System.currentTimeMillis();
+        long timeAtLastLoop;
 
         while(running){
             long timeNow = System.currentTimeMillis();
-            long updateTime = timeNow - timeAtLastLoop;
             timeAtLastLoop = timeNow;
-            double changeInTime = updateTime / ((double)FPS_TIME);
 
             //Running game updates
             update();

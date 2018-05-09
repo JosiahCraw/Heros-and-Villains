@@ -12,14 +12,18 @@ public class Assets {
     private static int heightPlayerSheet = 32;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp;
+    public static BufferedImage[] walkingUp, testButton;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
         SpriteSheet playerSheet = new SpriteSheet("/textures/sheets/PlayerSheet.png");
         walkingUp = new BufferedImage[3];
+        testButton = new BufferedImage[2];
 
         //Player animation frame cropping
+        testButton[0] = ImageHandler.loadImage("/textures/StartButton1.png");
+        testButton[1] = ImageHandler.loadImage("/textures/StartButton2.png");
+
         walkingUp[0] = playerSheet.getImage(0, 0, widthPlayerSheet, heightPlayerSheet);
         walkingUp[1] = playerSheet.getImage(widthPlayerSheet, 0, widthPlayerSheet, heightPlayerSheet);
         walkingUp[2] = playerSheet.getImage(widthPlayerSheet * 2, 0, widthPlayerSheet, heightPlayerSheet);

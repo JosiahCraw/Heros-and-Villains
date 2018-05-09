@@ -18,6 +18,9 @@ public class GameState extends State {
     @Override
     public void update() {
         player.update();
+        if(game.getKeyboardListener().esc) {
+            game.getStateHandler().setState(game.getMenuState());
+        }
     }
 
     @Override

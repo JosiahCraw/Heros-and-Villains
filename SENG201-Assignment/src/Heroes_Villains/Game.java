@@ -1,6 +1,7 @@
 package Heroes_Villains;
 
 import Heroes_Villains.Listener.KeyboardListener;
+import Heroes_Villains.Listener.MouseListener;
 import Heroes_Villains.States.GameState;
 import Heroes_Villains.States.MenuState;
 import Heroes_Villains.States.State;
@@ -24,12 +25,19 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
     //Keyboard Listener
     private KeyboardListener keyboardListener;
+    private MouseListener mouseListener;
 
     public int width, height;
 
     //Graphics variables
     private BufferStrategy buffer;
-    private Graphics graphics;
+    public Graphics graphics;
+
+    //Main Game Settings
+    public int noOfCities;
+    public int currentCity;
+    public int noOfHeros;
+    public int[] cityLayout;
 
     private void update(){
         keyboardListener.update();
@@ -62,10 +70,14 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     private void init(){ //Function run by run()
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyboardListener);
+        display.getFrame().addMouseListener(mouseListener);
+        display.getFrame().addMouseMotionListener(mouseListener);
+        display.getCanvas().addMouseListener(mouseListener);
+        display.getCanvas().addMouseMotionListener(mouseListener);
         Assets.init();
         gameState = new GameState(this);
         menuState = new MenuState(this);
-        stateHandler.setState(gameState);
+        stateHandler.setState(menuState);
     }
 
     @Override
@@ -125,9 +137,65 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         this.height = height;
         this.title = title;
         keyboardListener = new KeyboardListener();
+        mouseListener = new MouseListener();
         }
+
+    public MouseListener getMouseListener() {
+        return mouseListener;
+    }
 
     public KeyboardListener getKeyboardListener() {
         return keyboardListener;
+    }
+
+    public StateHandler getStateHandler() {
+        return stateHandler;
+    }
+
+    public State getGameState() {
+        return gameState;
+    }
+
+    public State getMenuState() {
+        return menuState;
+    }
+
+    public Graphics getGraphics() {
+        return graphics;
+    }
+
+
+    //Main Game settings Getters and Setters
+
+    public int getNoOfCities() {
+        return noOfCities;
+    }
+
+    public void setNoOfCities(int noOfCities) {
+        this.noOfCities = noOfCities;
+    }
+
+    public int getCurrentCity() {
+        return currentCity;
+    }
+
+    public void setCurrentCity(int currentCity) {
+        this.currentCity = currentCity;
+    }
+
+    public int getNoOfHeros() {
+        return noOfHeros;
+    }
+
+    public void setNoOfHeros(int noOfHeros) {
+        this.noOfHeros = noOfHeros;
+    }
+
+    public int[] getCityLayout() {
+        return cityLayout;
+    }
+
+    public void setCityLayout(int[] cityLayout) {
+        this.cityLayout = cityLayout;
     }
 }

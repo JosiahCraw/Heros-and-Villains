@@ -15,6 +15,7 @@ public class Player extends Living {
     public Game game;
     public Animation anim;
 
+    public String teamName;
 
     @Override
     public void update() {
@@ -68,5 +69,13 @@ public class Player extends Living {
 
     private BufferedImage getCurrentImage(Animation tempAnim) {
         return tempAnim.getCurrentImage();
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 }

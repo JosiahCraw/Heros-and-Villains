@@ -10,6 +10,7 @@ public class KeyboardListener implements KeyListener {
 
     public Boolean up, down, left, right;
     public Boolean arrowUp, arrowDown, arrowLeft, arrowRight;
+    public Boolean esc;
 
     public KeyboardListener() {
         keys = new Boolean[256];
@@ -17,6 +18,8 @@ public class KeyboardListener implements KeyListener {
     }
 
     public void update() {
+        esc = keys[KeyEvent.VK_ESCAPE];
+
         up = keys[KeyEvent.VK_W];
         left = keys[KeyEvent.VK_A];
         down = keys[KeyEvent.VK_S];

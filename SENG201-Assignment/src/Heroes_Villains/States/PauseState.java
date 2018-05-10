@@ -22,6 +22,7 @@ public class PauseState extends State{
         returnButton.update();
         menuButton.update();
         if(game.getMouseListener().isLeftClicked() && menuButton.click()){
+            game.getMouseListener().leftClicked = false;
             game.getStateHandler().setState(game.getMenuState());
         }
         if(game.getMouseListener().isLeftClicked() && returnButton.click()) {

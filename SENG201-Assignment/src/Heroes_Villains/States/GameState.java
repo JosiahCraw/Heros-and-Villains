@@ -19,7 +19,7 @@ public class GameState extends State {
     public void update() {
         player.update();
         if(game.getKeyboardListener().esc) {
-            game.getStateHandler().setState(game.getMenuState());
+            game.getStateHandler().setState(game.getPauseState());
         }
     }
 

@@ -2,10 +2,7 @@ package Heroes_Villains;
 
 import Heroes_Villains.Listener.KeyboardListener;
 import Heroes_Villains.Listener.MouseListener;
-import Heroes_Villains.States.GameState;
-import Heroes_Villains.States.MenuState;
-import Heroes_Villains.States.State;
-import Heroes_Villains.States.StateHandler;
+import Heroes_Villains.States.*;
 import Heroes_Villains.display.Display;
 import Heroes_Villains.graphics.Assets;
 
@@ -20,7 +17,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     private boolean running = false;
 
     //State Variables
-    private State gameState, menuState;
+    private State gameState, menuState, pauseState;
     private StateHandler stateHandler = new StateHandler();
 
     //Keyboard Listener
@@ -77,6 +74,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         Assets.init();
         gameState = new GameState(this);
         menuState = new MenuState(this);
+        pauseState = new PauseState(this);
         stateHandler.setState(menuState);
     }
 
@@ -162,6 +160,10 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
     public Graphics getGraphics() {
         return graphics;
+    }
+
+    public State getPauseState() {
+        return pauseState;
     }
 
 

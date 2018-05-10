@@ -10,16 +10,17 @@ public class MouseListener implements java.awt.event.MouseListener, MouseMotionL
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
         if(e.getButton() == MouseEvent.BUTTON1) {
             leftClicked = true;
         }
         else if(e.getButton() == MouseEvent.BUTTON3) {
             rightClicked = true;
         }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
     }
 
     public boolean isHovering(int x, int y, int width, int height) {
@@ -61,7 +62,6 @@ public class MouseListener implements java.awt.event.MouseListener, MouseMotionL
         mousePosX = e.getX();
         mousePosY = e.getY();
     }
-
     //Getters
 
     public boolean isLeftClicked() {

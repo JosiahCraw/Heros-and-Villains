@@ -32,7 +32,7 @@ public class UIButton extends UIElement {
     }
 
     @Override
-    public boolean click() {
+    public boolean click() { //Returns if object is clickable ie if the cursor is hovering over the element
         return isHovering;
     }
 }

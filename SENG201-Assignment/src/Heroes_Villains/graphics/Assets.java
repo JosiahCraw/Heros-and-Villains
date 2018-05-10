@@ -30,14 +30,14 @@ public class Assets {
         buttonWidth = 1024;
 
         //Button Frames
-        startButton[0] = ImageHandler.loadImage("/textures/StartButton1.png");
-        startButton[1] = ImageHandler.loadImage("/textures/StartButton2.png");
+        startButton[1] = ImageHandler.loadImage("/textures/StartButton1.png");
+        startButton[0] = ImageHandler.loadImage("/textures/StartButton2.png");
 
-        menuButton[0] = ImageHandler.loadImage("/textures/MenuButton1.png");
-        menuButton[1] = ImageHandler.loadImage("/textures/MenuButton2.png");
+        menuButton[1] = ImageHandler.loadImage("/textures/MenuButton1.png");
+        menuButton[0] = ImageHandler.loadImage("/textures/MenuButton2.png");
 
-        backButton[0] = ImageHandler.loadImage("/textures/BackButton1.png");
-        backButton[1] = ImageHandler.loadImage("/textures/BackButton2.png");
+        backButton[1] = ImageHandler.loadImage("/textures/BackButton1.png");
+        backButton[0] = ImageHandler.loadImage("/textures/BackButton2.png");
 
         //Player animation frame to crop
         walkingUp[0] = playerSheet.getImage(0, 0, widthPlayerSheet, heightPlayerSheet);

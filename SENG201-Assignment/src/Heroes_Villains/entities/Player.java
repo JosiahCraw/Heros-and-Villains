@@ -13,13 +13,16 @@ public class Player extends Living {
     public String name;
     public BufferedImage up, down, left, right;
     public Game game;
-    public Animation anim;
+    public Animation animUp, animDown, animLeft, animRight;
 
     public String teamName;
 
     @Override
     public void update() {
-        //anim.update();
+        animUp.update();
+        animDown.update();
+        animLeft.update();
+        animRight.update();
         if(game.getKeyboardListener().up || game.getKeyboardListener().arrowUp) {
             y-=1;
         }
@@ -37,21 +40,24 @@ public class Player extends Living {
 
     @Override
     public void render(Graphics graphics) {
-        //graphics.drawImage(getCurrentImage(anim), (int) x, (int) y, null);
-
-        graphics.drawImage(Assets.playerDown, (int) x, (int) y, null);
+        graphics.drawImage(getCurrentImage(animDown), (int) x, (int) y, 128, 128, null);
+        //graphics.drawImage(Assets.playerDown, (int) x, (int) y, null);
 
         if(game.getKeyboardListener().up || game.getKeyboardListener().arrowUp) {
-            graphics.drawImage(up, (int) x, (int) y, null);
+            graphics.drawImage(getCurrentImage(animUp), (int) x, (int) y, 128, 128, null);
+            //graphics.drawImage(up, (int) x, (int) y, null);
         }
         if(game.getKeyboardListener().left || game.getKeyboardListener().arrowLeft) {
-            graphics.drawImage(left, (int) x, (int) y, null);
+            graphics.drawImage(getCurrentImage(animLeft), (int) x, (int) y, 128, 128, null);
+            //graphics.drawImage(left, (int) x, (int) y, null);
         }
         if(game.getKeyboardListener().down || game.getKeyboardListener().arrowDown) {
-            graphics.drawImage(down, (int) x, (int) y, null);
+            graphics.drawImage(getCurrentImage(animRight), (int) x, (int) y, 128, 128, null);
+            //graphics.drawImage(down, (int) x, (int) y, null);
         }
         if(game.getKeyboardListener().right || game.getKeyboardListener().arrowRight) {
-            graphics.drawImage(right, (int) x, (int) y, null);
+            graphics.drawImage(getCurrentImage(animRight), (int) x, (int) y, 128, 128, null);
+            //graphics.drawImage(right, (int) x, (int) y, null);
         }
 
     }
@@ -59,7 +65,10 @@ public class Player extends Living {
     public Player(float x, float y, String name, BufferedImage image, Game game) {
         super(x, y);
         this.name = name;
-        anim = new Animation(Assets.walkingUp, 500);
+        animUp = new Animation(Assets.batUp, 300);
+        animDown = new Animation(Assets.batDown, 300);
+        animLeft = new Animation(Assets.batLeft, 300);
+        animRight = new Animation(Assets.batRight, 300);
         up = Assets.playerUp;
         down = Assets.playerDown;
         left = Assets.playerLeft;

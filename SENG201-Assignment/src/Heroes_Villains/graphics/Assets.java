@@ -12,18 +12,24 @@ public class Assets {
     private static int heightSheet1 = 16;
     private static int widthPlayerSheet = 32;
     private static int heightPlayerSheet = 32;
+    public static int batDim = 32;
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
         SpriteSheet playerSheet = new SpriteSheet("/textures/sheets/PlayerSheet.png");
+        SpriteSheet batSheet = new SpriteSheet("/textures/sheets/32x32-bat-sprite.png");
         walkingUp = new BufferedImage[3];
         startButton = new BufferedImage[2];
         menuButton = new BufferedImage[2];
         backButton = new BufferedImage[2];
+        batDown = new BufferedImage[3];
+        batUp = new BufferedImage[3];
+        batLeft = new BufferedImage[3];
+        batRight = new BufferedImage[3];
 
         //Setting default button width and height
         buttonHeight = 256;
@@ -43,6 +49,26 @@ public class Assets {
         walkingUp[0] = playerSheet.getImage(0, 0, widthPlayerSheet, heightPlayerSheet);
         walkingUp[1] = playerSheet.getImage(widthPlayerSheet, 0, widthPlayerSheet, heightPlayerSheet);
         walkingUp[2] = playerSheet.getImage(widthPlayerSheet * 2, 0, widthPlayerSheet, heightPlayerSheet);
+
+        //batDown[0] = batSheet.getImage(0, 0, batDim, batDim);
+        batDown[0] = batSheet.getImage(batDim, 0, batDim, batDim);
+        batDown[1] = batSheet.getImage(batDim * 2, 0, batDim, batDim);
+        batDown[2] = batSheet.getImage(batDim * 3, 0, batDim, batDim);
+
+        //batUp[0] = batSheet.getImage(0, batDim * 2, batDim, batDim);
+        batUp[0] = batSheet.getImage(batDim, batDim * 2, batDim, batDim);
+        batUp[1] = batSheet.getImage(batDim * 2, batDim * 2, batDim, batDim);
+        batUp[2] = batSheet.getImage(batDim * 3, batDim * 2, batDim, batDim);
+
+        //batRight[0] = batSheet.getImage(0, batDim, batDim, batDim);
+        batRight[0] = batSheet.getImage(batDim, batDim, batDim, batDim);
+        batRight[1] = batSheet.getImage(batDim * 2, batDim, batDim, batDim);
+        batRight[2] = batSheet.getImage(batDim * 3, batDim, batDim, batDim);
+
+        //batLeft[0] = batSheet.getImage(0, batDim * 3, batDim, batDim);
+        batLeft[0] = batSheet.getImage(batDim, batDim * 3, batDim, batDim);
+        batLeft[1] = batSheet.getImage(batDim * 2, batDim * 3, batDim, batDim);
+        batLeft[2] = batSheet.getImage(batDim * 3, batDim * 3, batDim, batDim);
 
 
         black = sheet1.getImage(0,0, widthSheet1, heightSheet1);

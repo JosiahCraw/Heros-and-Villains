@@ -19,7 +19,7 @@ public abstract class WorldObject {
         this.texture = texture;
     }
 
-    public abstract void tick();
+    public abstract void update();
 
     public abstract void render(Graphics graphics);
 }

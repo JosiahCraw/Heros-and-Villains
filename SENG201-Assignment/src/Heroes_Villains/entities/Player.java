@@ -52,7 +52,7 @@ public class Player extends Living {
             //graphics.drawImage(left, (int) x, (int) y, null);
         }
         if(game.getKeyboardListener().down || game.getKeyboardListener().arrowDown) {
-            graphics.drawImage(getCurrentImage(animRight), (int) x, (int) y, 128, 128, null);
+            graphics.drawImage(getCurrentImage(animDown), (int) x, (int) y, 128, 128, null);
             //graphics.drawImage(down, (int) x, (int) y, null);
         }
         if(game.getKeyboardListener().right || game.getKeyboardListener().arrowRight) {

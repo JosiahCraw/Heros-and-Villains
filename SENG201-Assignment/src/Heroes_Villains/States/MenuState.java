@@ -28,5 +28,7 @@ public class MenuState extends State {
     @Override
     public void render(Graphics graphics) {
         startButton.render(graphics);
+        graphics.setFont(Assets.titleFont);
+        graphics.drawString("Heroes And Villains" , 200, 200);
     }
 }

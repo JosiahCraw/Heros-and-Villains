@@ -1,10 +1,11 @@
-package Heroes_Villains.SystemUI;
+package Heroes_Villains.graphics;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
 public class FontLoader {
+
 
     public static Font load(String path, int size) {
         try {

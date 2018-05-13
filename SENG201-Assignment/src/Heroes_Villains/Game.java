@@ -3,6 +3,8 @@ package Heroes_Villains;
 import Heroes_Villains.Listener.KeyboardListener;
 import Heroes_Villains.Listener.MouseListener;
 import Heroes_Villains.States.*;
+import Heroes_Villains.cities.City;
+import Heroes_Villains.cities.Citys;
 import Heroes_Villains.display.Display;
 import Heroes_Villains.graphics.Assets;
 
@@ -31,7 +33,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     public Graphics graphics;
 
     //Main Game Settings
-    public int noOfCities;
+    public int noOfCities = 5;
     public int currentCity;
     public int noOfHeros;
     public int[] cityLayout;
@@ -76,6 +78,16 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         menuState = new MenuState(this);
         pauseState = new PauseState(this);
         stateHandler.setState(menuState);
+        Citys cityObject = new Citys(noOfCities, this);
+        initCities(noOfCities, cityObject);
+    }
+
+    public void initCities(int noCities, Citys cityObject) {
+        City[] citiesArray = new City[noCities];
+        for (int x=0; x < noCities; x++) {
+            citiesArray[x] = new City(x);
+        }
+        cityObject.cities = citiesArray;
     }
 
     @Override

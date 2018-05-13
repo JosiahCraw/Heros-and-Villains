@@ -12,6 +12,11 @@ public class City {
     public City(int cityNo) {
         this.cityNo = cityNo;
     }
+
+    public void init() {
+
+    }
+
     public void update() {
 
     }

@@ -11,5 +11,6 @@ public class Citys {
     public Citys(int noOfCities, Game game) {
         this.noOfCities = noOfCities;
         this.game = game;
+        City[] cities = new City[noOfCities];
     }
 }

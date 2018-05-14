@@ -23,8 +23,10 @@ public class Inn extends Rooms{
 
     @Override
     public void render(Graphics graphics) {
+        graphics.drawImage(Assets.inn, 0, 0, null);
         graphics.setFont(Assets.titleFont);
         graphics.drawString("Inn", 650, 400);
         graphics.drawImage(Assets.purple, 1200, 360, null);
+        graphics.drawImage(Assets.innkeep, 576, 70, 72, 100, null);
     }
 }

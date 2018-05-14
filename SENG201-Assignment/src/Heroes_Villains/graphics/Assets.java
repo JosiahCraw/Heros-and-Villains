@@ -16,7 +16,7 @@ public class Assets {
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
@@ -27,6 +27,7 @@ public class Assets {
         startButton = new BufferedImage[2];
         menuButton = new BufferedImage[2];
         backButton = new BufferedImage[2];
+        battleButton = new BufferedImage[2];
         batDown = new BufferedImage[3];
         batUp = new BufferedImage[3];
         batLeft = new BufferedImage[3];
@@ -45,6 +46,9 @@ public class Assets {
 
         backButton[1] = ImageHandler.loadImage("/textures/BackButton1.png");
         backButton[0] = ImageHandler.loadImage("/textures/BackButton2.png");
+
+        battleButton[1] = ImageHandler.loadImage("/textures/BattleButton1.png");
+        battleButton[0] = ImageHandler.loadImage("/textures/BattleButton2.png");
 
         //Player animation frame to crop
         walkingUp[0] = playerSheet.getImage(0, 0, widthPlayerSheet, heightPlayerSheet);

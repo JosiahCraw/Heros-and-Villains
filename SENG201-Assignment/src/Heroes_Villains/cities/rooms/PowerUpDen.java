@@ -1,11 +1,13 @@
 package Heroes_Villains.cities.rooms;
 
+import Heroes_Villains.Game;
+
 import java.awt.*;
 
 public class PowerUpDen extends Rooms{
 
-    public PowerUpDen(int roomNo) {
-        super(roomNo);
+    public PowerUpDen(Game game) {
+        super(game);
     }
 
     @Override

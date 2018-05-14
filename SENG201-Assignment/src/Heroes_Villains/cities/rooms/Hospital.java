@@ -1,11 +1,13 @@
 package Heroes_Villains.cities.rooms;
 
+import Heroes_Villains.Game;
+
 import java.awt.*;
 
 public class Hospital extends  Rooms{
 
-    public Hospital(int roomNo) {
-        super(roomNo);
+    public Hospital(Game game) {
+        super(game);
     }
 
     @Override

@@ -1,13 +1,15 @@
 package Heroes_Villains.cities.rooms;
 
+import Heroes_Villains.Game;
+
 import java.awt.*;
 
 public abstract class Rooms {
 
-    public int roomNo;
+    private Game game;
 
-    public Rooms(int roomNo) {
-        this.roomNo = roomNo;
+    public Rooms(Game game) {
+        this.game = game;
     }
 
     public abstract void update();

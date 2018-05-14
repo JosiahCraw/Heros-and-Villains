@@ -17,6 +17,10 @@ public class Player extends Living {
 
     public String teamName;
 
+    //City and room location information
+    public int currentCity;
+    public int currentRoom;
+
     @Override
     public void update() {
         animUp.update();
@@ -62,7 +66,7 @@ public class Player extends Living {
 
     }
 
-    public Player(float x, float y, String name, BufferedImage image, Game game) {
+    public Player(float x, float y, String name, Game game) {
         super(x, y);
         this.name = name;
         animUp = new Animation(Assets.batUp, 300);
@@ -74,6 +78,9 @@ public class Player extends Living {
         left = Assets.playerLeft;
         right = Assets.playerRight;
         this.game = game;
+        currentRoom = 0;
+        currentCity = 0;
+
     }
 
     private BufferedImage getCurrentImage(Animation tempAnim) {
@@ -88,3 +95,4 @@ public class Player extends Living {
         this.teamName = teamName;
     }
 }
+

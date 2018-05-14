@@ -1,11 +1,13 @@
 package Heroes_Villains.cities.rooms;
 
+import Heroes_Villains.Game;
+
 import java.awt.*;
 
 public class HomeBase extends Rooms{
 
-    public HomeBase(int roomNo) {
-        super(roomNo);
+    public HomeBase(Game game) {
+        super(game);
     }
 
     @Override

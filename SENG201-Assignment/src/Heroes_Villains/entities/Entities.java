@@ -19,6 +19,14 @@ public abstract class Entities {
         this.y = y;
     }
 
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
     public abstract void update();
 
     public abstract void render(Graphics graphics);

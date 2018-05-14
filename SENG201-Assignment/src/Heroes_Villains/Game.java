@@ -3,9 +3,8 @@ package Heroes_Villains;
 import Heroes_Villains.Listener.KeyboardListener;
 import Heroes_Villains.Listener.MouseListener;
 import Heroes_Villains.States.*;
-import Heroes_Villains.cities.City;
-import Heroes_Villains.cities.Citys;
 import Heroes_Villains.display.Display;
+import Heroes_Villains.entities.Player;
 import Heroes_Villains.graphics.Assets;
 
 import java.awt.*;
@@ -28,6 +27,8 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
     public int width, height;
 
+    public Player player;
+
     //Graphics variables
     private BufferStrategy buffer;
     public Graphics graphics;
@@ -36,7 +37,6 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     public int noOfCities = 5;
     public int currentCity;
     public int noOfHeros;
-    public int[] cityLayout;
 
     private void update(){
         keyboardListener.update();
@@ -75,20 +75,21 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         display.getCanvas().addMouseMotionListener(mouseListener);
         Assets.init();
         gameState = new GameState(this);
+        player = ((GameState) gameState).player;
         menuState = new MenuState(this);
         pauseState = new PauseState(this);
         stateHandler.setState(menuState);
-        Citys cityObject = new Citys(noOfCities, this);
-        initCities(noOfCities, cityObject);
+        //Citys cityObject = new Citys(noOfCities, this);
+        //initCities(noOfCities, cityObject);
     }
 
-    public void initCities(int noCities, Citys cityObject) {
+    /*public void initCities(int noCities, Citys cityObject) {
         City[] citiesArray = new City[noCities];
         for (int x=0; x < noCities; x++) {
-            citiesArray[x] = new City(x);
+            citiesArray[x] = new City(x, this);
         }
         cityObject.cities = citiesArray;
-    }
+    }*/
 
     @Override
     public void run() { //Following function is run when the thread is started
@@ -205,11 +206,8 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         this.noOfHeros = noOfHeros;
     }
 
-    public int[] getCityLayout() {
-        return cityLayout;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setCityLayout(int[] cityLayout) {
-        this.cityLayout = cityLayout;
-    }
 }

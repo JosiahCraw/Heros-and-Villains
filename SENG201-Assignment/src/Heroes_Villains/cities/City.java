@@ -2,6 +2,7 @@ package Heroes_Villains.cities;
 
 import Heroes_Villains.Game;
 import Heroes_Villains.cities.rooms.*;
+import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.utils.RandomNum;
 
 import java.awt.*;
@@ -40,10 +41,12 @@ public class City {
     }
 
     public void update() {
-        rooms[game.getPlayer().currentRoom].update();
+        rooms[game.getPlayer().getCurrentRoom()].update();
     }
     public void render(Graphics graphics) {
-        rooms[game.getPlayer().currentRoom].render(graphics);
+        graphics.setFont(Assets.titleFont);
+        graphics.drawString("City: " + Integer.toString(cityNo), 300, 400);
+        rooms[game.getPlayer().getCurrentRoom()].render(graphics);
 
     }
 }

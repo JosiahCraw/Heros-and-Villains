@@ -18,8 +18,8 @@ public class Player extends Living {
     public String teamName;
 
     //City and room location information
-    public int currentCity;
-    public int currentRoom;
+    private int currentCity;
+    private int currentRoom;
 
     @Override
     public void update() {
@@ -93,6 +93,22 @@ public class Player extends Living {
 
     public void setTeamName(String teamName) {
         this.teamName = teamName;
+    }
+
+    public int getCurrentCity() {
+        return currentCity;
+    }
+
+    public void setCurrentCity(int currentCity) {
+        this.currentCity = currentCity;
+    }
+
+    public int getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(int currentRoom) {
+        this.currentRoom = currentRoom;
     }
 }
 

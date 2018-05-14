@@ -6,7 +6,7 @@ import java.awt.*;
 
 public abstract class Rooms {
 
-    private Game game;
+    protected Game game;
 
     public Rooms(Game game) {
         this.game = game;

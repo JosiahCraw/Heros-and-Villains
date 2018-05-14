@@ -25,10 +25,10 @@ public class Citys {
     }
 
     public void update() {
-        cities[game.getPlayer().currentCity].update();
+        cities[game.getPlayer().getCurrentCity()].update();
     }
 
     public void render(Graphics graphics) {
-        cities[game.getPlayer().currentCity].render(graphics);
+        cities[game.getPlayer().getCurrentCity()].render(graphics);
     }
 }

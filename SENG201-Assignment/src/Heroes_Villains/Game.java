@@ -18,7 +18,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     private boolean running = false;
 
     //State Variables
-    private State gameState, menuState, pauseState;
+    private State gameState, menuState, pauseState, battleState;
     private StateHandler stateHandler = new StateHandler();
 
     //Keyboard Listener
@@ -78,18 +78,10 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         player = ((GameState) gameState).player;
         menuState = new MenuState(this);
         pauseState = new PauseState(this);
+        battleState = new BattleState(this);
         stateHandler.setState(menuState);
-        //Citys cityObject = new Citys(noOfCities, this);
-        //initCities(noOfCities, cityObject);
     }
 
-    /*public void initCities(int noCities, Citys cityObject) {
-        City[] citiesArray = new City[noCities];
-        for (int x=0; x < noCities; x++) {
-            citiesArray[x] = new City(x, this);
-        }
-        cityObject.cities = citiesArray;
-    }*/
 
     @Override
     public void run() { //Following function is run when the thread is started
@@ -179,6 +171,9 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         return pauseState;
     }
 
+    public State getBattleState() {
+        return battleState;
+    }
 
     //Main Game settings Getters and Setters
 

@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight;
+    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain;
     public static Font titleFont;
     private static int widthSheet1 = 16;
     private static int heightSheet1 = 16;
@@ -22,6 +22,7 @@ public class Assets {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
         SpriteSheet playerSheet = new SpriteSheet("/textures/sheets/PlayerSheet.png");
         SpriteSheet batSheet = new SpriteSheet("/textures/sheets/32x32-bat-sprite.png");
+        SpriteSheet villainSheet = new SpriteSheet("/textures/sheets/4.png");
         walkingUp = new BufferedImage[3];
         startButton = new BufferedImage[2];
         menuButton = new BufferedImage[2];
@@ -70,6 +71,7 @@ public class Assets {
         batLeft[1] = batSheet.getImage(batDim * 2, batDim * 3, batDim, batDim);
         batLeft[2] = batSheet.getImage(batDim * 3, batDim * 3, batDim, batDim);
 
+        villain = villainSheet.getImage(0, 0, 64, 64);
 
         black = sheet1.getImage(0,0, widthSheet1, heightSheet1);
         purple = sheet1.getImage(widthSheet1, 0, widthSheet1, heightSheet1);

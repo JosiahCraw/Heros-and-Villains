@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn;
+    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor;
     public static Font titleFont;
     private static int widthSheet1 = 16;
     private static int heightSheet1 = 16;
@@ -81,6 +81,7 @@ public class Assets {
 
         //Buildings
         inn = ImageHandler.loadImage("/textures/Inn.png");
+        innFloor = ImageHandler.loadImage("/textures/InnFloor.png");
 
         black = sheet1.getImage(0,0, widthSheet1, heightSheet1);
         purple = sheet1.getImage(widthSheet1, 0, widthSheet1, heightSheet1);

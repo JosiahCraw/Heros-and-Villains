@@ -44,24 +44,27 @@ public class Player extends Living {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(getCurrentImage(animDown), (int) x, (int) y, 128, 128, null);
+
         //graphics.drawImage(Assets.playerDown, (int) x, (int) y, null);
 
         if(game.getKeyboardListener().up || game.getKeyboardListener().arrowUp) {
             graphics.drawImage(getCurrentImage(animUp), (int) x, (int) y, 128, 128, null);
             //graphics.drawImage(up, (int) x, (int) y, null);
         }
-        if(game.getKeyboardListener().left || game.getKeyboardListener().arrowLeft) {
+        else if(game.getKeyboardListener().left || game.getKeyboardListener().arrowLeft) {
             graphics.drawImage(getCurrentImage(animLeft), (int) x, (int) y, 128, 128, null);
             //graphics.drawImage(left, (int) x, (int) y, null);
         }
-        if(game.getKeyboardListener().down || game.getKeyboardListener().arrowDown) {
+        else if(game.getKeyboardListener().down || game.getKeyboardListener().arrowDown) {
             graphics.drawImage(getCurrentImage(animDown), (int) x, (int) y, 128, 128, null);
             //graphics.drawImage(down, (int) x, (int) y, null);
         }
-        if(game.getKeyboardListener().right || game.getKeyboardListener().arrowRight) {
+        else if(game.getKeyboardListener().right || game.getKeyboardListener().arrowRight) {
             graphics.drawImage(getCurrentImage(animRight), (int) x, (int) y, 128, 128, null);
             //graphics.drawImage(right, (int) x, (int) y, null);
+        }
+        else {
+            graphics.drawImage(getCurrentImage(animDown), (int) x, (int) y, 128, 128, null);
         }
 
     }

@@ -3,6 +3,7 @@ package Heroes_Villains.entities;
 import Heroes_Villains.Game;
 import Heroes_Villains.graphics.Animation;
 import Heroes_Villains.graphics.Assets;
+import Heroes_Villains.inventory.Inventory;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,10 +17,15 @@ public class Player extends Living {
     public Animation animUp, animDown, animLeft, animRight;
 
     public String teamName;
+    public int money;
 
     //City and room location information
     private int currentCity;
     private int currentRoom;
+
+    //Inventory
+    private Inventory inventory;
+
 
     @Override
     public void update() {
@@ -39,6 +45,7 @@ public class Player extends Living {
         if(game.getKeyboardListener().right || game.getKeyboardListener().arrowRight) {
             x+=1;
         }
+        inventory.update();
 
     }
 
@@ -66,12 +73,17 @@ public class Player extends Living {
         else {
             graphics.drawImage(getCurrentImage(animDown), (int) x, (int) y, 128, 128, null);
         }
+        if(game.getKeyboardListener().invOpen) {
+            graphics.drawImage(Assets.purple, 300, 300, 100, 100, null);
+        }
+        inventory.render(graphics);
 
     }
 
     public Player(float x, float y, String name, Game game) {
         super(x, y);
         this.name = name;
+        inventory = new Inventory(game);
         animUp = new Animation(Assets.batUp, 300);
         animDown = new Animation(Assets.batDown, 300);
         animLeft = new Animation(Assets.batLeft, 300);
@@ -83,7 +95,7 @@ public class Player extends Living {
         this.game = game;
         currentRoom = 0;
         currentCity = 0;
-
+        money = 0;
     }
 
     private BufferedImage getCurrentImage(Animation tempAnim) {
@@ -112,6 +124,15 @@ public class Player extends Living {
 
     public void setCurrentRoom(int currentRoom) {
         this.currentRoom = currentRoom;
+    }
+    public void useMoney(int amount) {
+        money += amount;
+    }
+    public void spendMoney(int amount) {
+        money -= amount;
+    }
+    public Inventory getInventory() {
+        return inventory;
     }
 }
 

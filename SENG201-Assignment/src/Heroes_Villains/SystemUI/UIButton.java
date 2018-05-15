@@ -9,6 +9,7 @@ public class UIButton extends UIElement {
 
     private int width, height;
     private boolean isHovering;
+    public boolean clickable;
 
     public UIButton(int x, int y, Game game, BufferedImage[] images, int width, int height) {
         super(x, y, game, images);

@@ -11,10 +11,12 @@ public class KeyboardListener implements KeyListener {
     public Boolean up, down, left, right;
     public Boolean arrowUp, arrowDown, arrowLeft, arrowRight;
     public Boolean esc;
+    public Boolean invOpen;
 
     public KeyboardListener() {
         keys = new Boolean[256];
         Arrays.fill(keys, false);
+        invOpen = false;
     }
 
     public void update() {
@@ -38,11 +40,26 @@ public class KeyboardListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_E) {
+            if(invOpen == true) {
+                invOpen = false;
+            }
+            else {
+                invOpen = true;
+            }
+            return;
+        }
+        if(e.getKeyCode() < 0 || e.getKeyCode() >= keys.length) {
+            return;
+        }
         keys[e.getKeyCode()] = true;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if(e.getKeyCode() < 0 || e.getKeyCode() >= keys.length) {
+            return;
+        }
         keys[e.getKeyCode()] = false;
     }
 }

@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor;
+    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory;
     public static Font titleFont;
     private static int widthSheet1 = 16;
     private static int heightSheet1 = 16;
@@ -78,6 +78,9 @@ public class Assets {
         //NPCs
         villain = villainSheet.getImage(0, 0, 64, 64);
         innkeep = ImageHandler.loadImage("/textures/15.png");
+
+        //Inventory
+        inventory = ImageHandler.loadImage("/textures/InventoryScreen.png");
 
         //Buildings
         inn = ImageHandler.loadImage("/textures/Inn.png");

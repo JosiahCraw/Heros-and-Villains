@@ -20,11 +20,11 @@ public class City {
         this.cityNo = cityNo;
         this.game = game;
         rooms = new Rooms[game.noOfCities];
-        HomeBase homeBase = new HomeBase(game);
-        Hospital hospital = new Hospital(game);
-        Inn inn = new Inn(game);
-        PowerUpDen powerUpDen = new PowerUpDen(game);
-        VillainRoom villainRoom = new VillainRoom(game);
+        homeBase = new HomeBase(game);
+        hospital = new Hospital(game);
+        inn = new Inn(game);
+        powerUpDen = new PowerUpDen(game);
+        villainRoom = new VillainRoom(game);
         rooms[4] = homeBase;
         init(hospital);
         init(inn);

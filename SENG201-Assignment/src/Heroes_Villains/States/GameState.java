@@ -3,6 +3,8 @@ package Heroes_Villains.States;
 import Heroes_Villains.Game;
 import Heroes_Villains.cities.Citys;
 import Heroes_Villains.entities.Player;
+import Heroes_Villains.entities.items.HealingItem;
+import Heroes_Villains.graphics.Assets;
 
 import java.awt.*;
 
@@ -10,6 +12,7 @@ public class GameState extends State {
 
     public Player player;
     public Citys masterCities;
+    public HealingItem potion;
 
     public GameState(Game game) {
         super(game);
@@ -17,6 +20,7 @@ public class GameState extends State {
         masterCities = new Citys(game);
         player.setCurrentCity(0);
         player.setCurrentRoom(4);
+        potion = new HealingItem(0, "Basic Potion", Assets.purple, game, masterCities);
     }
 
     public Player getPlayer() {
@@ -36,5 +40,10 @@ public class GameState extends State {
     public void render(Graphics graphics) {
         masterCities.render(graphics);
         player.render(graphics);
+        System.out.println(potion.isUseable());
+    }
+
+    public Citys getCities() {
+        return masterCities;
     }
 }

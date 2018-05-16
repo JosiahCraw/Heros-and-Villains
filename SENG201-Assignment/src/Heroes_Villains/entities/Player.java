@@ -68,16 +68,12 @@ public class Player extends Living {
         }
         else if(game.getKeyboardListener().right || game.getKeyboardListener().arrowRight) {
             graphics.drawImage(getCurrentImage(animRight), (int) x, (int) y, 128, 128, null);
-            //graphics.drawImage(right, (int) x, (int) y, null);
+            //graphics.drawImage(right, (int) x, (int) y, null)
         }
         else {
             graphics.drawImage(getCurrentImage(animDown), (int) x, (int) y, 128, 128, null);
         }
-        if(game.getKeyboardListener().invOpen) {
-            graphics.drawImage(Assets.purple, 300, 300, 100, 100, null);
-        }
-        inventory.render(graphics);
-
+            inventory.render(graphics);
     }
 
     public Player(float x, float y, String name, Game game) {

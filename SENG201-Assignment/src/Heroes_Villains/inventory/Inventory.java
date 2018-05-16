@@ -1,7 +1,7 @@
 package Heroes_Villains.inventory;
 
 import Heroes_Villains.Game;
-import Heroes_Villains.entities.Item;
+import Heroes_Villains.entities.items.Item;
 import Heroes_Villains.graphics.Assets;
 
 import java.awt.*;
@@ -12,7 +12,7 @@ public class Inventory {
     private Game game;
     public boolean open = false;
     public ArrayList<Item> items;
-    private int inventoryX = 350;
+    private int inventoryX = 420;
     private int inventoryY = 48;
     private int inventoryWidth = 800;
     private int inventoryHeight = 600;
@@ -40,6 +40,9 @@ public class Inventory {
             return;
         }
         graphics.drawImage(Assets.inventory, inventoryX, inventoryY, inventoryWidth, inventoryHeight, null);
+        for(Item i: items) {
+
+        }
 
     }
 }

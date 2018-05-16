@@ -35,8 +35,8 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
     //Main Game Settings
     public int noOfCities = 5;
-    public int currentCity;
     public int noOfHeros;
+
 
     private void update(){
         keyboardListener.update();
@@ -183,14 +183,6 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
     public void setNoOfCities(int noOfCities) {
         this.noOfCities = noOfCities;
-    }
-
-    public int getCurrentCity() {
-        return currentCity;
-    }
-
-    public void setCurrentCity(int currentCity) {
-        this.currentCity = currentCity;
     }
 
     public int getNoOfHeros() {

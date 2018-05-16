@@ -49,4 +49,8 @@ public class City {
         rooms[game.getPlayer().getCurrentRoom()].render(graphics);
 
     }
+
+    public Rooms[] getRooms() {
+        return rooms;
+    }
 }

@@ -113,7 +113,6 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
             update();
             render();
             try {
-
             	Thread.sleep((lastTime - System.nanoTime() + OPTIMAL_TIME)/1000000);
 
             } catch (InterruptedException e) {

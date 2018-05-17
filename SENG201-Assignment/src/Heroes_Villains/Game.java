@@ -36,6 +36,8 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     //Main Game Settings
     public int noOfCities = 5;
     public int noOfHeros;
+    
+    public double delta;
 
 
     private void update(){
@@ -89,7 +91,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
         long lastTime = System.nanoTime();
         final int  FPS = 60;
-        final long OPTIMAL_TIME = 1000000000 / FPS;
+        final long OPTIMAL_TIME = 1000000000 / FPS ;
         int lastFpsTime = 0;
         int fps = 0;
 
@@ -98,13 +100,14 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
             long updateLength = timeNow - lastTime;
             lastTime = timeNow;
             
-            double delta = updateLength / ((double)OPTIMAL_TIME);
+            delta = updateLength / ((double)OPTIMAL_TIME);
             
             lastFpsTime += updateLength;
             fps ++;
             
             if (lastFpsTime >= 1000000000) {
             	System.out.println("(FPS: "+fps+")");
+            	System.out.println(delta);
             	lastFpsTime = 0;
             	fps = 0;
             }
@@ -113,8 +116,12 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
             update();
             render();
             try {
+            	
+            	if ((lastTime - System.nanoTime() + OPTIMAL_TIME) >= 0) {
 
-            	Thread.sleep((lastTime - System.nanoTime() + OPTIMAL_TIME)/1000000);
+            		Thread.sleep((lastTime - System.nanoTime() + OPTIMAL_TIME)/1000000);
+            	
+            	}
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

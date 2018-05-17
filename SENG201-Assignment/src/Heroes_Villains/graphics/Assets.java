@@ -80,7 +80,7 @@ public class Assets {
         innkeep = ImageHandler.loadImage("/textures/15.png");
 
         //Inventory
-        inventory = ImageHandler.loadImage("/textures/InventoryScreen.png");
+        inventory = ImageHandler.loadImage("/textures/inventoryScreen.png");
 
         //Buildings
         inn = ImageHandler.loadImage("/textures/Inn.png");
@@ -95,7 +95,6 @@ public class Assets {
 
         //Fonts
         titleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 70);
-        invFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 36);
 
     }
 

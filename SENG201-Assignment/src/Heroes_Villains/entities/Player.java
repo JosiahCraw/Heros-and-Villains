@@ -73,7 +73,7 @@ public class Player extends Living {
         else {
             graphics.drawImage(getCurrentImage(animDown), (int) x, (int) y, 128, 128, null);
         }
-            inventory.render(graphics);
+        inventory.render(graphics);
     }
 
     public Player(float x, float y, String name, Game game) {

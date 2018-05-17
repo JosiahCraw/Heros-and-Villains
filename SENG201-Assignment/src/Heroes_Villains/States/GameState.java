@@ -21,6 +21,7 @@ public class GameState extends State {
         player.setCurrentCity(0);
         player.setCurrentRoom(4);
         potion = new HealingItem(0, "Basic Potion", Assets.purple, game, masterCities);
+        player.getInventory().addItem(potion);
     }
 
     public Player getPlayer() {
@@ -31,6 +32,7 @@ public class GameState extends State {
     public void update() {
         masterCities.update();
         player.update();
+        potion.update();
         if(game.getKeyboardListener().esc) {
             game.getStateHandler().setState(game.getPauseState());
         }
@@ -40,7 +42,6 @@ public class GameState extends State {
     public void render(Graphics graphics) {
         masterCities.render(graphics);
         player.render(graphics);
-        System.out.println(potion.isUseable());
     }
 
     public Citys getCities() {

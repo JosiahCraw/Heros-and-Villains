@@ -3,6 +3,7 @@ package Heroes_Villains.inventory;
 import Heroes_Villains.Game;
 import Heroes_Villains.entities.items.Item;
 import Heroes_Villains.graphics.Assets;
+import Heroes_Villains.graphics.DrawText;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -33,6 +34,11 @@ public class Inventory {
 
     public void update() {
         open = game.getKeyboardListener().invOpen;
+        //for(Item i: items) {
+            //if(i.getCount() <= 0) {
+                //items.remove(i);
+            //}
+        //}
     }
 
     public void render(Graphics graphics) {
@@ -41,7 +47,8 @@ public class Inventory {
         }
         graphics.drawImage(Assets.inventory, inventoryX, inventoryY, inventoryWidth, inventoryHeight, null);
         for(Item i: items) {
-
+            DrawText.draw(graphics, i.getName(), 300, 200, true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, Integer.toString(i.getCount()), 300, 300, true, Color.WHITE, Assets.invFont);
         }
 
     }

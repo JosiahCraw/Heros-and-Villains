@@ -87,21 +87,25 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     public void run() { //Following function is run when the thread is started
         init();
 
+        long lastTime = System.currentTimeMillis();
         final int  FPS = 60;
-        final long FPS_TIME = 1000000 / FPS;
+        final long FPS_TIME = 1000 / FPS;
         long timeAtLastLoop;
+        int lastTimeFPS = 0;
+        int fps = 0;
 
         while(running){
             long timeNow = System.currentTimeMillis();
+            long updateTime = timeNow - lastTime;
             timeAtLastLoop = timeNow;
 
             //Running game updates
             update();
             render();
             try {
-                Thread.sleep((timeAtLastLoop - System.currentTimeMillis() + FPS_TIME)/1000000);
+                Thread.sleep((timeAtLastLoop - System.currentTimeMillis() + FPS_TIME));
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
             catch (IllegalArgumentException e) {
                 e.printStackTrace();

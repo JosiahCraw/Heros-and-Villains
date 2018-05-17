@@ -34,8 +34,10 @@ public abstract class Item {
     public int getCount() {
         return count;
     }
+
     //Setter
     public void setCount(int count) {
         this.count = count;
     }
+
 }

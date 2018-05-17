@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory;
-    public static Font titleFont;
+    public static Font titleFont, invFont;
     private static int widthSheet1 = 16;
     private static int heightSheet1 = 16;
     private static int widthPlayerSheet = 32;
@@ -95,6 +95,7 @@ public class Assets {
 
         //Fonts
         titleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 70);
+        invFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 36);
 
     }
 

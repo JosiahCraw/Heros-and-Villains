@@ -10,15 +10,15 @@ public class Animation {
 
     public Animation(BufferedImage[] images, int speed) {
         this.images = images;
-        this.speed = speed;
+        this.speed = speed * 1000000;
         index = 0;
-        lastTime = System.currentTimeMillis();
+        lastTime = System.nanoTime();
     }
 
     public void update() {
-        if ((System.currentTimeMillis() - lastTime) >= speed) {
+        if ((System.nanoTime() - lastTime) >= speed) {
             index++;
-            lastTime = System.currentTimeMillis();
+            lastTime = System.nanoTime();
             if(index >= images.length) {
                 index = 0;
             }

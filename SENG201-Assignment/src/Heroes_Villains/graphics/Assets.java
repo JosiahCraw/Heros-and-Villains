@@ -94,7 +94,12 @@ public class Assets {
         playerRight = ImageHandler.loadImage("/textures/PlayerRight.png");
 
         //Fonts
+
         titleFont = FontLoader.load("res/fonts/Symtext.ttf", 70);
+
+        titleFont = FontLoader.load("res/fonts/Symtext.ttf", 70);
+        invFont = FontLoader.load("res/fonts/Symtext.ttf", 36);
+
 
     }
 

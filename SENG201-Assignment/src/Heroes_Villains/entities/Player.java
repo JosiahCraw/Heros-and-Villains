@@ -34,16 +34,16 @@ public class Player extends Living {
         animLeft.update();
         animRight.update();
         if(game.getKeyboardListener().up || game.getKeyboardListener().arrowUp) {
-            y-=1;
+            y-=5;
         }
         if(game.getKeyboardListener().left || game.getKeyboardListener().arrowLeft) {
-            x-=1;
+            x-=5;
         }
         if(game.getKeyboardListener().down || game.getKeyboardListener().arrowDown) {
-            y+=1;
+            y+=5;
         }
         if(game.getKeyboardListener().right || game.getKeyboardListener().arrowRight) {
-            x+=1;
+            x+=5;
         }
         inventory.update();
 

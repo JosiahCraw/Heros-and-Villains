@@ -103,11 +103,12 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
             update();
             render();
             try {
+                //System.out.println(timeAtLastLoop - System.currentTimeMillis());
                 if((timeAtLastLoop - System.currentTimeMillis() + FPS_TIME) > 0) {
                     Thread.sleep((timeAtLastLoop - System.currentTimeMillis() + FPS_TIME));
                 }
             } catch (InterruptedException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
             catch (IllegalArgumentException e) {
                 e.printStackTrace();

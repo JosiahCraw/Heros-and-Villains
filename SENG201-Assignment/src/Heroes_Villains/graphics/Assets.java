@@ -95,6 +95,7 @@ public class Assets {
 
         //Fonts
         titleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 70);
+        invFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 36);
 
     }
 

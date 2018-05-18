@@ -38,6 +38,21 @@ public class HomeBase extends Rooms{
             game.getPlayer().setY(300);
             game.getPlayer().setCurrentRoom(3);
         }
+
+        //Edge Bounds
+
+        if (game.getPlayer().getX() < 0) {
+            game.getPlayer().setX(0);
+        }
+        if (game.getPlayer().getX() > game.width - game.getPlayer().getWidth()) {
+            game.getPlayer().setX(game.width - game.getPlayer().getWidth());
+        }
+        if (game.getPlayer().getY() < 0) {
+            game.getPlayer().setY(0);
+        }
+        if (game.getPlayer().getY() > game.height - game.getPlayer().getHeight()) {
+            game.getPlayer().setY(game.height - game.getPlayer().getHeight());
+        }
     }
 
     @Override

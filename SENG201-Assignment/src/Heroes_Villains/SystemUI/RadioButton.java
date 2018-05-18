@@ -51,4 +51,8 @@ public class RadioButton extends UIElement {
         }
         return false;
     }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
 }

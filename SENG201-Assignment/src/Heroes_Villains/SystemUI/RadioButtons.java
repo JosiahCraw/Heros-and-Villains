@@ -37,18 +37,19 @@ public abstract class RadioButtons extends UIElement{
         int currY = y;
         for(int i=0; i<numButtons; i++) {
             if(horizontal) {
-                buttons[i] = new RadioButton(currX, currY, game, imagesArray[i], width, height);
+                buttons[i] = new RadioButton(currX, currY, game, imagesArray[i], width, height, i, this);
                 currX += (width + spacing);
             }
             if(!horizontal) {
-                buttons[i] = new RadioButton(currX, currY, game, imagesArray[i], width, height);
+                buttons[i] = new RadioButton(currX, currY, game, imagesArray[i], width, height, i, this);
                 currY += (height + spacing);
             }
 
         }
     }
     public void clicked(int buttonClicked) {
-
+        for()
+        buttons[buttonClicked].setClicked(true);
     }
 
     public abstract void update();

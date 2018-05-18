@@ -47,7 +47,7 @@ public abstract class RadioButtons extends UIElement{
 
         }
     }
-    public void clicked() {
+    public void clicked(int buttonClicked) {
 
     }
 

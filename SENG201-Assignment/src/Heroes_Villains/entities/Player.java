@@ -23,6 +23,9 @@ public class Player extends Living {
     private int currentCity;
     private int currentRoom;
 
+    private int width;
+    private int height;
+
     //Inventory
     private Inventory inventory;
 
@@ -79,6 +82,8 @@ public class Player extends Living {
     public Player(float x, float y, String name, Game game) {
         super(x, y);
         this.name = name;
+        this.width = 128;
+        this.height = 128;
         inventory = new Inventory(game);
         animUp = new Animation(Assets.batUp, 300);
         animDown = new Animation(Assets.batDown, 300);
@@ -129,6 +134,14 @@ public class Player extends Living {
     }
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
 

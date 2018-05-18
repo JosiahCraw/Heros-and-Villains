@@ -16,7 +16,7 @@ public class Assets {
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
@@ -28,19 +28,22 @@ public class Assets {
         menuButton = new BufferedImage[2];
         backButton = new BufferedImage[2];
         battleButton = new BufferedImage[2];
+        exitButton = new BufferedImage[2];
+        controlsButton = new BufferedImage[2];
         batDown = new BufferedImage[3];
         batUp = new BufferedImage[3];
         batLeft = new BufferedImage[3];
         batRight = new BufferedImage[3];
         testRadioButton = new BufferedImage[6];
 
+
         //Setting default button width and height
         buttonHeight = 256;
         buttonWidth = 1024;
 
         //Button Frames
-        startButton[1] = ImageHandler.loadImage("/textures/StartButton1.png");
-        startButton[0] = ImageHandler.loadImage("/textures/StartButton2.png");
+        startButton[1] = ImageHandler.loadImage("/textures/NewStartButton1.png");
+        startButton[0] = ImageHandler.loadImage("/textures/NewStartButton2.png");
 
         menuButton[1] = ImageHandler.loadImage("/textures/MenuButton1.png");
         menuButton[0] = ImageHandler.loadImage("/textures/MenuButton2.png");
@@ -50,6 +53,12 @@ public class Assets {
 
         battleButton[1] = ImageHandler.loadImage("/textures/BattleButton1.png");
         battleButton[0] = ImageHandler.loadImage("/textures/BattleButton2.png");
+
+        exitButton[1] = ImageHandler.loadImage("/textures/ExitButton1.png");
+        exitButton[0] = ImageHandler.loadImage("/textures/ExitButton2.png");
+
+        controlsButton[1] = ImageHandler.loadImage("/textures/ControlsButton1.png");
+        controlsButton[0] = ImageHandler.loadImage("/textures/ControlsButton2.png");
 
         //Player animation frame to crop
         walkingUp[0] = playerSheet.getImage(0, 0, widthPlayerSheet, heightPlayerSheet);

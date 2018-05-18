@@ -38,8 +38,8 @@ public class Assets {
         buttonWidth = 1024;
 
         //Button Frames
-        startButton[1] = ImageHandler.loadImage("/textures/StartButton1.png");
-        startButton[0] = ImageHandler.loadImage("/textures/StartButton2.png");
+        startButton[1] = ImageHandler.loadImage("/textures/NewStartButton1.png");
+        startButton[0] = ImageHandler.loadImage("/textures/NewStartButton2.png");
 
         menuButton[1] = ImageHandler.loadImage("/textures/MenuButton1.png");
         menuButton[0] = ImageHandler.loadImage("/textures/MenuButton2.png");

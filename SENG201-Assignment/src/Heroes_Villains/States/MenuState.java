@@ -13,7 +13,7 @@ public class MenuState extends State {
 
     public MenuState(Game game) {
         super(game);
-        startButton = new UIButton(128, 474, game, Assets.startButton, Assets.buttonWidth, Assets.buttonHeight);
+        startButton = new UIButton(540, 343, game, Assets.startButton, 200, 35);
     }
 
     @Override

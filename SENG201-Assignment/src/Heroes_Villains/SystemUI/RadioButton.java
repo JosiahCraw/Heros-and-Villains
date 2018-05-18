@@ -17,6 +17,7 @@ public class RadioButton extends UIElement {
         this.buttonNum = buttonNum;
         this.width = width;
         this.height = height;
+        this.buttons = buttons;
         clicked = false;
     }
 

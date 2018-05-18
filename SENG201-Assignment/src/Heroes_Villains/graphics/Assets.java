@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory;
+    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red;
     public static Font titleFont, invFont;
     private static int widthSheet1 = 16;
     private static int heightSheet1 = 16;
@@ -32,6 +32,7 @@ public class Assets {
         batUp = new BufferedImage[3];
         batLeft = new BufferedImage[3];
         batRight = new BufferedImage[3];
+        testRadioButton = new BufferedImage[6];
 
         //Setting default button width and height
         buttonHeight = 256;
@@ -88,6 +89,7 @@ public class Assets {
 
         black = sheet1.getImage(0,0, widthSheet1, heightSheet1);
         purple = sheet1.getImage(widthSheet1, 0, widthSheet1, heightSheet1);
+        red = sheet1.getImage(2*widthSheet1, 0, widthSheet1, heightSheet1);
         playerUp = ImageHandler.loadImage("/textures/PlayerUp.png");
         playerDown = ImageHandler.loadImage("/textures/PlayerDown.png");
         playerLeft = ImageHandler.loadImage("/textures/PlayerLeft.png");
@@ -101,6 +103,12 @@ public class Assets {
         invFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 36);
 
 
+        testRadioButton[0] = black;
+        testRadioButton[1] = purple;
+        testRadioButton[2] = red;
+        testRadioButton[3] = black;
+        testRadioButton[4] = purple;
+        testRadioButton[5] = red;
     }
 
 

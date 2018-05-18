@@ -5,7 +5,7 @@ import Heroes_Villains.Game;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public abstract class RadioButtons extends UIElement{
+public class RadioButtons extends UIElement{
 
     private int numButtons;
     private int spacing;
@@ -13,6 +13,7 @@ public abstract class RadioButtons extends UIElement{
     protected RadioButton[] buttons;
     private BufferedImage[][] imagesArray;
     private int width, height;
+    private int currentlyClicked;
 
 
     public RadioButtons(int x, int y, Game game, BufferedImage[] images, int numButtons, int spacing, boolean horizontal, int width, int height) {
@@ -23,14 +24,14 @@ public abstract class RadioButtons extends UIElement{
         this.width = width;
         this.height = height;
         buttons = new RadioButton[numButtons];
-        imagesArray = new BufferedImage[3][numButtons];
+        imagesArray = new BufferedImage[numButtons][3];
         int imageIndex = 0;
         for(int i=0; i<numButtons; i++) {
-            imagesArray[0][i] = images[imageIndex];
+            imagesArray[i][0] = images[imageIndex];
             imageIndex++;
-            imagesArray[1][i] = images[imageIndex];
+            imagesArray[i][1] = images[imageIndex];
             imageIndex++;
-            imagesArray[2][i] = images[imageIndex];
+            imagesArray[i][2] = images[imageIndex];
             imageIndex++;
         }
         int currX = x;
@@ -52,13 +53,24 @@ public abstract class RadioButtons extends UIElement{
             buttons[i].setClicked(false);
         }
         buttons[buttonClicked].setClicked(true);
+        currentlyClicked = buttonClicked;
     }
 
-    public abstract void update();
-
-    public abstract void render(Graphics graphics);
-
-    public boolean click(int buttonNum) {
-        return buttons[buttonNum].click();
+    public void update() {
+        for(int i=0; i<numButtons; i++) {
+            buttons[i].update();
+        }
     }
+
+    public void render(Graphics graphics) {
+        for(int i=0; i<numButtons; i++) {
+            buttons[i].render(graphics);
+        }
+    }
+
+    @Override
+    public boolean click() {
+        return false;
+    }
+
 }

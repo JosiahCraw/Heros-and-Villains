@@ -7,22 +7,37 @@ import java.awt.image.BufferedImage;
 
 public class RadioButton extends UIElement {
 
-    public RadioButton(int x, int y, Game game, BufferedImage[] images) {
+    private int width, height;
+
+    public RadioButton(int x, int y, Game game, BufferedImage[] images, int width, int height) {
         super(x, y, game, images);
+        this.width = width;
+        this.height = height;
+    }
+
+    public boolean isHovering() {
+        return game.getMouseListener().isHovering(x, y, width, height);
     }
 
     @Override
     public void update() {
-
+        this.isHovering();
     }
 
     @Override
     public void render(Graphics graphics) {
-
+        if(isHovering()) {
+            graphics.drawImage(images[1], x, y, width, height, null);
+        } else {
+            graphics.drawImage(images[0], x, y, width, height, null);
+        }
     }
 
     @Override
     public boolean click() {
+        if(isHovering()) {
+            return true;
+        }
         return false;
     }
 }

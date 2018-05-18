@@ -23,30 +23,39 @@ public abstract class RadioButtons extends UIElement{
         this.width = width;
         this.height = height;
         buttons = new RadioButton[numButtons];
-        imagesArray = new BufferedImage[2][numButtons];
+        imagesArray = new BufferedImage[3][numButtons];
         int imageIndex = 0;
         for(int i=0; i<numButtons; i++) {
             imagesArray[0][i] = images[imageIndex];
             imageIndex++;
             imagesArray[1][i] = images[imageIndex];
             imageIndex++;
+            imagesArray[2][i] = images[imageIndex];
+            imageIndex++;
         }
         int currX = x;
         int currY = y;
         for(int i=0; i<numButtons; i++) {
             if(horizontal) {
-                buttons[i] = new RadioButton(currX, currY, game, imagesArray[i]);
+                buttons[i] = new RadioButton(currX, currY, game, imagesArray[i], width, height);
                 currX += (width + spacing);
             }
             if(!horizontal) {
-                buttons[i] = new RadioButton(currX, currY, game, imagesArray[i]);
+                buttons[i] = new RadioButton(currX, currY, game, imagesArray[i], width, height);
                 currY += (height + spacing);
             }
 
         }
     }
+    public void clicked() {
+
+    }
 
     public abstract void update();
 
     public abstract void render(Graphics graphics);
+
+    public boolean click(int buttonNum) {
+        return buttons[buttonNum].click();
+    }
 }

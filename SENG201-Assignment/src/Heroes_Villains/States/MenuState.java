@@ -28,6 +28,9 @@ public class MenuState extends State {
         if(game.getMouseListener().isLeftClicked() && startButton.click()){
             game.getStateHandler().setState(game.getGameState());
         }
+        if(game.getMouseListener().isLeftClicked() && exitButton.click()){
+            System.exit(0);
+        }
 
     }
 

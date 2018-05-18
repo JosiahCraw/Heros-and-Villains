@@ -6,6 +6,7 @@ import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.graphics.DrawText;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -18,10 +19,11 @@ public class Inventory {
     private int inventoryY = 48;
     private int inventoryWidth = 800;
     private int inventoryHeight = 600;
-    private int centerX = inventoryX + 267, centreY = inventoryY + inventoryHeight / 2 + 5;
+    private int centreX = inventoryX + 267, centreY = inventoryY + inventoryHeight / 2 + 5;
     private int imageX = 1026, imageY = 101, imageWidth = 100, imageHeight = 100;
     private int countX = 1076, countY = 241;
     private int listSpacing = 47;
+    private int currentIndex = 0;
 
     public Inventory(Game game) {
         this.game = game;
@@ -33,6 +35,7 @@ public class Inventory {
             Item currItem = iterator.next();
             if(currItem.getId() == item.getId()) {
                 currItem.setCount(currItem.getCount() + item.getCount());
+                return;
             }
         }
         items.add(item);
@@ -40,12 +43,29 @@ public class Inventory {
 
 
     public void update() {
-        open = game.getKeyboardListener().invOpen;
+        if(game.getKeyboardListener().keyJustPressed(KeyEvent.VK_E)) {
+            open = !open;
+        }
+        if(!open) {
+            return;
+        }
         for(Iterator<Item> iterator = items.listIterator(); iterator.hasNext();) {
             Item currItem = iterator.next();
             if (currItem.getCount() <= 0) {
                 iterator.remove();
             }
+        }
+        if(game.getKeyboardListener().keyJustPressed(KeyEvent.VK_UP)) {
+            currentIndex--;
+        }
+        if(game.getKeyboardListener().keyJustPressed(KeyEvent.VK_DOWN)) {
+            currentIndex++;
+        }
+
+        if(currentIndex < 0) {
+            currentIndex = items.size() - 1;
+        }else if(currentIndex >= items.size()) {
+            currentIndex = 0;
         }
     }
 
@@ -53,12 +73,31 @@ public class Inventory {
         if(!open) {
             return;
         }
-        graphics.drawImage(Assets.inventory, inventoryX, inventoryY, inventoryWidth, inventoryHeight, null);
-        graphics.drawImage(Assets.purple, imageX, imageY, imageWidth, imageHeight, null);
-        for(Item i: items) {
-            DrawText.draw(graphics, i.getName(), centerX, centreY, true, Color.WHITE, Assets.invFont);
-            DrawText.draw(graphics, Integer.toString(i.getCount()), countX, countY, true, Color.WHITE, Assets.invFont);
+        int length = items.size();
+
+        if(items.size() == 0) {
+            return;
         }
+        graphics.drawImage(Assets.inventory, inventoryX, inventoryY, inventoryWidth, inventoryHeight, null);
+        for(int i=-5; i<6; i++) {
+            if (currentIndex + i < 0 || currentIndex + i >= length) {
+                continue;
+            }
+            if (i == 0) {
+                DrawText.draw(graphics, "> " + items.get(currentIndex + i).getName() + " <", centreX, centreY + i * listSpacing, true, Color.YELLOW, Assets.invFont);
+            } else {
+                DrawText.draw(graphics, items.get(currentIndex + i).getName(), centreX, centreY + i * listSpacing, true, Color.WHITE, Assets.invFont);
+
+                graphics.drawImage(items.get(currentIndex).image, imageX, imageY, imageWidth, imageHeight, null);
+                DrawText.draw(graphics, Integer.toString(items.get(currentIndex).getCount()), countX, countY, true, Color.WHITE, Assets.invFont);
+            }
+        }
+
+
+        /*for(Item i: items) {
+            DrawText.draw(graphics, i.getName(), centreX, centreY, true, Color.WHITE, Assets.invFont);
+
+        }*/
 
     }
 }

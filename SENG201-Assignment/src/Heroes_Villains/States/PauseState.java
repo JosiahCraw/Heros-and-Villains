@@ -7,6 +7,7 @@ import Heroes_Villains.SystemUI.UIElement;
 import Heroes_Villains.graphics.Assets;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class PauseState extends State{
 
@@ -28,6 +29,9 @@ public class PauseState extends State{
             game.getStateHandler().setState(game.getMenuState());
         }
         if(game.getMouseListener().isLeftClicked() && returnButton.click()) {
+            game.getStateHandler().setState(game.getGameState());
+        }
+        if(game.getKeyboardListener().keyJustPressed(KeyEvent.VK_ESCAPE)) {
             game.getStateHandler().setState(game.getGameState());
         }
         radioButtons.update();

@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red;
+    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red, basicPotion, advancedPotion, masterPotion;
     public static Font titleFont, invFont;
     private static int widthSheet1 = 16;
     private static int heightSheet1 = 16;
@@ -85,6 +85,11 @@ public class Assets {
         batLeft[1] = batSheet.getImage(batDim * 2, batDim * 3, batDim, batDim);
         batLeft[2] = batSheet.getImage(batDim * 3, batDim * 3, batDim, batDim);
 
+        //Items
+        basicPotion = ImageHandler.loadImage("/textures/pt1.png");
+        advancedPotion = ImageHandler.loadImage("/textures/pt2.png");
+        masterPotion = ImageHandler.loadImage("/textures/pt3.png");
+
         //NPCs
         villain = villainSheet.getImage(0, 0, 64, 64);
         innkeep = ImageHandler.loadImage("/textures/15.png");
@@ -106,7 +111,7 @@ public class Assets {
 
         //Fonts
 
-        titleFont = FontLoader.load("SENG201-Assignmen/res/fonts/Symtext.ttf", 70);
+        //titleFont = FontLoader.load("SENG201-Assignmen/res/fonts/Symtext.ttf", 70);
 
         titleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 70);
         invFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 36);

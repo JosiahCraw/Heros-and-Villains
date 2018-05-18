@@ -33,13 +33,13 @@ public class Player extends Living {
         animDown.update();
         animLeft.update();
         animRight.update();
-        if(game.getKeyboardListener().up || game.getKeyboardListener().arrowUp) {
+        if(game.getKeyboardListener().up /*|| game.getKeyboardListener().arrowUp*/) {
             y-=5;
         }
         if(game.getKeyboardListener().left || game.getKeyboardListener().arrowLeft) {
             x-=5;
         }
-        if(game.getKeyboardListener().down || game.getKeyboardListener().arrowDown) {
+        if(game.getKeyboardListener().down /*|| game.getKeyboardListener().arrowDown*/) {
             y+=5;
         }
         if(game.getKeyboardListener().right || game.getKeyboardListener().arrowRight) {

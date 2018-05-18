@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class KeyboardListener implements KeyListener {
 
-    private Boolean[] keys;
+    private boolean[] keys, justPressed, cantPress;
 
     public Boolean up, down, left, right;
     public Boolean arrowUp, arrowDown, arrowLeft, arrowRight;
@@ -14,12 +14,25 @@ public class KeyboardListener implements KeyListener {
     public Boolean invOpen;
 
     public KeyboardListener() {
-        keys = new Boolean[256];
+        keys = new boolean[256];
         Arrays.fill(keys, false);
         invOpen = false;
+        justPressed = new boolean[keys.length];
+        cantPress = new boolean[keys.length];
     }
 
     public void update() {
+        for(int i=0; i<keys.length; i++) {
+            if(cantPress[i] && !keys[i]) {
+                cantPress[i] = false;
+            }else if(justPressed[i]) {
+                cantPress[i] = true;
+                justPressed[i] = false;
+            }
+            if(!cantPress[i] && keys[i]) {
+                justPressed[i] = true;
+            }
+        }
         esc = keys[KeyEvent.VK_ESCAPE];
 
         up = keys[KeyEvent.VK_W];
@@ -33,6 +46,12 @@ public class KeyboardListener implements KeyListener {
         arrowRight = keys[KeyEvent.VK_RIGHT];
     }
 
+    public boolean keyJustPressed(int keyCode){
+        if(keyCode < 0 || keyCode >= keys.length)
+            return false;
+        return justPressed[keyCode];
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
         //Unused
@@ -40,7 +59,7 @@ public class KeyboardListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_E) {
+        /*if(e.getKeyCode() == KeyEvent.VK_E) {
             if(invOpen == true) {
                 invOpen = false;
             }
@@ -48,7 +67,7 @@ public class KeyboardListener implements KeyListener {
                 invOpen = true;
             }
             return;
-        }
+        }*/
         if(e.getKeyCode() < 0 || e.getKeyCode() >= keys.length) {
             return;
         }
@@ -61,5 +80,8 @@ public class KeyboardListener implements KeyListener {
             return;
         }
         keys[e.getKeyCode()] = false;
+        if(e.getKeyCode() == KeyEvent.VK_UP) {
+
+        }
     }
 }

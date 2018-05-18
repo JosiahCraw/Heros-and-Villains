@@ -38,8 +38,8 @@ public class Assets {
 
 
         //Setting default button width and height
-        buttonHeight = 256;
-        buttonWidth = 1024;
+        buttonHeight = 35;
+        buttonWidth = 200;
 
         //Button Frames
         startButton[1] = ImageHandler.loadImage("/textures/NewStartButton1.png");
@@ -106,7 +106,7 @@ public class Assets {
 
         //Fonts
 
-        titleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 70);
+        titleFont = FontLoader.load("SENG201-Assignmen/res/fonts/Symtext.ttf", 70);
 
         titleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 70);
         invFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 36);

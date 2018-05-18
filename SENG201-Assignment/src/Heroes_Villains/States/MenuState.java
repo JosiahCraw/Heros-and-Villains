@@ -15,9 +15,9 @@ public class MenuState extends State {
 
     public MenuState(Game game) {
         super(game);
-        startButton = new UIButton(540, 343, game, Assets.startButton, 200, 35);
-        controlsButton = new UIButton(540, 413, game, Assets.controlsButton, 200, 35);
-        exitButton = new UIButton(540, 483, game, Assets.exitButton, 200, 35);
+        startButton = new UIButton(540, 343, game, Assets.startButton, Assets.buttonWidth, Assets.buttonHeight);
+        controlsButton = new UIButton(540, 413, game, Assets.controlsButton, Assets.buttonWidth, Assets.buttonHeight);
+        exitButton = new UIButton(540, 483, game, Assets.exitButton, Assets.buttonWidth, Assets.buttonHeight);
     }
 
     @Override
@@ -30,6 +30,9 @@ public class MenuState extends State {
         }
         if(game.getMouseListener().isLeftClicked() && exitButton.click()){
             System.exit(0);
+        }
+        if(game.getMouseListener().isLeftClicked() && controlsButton.click()){
+            game.getStateHandler().setState(game.getControlsState());
         }
 
     }

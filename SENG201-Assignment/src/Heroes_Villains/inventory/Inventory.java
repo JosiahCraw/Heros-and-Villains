@@ -7,6 +7,7 @@ import Heroes_Villains.graphics.DrawText;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Inventory {
 
@@ -20,25 +21,28 @@ public class Inventory {
 
     public Inventory(Game game) {
         this.game = game;
-        items = new ArrayList<Item>();
+        items = new ArrayList<>();
     }
 
     public void addItem(Item item) {
-        for(Item i: items){
-            if(i.getId() == item.getId()) {
-                i.setCount(i.getCount() + item.getCount());
+        for(Iterator<Item> iterator = items.listIterator(); iterator.hasNext();){
+            Item currItem = iterator.next();
+            if(currItem.getId() == item.getId()) {
+                currItem.setCount(currItem.getCount() + item.getCount());
             }
         }
         items.add(item);
     }
 
+
     public void update() {
         open = game.getKeyboardListener().invOpen;
-        //for(Item i: items) {
-            //if(i.getCount() <= 0) {
-                //items.remove(i);
-            //}
-        //}
+        for(Iterator<Item> iterator = items.listIterator(); iterator.hasNext();) {
+            Item currItem = iterator.next();
+            if (currItem.getCount() <= 0) {
+                iterator.remove();
+            }
+        }
     }
 
     public void render(Graphics graphics) {

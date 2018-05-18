@@ -9,7 +9,7 @@ public abstract class Item {
 
     public int id;
     public String name;
-    public int count = 0;
+    public int count = 1;
     public BufferedImage image;
     protected Game game;
     protected Citys cityClass;

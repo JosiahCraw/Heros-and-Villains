@@ -10,8 +10,9 @@ public class RadioButton extends UIElement {
     private int width, height;
     private boolean clicked;
     private int buttonNum;
+    private RadioButtons buttons;
 
-    public RadioButton(int x, int y, Game game, BufferedImage[] images, int width, int height, int buttonNum) {
+    public RadioButton(int x, int y, Game game, BufferedImage[] images, int width, int height, int buttonNum, RadioButtons buttons) {
         super(x, y, game, images);
         this.buttonNum = buttonNum;
         this.width = width;
@@ -27,7 +28,7 @@ public class RadioButton extends UIElement {
     public void update() {
         this.isHovering();
         if(isHovering() && game.getMouseListener().isLeftClicked()) {
-
+            buttons.clicked(buttonNum);
         }
     }
 

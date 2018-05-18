@@ -18,6 +18,10 @@ public class Inventory {
     private int inventoryY = 48;
     private int inventoryWidth = 800;
     private int inventoryHeight = 600;
+    private int centerX = inventoryX + 267, centreY = inventoryY + inventoryHeight / 2 + 5;
+    private int imageX = 1026, imageY = 101, imageWidth = 100, imageHeight = 100;
+    private int countX = 1076, countY = 241;
+    private int listSpacing = 47;
 
     public Inventory(Game game) {
         this.game = game;
@@ -50,9 +54,10 @@ public class Inventory {
             return;
         }
         graphics.drawImage(Assets.inventory, inventoryX, inventoryY, inventoryWidth, inventoryHeight, null);
+        graphics.drawImage(Assets.purple, imageX, imageY, imageWidth, imageHeight, null);
         for(Item i: items) {
-            DrawText.draw(graphics, i.getName(), 300, 200, true, Color.WHITE, Assets.invFont);
-            DrawText.draw(graphics, Integer.toString(i.getCount()), 300, 300, true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, i.getName(), centerX, centreY, true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, Integer.toString(i.getCount()), countX, countY, true, Color.WHITE, Assets.invFont);
         }
 
     }

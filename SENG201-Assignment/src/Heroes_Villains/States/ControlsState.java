@@ -20,6 +20,10 @@ public class ControlsState extends State {
     @Override
     public void update() {
         backButton.update();
+        if(game.getMouseListener().isLeftClicked() && backButton.click()){
+            game.getMouseListener().leftClicked = false;
+            game.getStateHandler().setState(game.getMenuState());
+        }
     }
 
     @Override

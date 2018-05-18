@@ -48,7 +48,9 @@ public abstract class RadioButtons extends UIElement{
         }
     }
     public void clicked(int buttonClicked) {
-        for()
+        for(int i=0; i<numButtons; i++) {
+            buttons[i].setClicked(false);
+        }
         buttons[buttonClicked].setClicked(true);
     }
 

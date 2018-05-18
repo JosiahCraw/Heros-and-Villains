@@ -34,7 +34,7 @@ public class Inventory {
         for(Iterator<Item> iterator = items.listIterator(); iterator.hasNext();){
             Item currItem = iterator.next();
             if(currItem.getId() == item.getId()) {
-                currItem.setCount(currItem.getCount() + item.getCount());
+                currItem.setCount(currItem.getCount()+1);
                 return;
             }
         }
@@ -88,9 +88,23 @@ public class Inventory {
             } else {
                 DrawText.draw(graphics, items.get(currentIndex + i).getName(), centreX, centreY + i * listSpacing, true, Color.WHITE, Assets.invFont);
 
-                graphics.drawImage(items.get(currentIndex).image, imageX, imageY, imageWidth, imageHeight, null);
-                DrawText.draw(graphics, Integer.toString(items.get(currentIndex).getCount()), countX, countY, true, Color.WHITE, Assets.invFont);
+
+
+
             }
+        }
+        graphics.drawImage(items.get(currentIndex).image, imageX, imageY, imageWidth, imageHeight, null);
+        DrawText.draw(graphics, Integer.toString(items.get(currentIndex).getCount()), countX, countY, true, Color.WHITE, Assets.invFont);
+        if(items.get(currentIndex).isUseable() && game.getMouseListener().isHovering(inventoryX+583, inventoryY+258, 144, 64)) {
+            DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.WHITE, Assets.invFont);
+            if(game.getMouseListener().isLeftClicked()) {
+                game.getMouseListener().leftClicked = false;
+                items.get(currentIndex).use();
+            }
+        }else if(items.get(currentIndex).isUseable()) {
+            DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.YELLOW, Assets.invFont);
+        }else {
+            DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.GRAY, Assets.invFont);
         }
 
 

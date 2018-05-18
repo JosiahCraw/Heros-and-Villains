@@ -8,8 +8,17 @@ import java.awt.image.BufferedImage;
 
 public class HealingItem extends Item {
 
-    public HealingItem(int id, String name, BufferedImage image, Game game, Citys cityClass) {
+    private int healthAmount;
+
+    public HealingItem(int id, String name, BufferedImage image, Game game, Citys cityClass, int healthAmount) {
         super(id, name, image, game, cityClass);
+        this.healthAmount = healthAmount;
+    }
+
+    @Override
+    public void use() {
+        System.out.println("Used " + name);
+        count--;
     }
 
     public boolean isUseable() {
@@ -23,9 +32,5 @@ public class HealingItem extends Item {
             System.exit(0);
         }
         return false;
-    }
-
-    public void update() {
-
     }
 }

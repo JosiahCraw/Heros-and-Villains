@@ -22,6 +22,10 @@ public abstract class Item {
         this.cityClass = cityClass;
     }
 
+    public abstract void use();
+
+    public abstract boolean isUseable();
+
     //Getter
     public int getId() {
         return id;

@@ -12,6 +12,11 @@ public class PowerUpItem extends Item {
         super(id, name, image, game, cityClass);
     }
 
+    @Override
+    public void use() {
+
+    }
+
     public boolean isUseable() {
         try {
             if (cityClass.cities[game.getPlayer().getCurrentCity()].rooms[game.getPlayer().getCurrentRoom()] instanceof PowerUpDen) {

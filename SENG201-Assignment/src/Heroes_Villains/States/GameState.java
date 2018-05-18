@@ -5,7 +5,6 @@ import Heroes_Villains.cities.Citys;
 import Heroes_Villains.entities.Player;
 import Heroes_Villains.entities.items.HealingItem;
 import Heroes_Villains.entities.items.ItemHandler;
-import Heroes_Villains.graphics.Assets;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -23,11 +22,17 @@ public class GameState extends State {
         masterCities = new Citys(game);
         player.setCurrentCity(0);
         player.setCurrentRoom(4);
-        potion = new HealingItem(0, "Basic Potion", Assets.purple, game, masterCities);
-        itemHandler = new ItemHandler(game, masterCities);
+        itemHandler = new ItemHandler(game, masterCities, player);
         player.getInventory().addItem(itemHandler.basicPotion);
         player.getInventory().addItem(itemHandler.advancedPotion);
         player.getInventory().addItem(itemHandler.advancedPotion);
+        player.getInventory().addItem(itemHandler.masterPotion);
+        player.getInventory().addItem(itemHandler.masterPotion);
+        player.getInventory().addItem(itemHandler.masterPotion);
+        player.getInventory().addItem(itemHandler.masterPotion);
+        player.getInventory().addItem(itemHandler.masterPotion);
+        player.getInventory().addItem(itemHandler.masterPotion);
+        player.getInventory().addItem(itemHandler.coins);
     }
 
     public Player getPlayer() {
@@ -38,7 +43,7 @@ public class GameState extends State {
     public void update() {
         masterCities.update();
         player.update();
-        potion.update();
+        itemHandler.coins.count = game.getPlayer().money;
         if(game.getKeyboardListener().keyJustPressed(KeyEvent.VK_ESCAPE)) {
             game.getStateHandler().setState(game.getPauseState());
         }

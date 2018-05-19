@@ -89,8 +89,6 @@ public class Inventory {
                 DrawText.draw(graphics, items.get(currentIndex + i).getName(), centreX, centreY + i * listSpacing, true, Color.WHITE, Assets.invFont);
 
 
-
-
             }
         }
         graphics.drawImage(items.get(currentIndex).image, imageX, imageY, imageWidth, imageHeight, null);

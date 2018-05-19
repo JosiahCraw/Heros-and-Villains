@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 
 public class Coins extends Item {
 
-    public int count;
 
     public Coins(int id, String name, BufferedImage image, Game game, Citys cityClass, Player player) {
         super(id, name, image, game, cityClass);

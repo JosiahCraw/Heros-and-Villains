@@ -76,6 +76,7 @@ public class Inventory {
         int length = items.size();
 
         if(items.size() == 0) {
+            graphics.drawImage(Assets.inventory, inventoryX, inventoryY, inventoryWidth, inventoryHeight, null);
             return;
         }
         graphics.drawImage(Assets.inventory, inventoryX, inventoryY, inventoryWidth, inventoryHeight, null);
@@ -87,8 +88,6 @@ public class Inventory {
                 DrawText.draw(graphics, "> " + items.get(currentIndex + i).getName() + " <", centreX, centreY + i * listSpacing, true, Color.YELLOW, Assets.invFont);
             } else {
                 DrawText.draw(graphics, items.get(currentIndex + i).getName(), centreX, centreY + i * listSpacing, true, Color.WHITE, Assets.invFont);
-
-
             }
         }
         graphics.drawImage(items.get(currentIndex).image, imageX, imageY, imageWidth, imageHeight, null);
@@ -104,12 +103,5 @@ public class Inventory {
         }else {
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.GRAY, Assets.invFont);
         }
-
-
-        /*for(Item i: items) {
-            DrawText.draw(graphics, i.getName(), centreX, centreY, true, Color.WHITE, Assets.invFont);
-
-        }*/
-
     }
 }

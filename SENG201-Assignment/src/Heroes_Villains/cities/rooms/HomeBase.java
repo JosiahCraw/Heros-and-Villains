@@ -1,11 +1,14 @@
 package Heroes_Villains.cities.rooms;
 
 import Heroes_Villains.Game;
+import Heroes_Villains.entities.DoorWay;
 import Heroes_Villains.graphics.Assets;
 
 import java.awt.*;
 
 public class HomeBase extends Rooms{
+
+    private DoorWay leftDoor = new DoorWay(game,0, 310, Assets.doorWay);
 
     public HomeBase(Game game) {
         super(game);
@@ -53,6 +56,8 @@ public class HomeBase extends Rooms{
         if (game.getPlayer().getY() > game.height - game.getPlayer().getHeight()) {
             game.getPlayer().setY(game.height - game.getPlayer().getHeight());
         }
+
+        leftDoor.update();
     }
 
     @Override
@@ -63,6 +68,7 @@ public class HomeBase extends Rooms{
         graphics.drawImage(Assets.black, 0, 360, null);
         graphics.drawImage(Assets.black, 640, 0, null);
         graphics.drawImage(Assets.black, 640, 680, null);
+        leftDoor.render(graphics);
 
     }
 }

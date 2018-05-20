@@ -37,7 +37,7 @@ public class Assets {
         testRadioButton = new BufferedImage[6];
         doorWay = new BufferedImage[2];
         doorWayH = new BufferedImage[2];
-        textField = new BufferedImage[1];
+        textField = new BufferedImage[2];
 
 
         //Setting default button width and height
@@ -138,6 +138,7 @@ public class Assets {
         testRadioButton[2] = radioClicked;
 
         textField[0] = ImageHandler.loadImage("/textures/TextField.png");
+        textField[1] = ImageHandler.loadImage("/textures/TextField2.png");
 
     }
 

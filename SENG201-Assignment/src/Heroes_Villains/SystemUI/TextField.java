@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import Heroes_Villains.Game;
+import Heroes_Villains.graphics.Assets;
+import Heroes_Villains.graphics.DrawText;
 
 
 public class TextField extends UIElement {
@@ -27,6 +29,7 @@ public class TextField extends UIElement {
 
     @Override
     public void update() {
+        this.render(game.getGraphics());
         if (game.getMouseListener().isHovering(x, y, width, height) && game.getMouseListener().isLeftClicked()) {
             game.getMouseListener().leftClicked = false;
             System.out.println(input + "clicked");
@@ -39,6 +42,7 @@ public class TextField extends UIElement {
                         game.getKeyboardListener().keys[i] = false;
                         input = input + (char)i;
                         this.render(game.getGraphics());
+
                         //break;
                     }
                     //break;
@@ -48,6 +52,7 @@ public class TextField extends UIElement {
 
                     System.out.println("Enter");
                     System.out.println(input);
+                    editing = false;
                     //break;
                 }
                 //break;
@@ -66,9 +71,14 @@ public class TextField extends UIElement {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(images[0], x, y, width, height,null);
-        game.getGraphics().drawString(input, x, y);
-
+        if(game.getMouseListener().isHovering(x, y, width, height)) {
+            graphics.drawImage(images[1], x, y, width, height,null);
+        }else if(editing){
+            graphics.drawImage(images[1], x, y, width, height,null);
+        }else{
+            graphics.drawImage(images[0], x, y, width, height,null);
+        }
+        DrawText.draw(game.getGraphics(), input, x+width/2, y+height/2, true, Color.WHITE, Assets.smallFont);
     }
 
     @Override

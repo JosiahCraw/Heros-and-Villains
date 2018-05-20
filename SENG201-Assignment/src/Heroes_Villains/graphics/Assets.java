@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red, basicPotion, advancedPotion, masterPotion, coin;
+    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red, basicPotion, advancedPotion, masterPotion, coin, radio, radioHover, radioClicked;
     public static Font titleFont, invFont;
     private static int widthSheet1 = 16;
     private static int heightSheet1 = 16;
@@ -61,6 +61,10 @@ public class Assets {
 
         controlsButton[1] = ImageHandler.loadImage("/textures/ControlsButton1.png");
         controlsButton[0] = ImageHandler.loadImage("/textures/ControlsButton2.png");
+
+        radio = ImageHandler.loadImage("/textures/RadioUnclicked.png");
+        radioHover = ImageHandler.loadImage("/textures/RadioHover.png");
+        radioClicked = ImageHandler.loadImage("/textures/RadioClicked.png");
 
         //Player animation frame to crop
         walkingUp[0] = playerSheet.getImage(0, 0, widthPlayerSheet, heightPlayerSheet);
@@ -126,12 +130,10 @@ public class Assets {
         invFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 36);
 
 
-        testRadioButton[0] = black;
-        testRadioButton[1] = purple;
-        testRadioButton[2] = red;
-        testRadioButton[3] = black;
-        testRadioButton[4] = purple;
-        testRadioButton[5] = red;
+        testRadioButton[0] = radio;
+        testRadioButton[1] = radioHover;
+        testRadioButton[2] = radioClicked;
+
     }
 
 

@@ -32,7 +32,7 @@ public class RadioButtons extends UIElement{
             imagesArray[i][1] = images[imageIndex];
             imageIndex++;
             imagesArray[i][2] = images[imageIndex];
-            imageIndex++;
+            imageIndex = imageIndex - 2;
         }
         int currX = x;
         int currY = y;

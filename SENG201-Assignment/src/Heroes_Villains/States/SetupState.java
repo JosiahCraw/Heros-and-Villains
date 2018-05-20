@@ -17,7 +17,7 @@ public class SetupState extends State{
     public SetupState(Game game) {
         super(game);
         backButton = new UIButton(540, 483, game, Assets.backButton, 200, 35);
-        citySelect = new RadioButtons(256, 550, game, Assets.testRadioButton, 2, 25, true, 128, 128);
+        citySelect = new RadioButtons(256, 550, game, Assets.testRadioButton, 3, 25, true, 32, 32);
     }
 
     @Override

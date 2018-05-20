@@ -1,6 +1,7 @@
 package Heroes_Villains.entities;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
 import java.nio.Buffer;
@@ -13,33 +14,58 @@ public class DoorWay{
     private BufferedImage[] images;
     protected Game game;
     private boolean isColliding;
+    private boolean vertical;
+    private int room;
 
 
-    public DoorWay(Game game, int x, int y, BufferedImage[] images) {
+    public DoorWay(Game game, int x, int y, BufferedImage[] images, boolean vertical, int room) {
 
         this.x = x;
         this.y = y;
         this.images = images;
         this.game = game;
         this.isColliding = false;
+        this.vertical = vertical;
+        this.room = room;
+
 
 
     }
 
+    public boolean getIsColliding() {
+        return isColliding;
+    }
+
     public void update() {
-        if ((game.getPlayer().getX() <= x) && (((game.getPlayer().getY() <= 410) && (game.getPlayer().getY() >= 310) ) || ( (game.getPlayer().getY() + game.getPlayer().getHeight() >= 310) && (game.getPlayer().getY() + game.getPlayer().getHeight() <= 410) ) ) ) {
+        Rectangle doorRect = new Rectangle(x, y, images[0].getWidth(), images[0].getHeight());
+        Rectangle playerRect = new Rectangle((int) game.getPlayer().getX(), (int) game.getPlayer().getY(), game.getPlayer().getWidth(), game.getPlayer().getHeight());
+        if (doorRect.intersects(playerRect)) {
             isColliding = true;
+            if (game.getKeyboardListener().f) {
+                game.getKeyboardListener().f = false;
+                game.getPlayer().setCurrentRoom(room);
+                game.getPlayer().setX(1150);
+                game.getPlayer().setY(300);
+
+            }
         } else {
             isColliding = false;
         }
     }
 
     public void render(Graphics graphics) {
-
-        if (isColliding) {
-            graphics.drawImage(images[1], x, y, null);
+        if (vertical) {
+            if (isColliding) {
+                graphics.drawImage(images[1], x, y, null);
+            } else {
+                graphics.drawImage(images[0], x, y, null);
+            }
         } else {
-            graphics.drawImage(images[0], x, y, null);
+            if (isColliding) {
+                graphics.drawImage(images[1], x, y, null);
+            } else {
+                graphics.drawImage(images[0], x, y, null);
+            }
         }
     }
 }

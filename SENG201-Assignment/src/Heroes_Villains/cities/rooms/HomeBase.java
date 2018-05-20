@@ -5,10 +5,14 @@ import Heroes_Villains.entities.DoorWay;
 import Heroes_Villains.graphics.Assets;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class HomeBase extends Rooms{
 
-    private DoorWay leftDoor = new DoorWay(game,0, 310, Assets.doorWay);
+    private DoorWay leftDoor = new DoorWay(game,0, 310, Assets.doorWay, true, 0);
+    private DoorWay rightDoor = new DoorWay(game, 1230, 310, Assets.doorWay, true, 2);
+    private DoorWay topDoor = new DoorWay(game, 590, 0, Assets.doorWayH, false, 1);
+    private DoorWay bottomDoor = new DoorWay(game, 590, 670, Assets.doorWayH, false, 3);
 
     public HomeBase(Game game) {
         super(game);
@@ -17,12 +21,22 @@ public class HomeBase extends Rooms{
 
     @Override
     public void update() {
+
+        leftDoor.update();
+        rightDoor.update();
+        topDoor.update();
+        bottomDoor.update();
+
+
         if(game.getMouseListener().isHovering(0, 360, 16, 16) && game.getMouseListener().leftClicked) {
             game.getMouseListener().leftClicked = false;
             game.getPlayer().setX(1150);
             game.getPlayer().setY(300);
             game.getPlayer().setCurrentRoom(0);
         }
+
+
+
         if(game.getMouseListener().isHovering(640, 0, 16, 16) && game.getMouseListener().leftClicked) {
             game.getMouseListener().leftClicked = false;
             game.getPlayer().setX(1150);
@@ -57,7 +71,7 @@ public class HomeBase extends Rooms{
             game.getPlayer().setY(game.height - game.getPlayer().getHeight());
         }
 
-        leftDoor.update();
+
     }
 
     @Override
@@ -69,6 +83,9 @@ public class HomeBase extends Rooms{
         graphics.drawImage(Assets.black, 640, 0, null);
         graphics.drawImage(Assets.black, 640, 680, null);
         leftDoor.render(graphics);
+        rightDoor.render(graphics);
+        topDoor.render(graphics);
+        bottomDoor.render(graphics);
 
     }
 }

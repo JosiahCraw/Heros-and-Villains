@@ -9,7 +9,7 @@ public class KeyboardListener implements KeyListener {
     private boolean[] keys, justPressed, cantPress;
 
     public Boolean up, down, left, right;
-    public Boolean arrowUp, arrowDown, arrowLeft, arrowRight;
+    public Boolean arrowUp, arrowDown, arrowLeft, arrowRight, f;
     public Boolean esc;
     public Boolean invOpen;
 
@@ -44,6 +44,8 @@ public class KeyboardListener implements KeyListener {
         arrowDown = keys[KeyEvent.VK_DOWN];
         arrowLeft = keys[KeyEvent.VK_LEFT];
         arrowRight = keys[KeyEvent.VK_RIGHT];
+
+        f = keys[KeyEvent.VK_F];
     }
 
     public boolean keyJustPressed(int keyCode){

@@ -16,7 +16,7 @@ public class Assets {
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
@@ -36,6 +36,7 @@ public class Assets {
         batRight = new BufferedImage[3];
         testRadioButton = new BufferedImage[6];
         doorWay = new BufferedImage[2];
+        doorWayH = new BufferedImage[2];
 
 
         //Setting default button width and height
@@ -105,6 +106,9 @@ public class Assets {
 
         doorWay[0] = ImageHandler.loadImage("/textures/Door1.png");
         doorWay[1] = ImageHandler.loadImage("/textures/Door2.png");
+
+        doorWayH[0] = ImageHandler.loadImage("/textures/Door1H.png");
+        doorWayH[1] = ImageHandler.loadImage("/textures/Door2H.png");
 
         black = sheet1.getImage(0,0, widthSheet1, heightSheet1);
         purple = sheet1.getImage(widthSheet1, 0, widthSheet1, heightSheet1);

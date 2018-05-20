@@ -107,8 +107,8 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
             fps ++;
             
             if (lastFpsTime >= 1000000000) {
-            	System.out.println("(FPS: "+fps+")");
-            	System.out.println(delta);
+            	//System.out.println("(FPS: "+fps+")");
+            	//System.out.println(delta);
             	lastFpsTime = 0;
             	fps = 0;
             }

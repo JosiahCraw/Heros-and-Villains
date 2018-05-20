@@ -27,7 +27,7 @@ public class HomeBase extends Rooms{
         topDoor.update();
         bottomDoor.update();
 
-
+        /*
         if(game.getMouseListener().isHovering(0, 360, 16, 16) && game.getMouseListener().leftClicked) {
             game.getMouseListener().leftClicked = false;
             game.getPlayer().setX(1150);
@@ -56,6 +56,8 @@ public class HomeBase extends Rooms{
             game.getPlayer().setCurrentRoom(3);
         }
 
+        */
+
         //Edge Bounds
 
         if (game.getPlayer().getX() < 0) {
@@ -78,10 +80,12 @@ public class HomeBase extends Rooms{
     public void render(Graphics graphics) {
         graphics.setFont(Assets.titleFont);
         graphics.drawString("Home Base", 650, 400);
+        /*
         graphics.drawImage(Assets.black, 1200, 360, null);
         graphics.drawImage(Assets.black, 0, 360, null);
         graphics.drawImage(Assets.black, 640, 0, null);
         graphics.drawImage(Assets.black, 640, 680, null);
+        */
         leftDoor.render(graphics);
         rightDoor.render(graphics);
         topDoor.render(graphics);

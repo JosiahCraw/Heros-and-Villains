@@ -12,6 +12,10 @@ import java.awt.image.BufferStrategy;
 
 public class Game implements Runnable{ //Runnable allows the class to use threads
 
+    public Display getDisplay() {
+        return display;
+    }
+
     private Display display;
     private Thread gameThread;
     private String title;

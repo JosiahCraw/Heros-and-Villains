@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red, basicPotion, advancedPotion, masterPotion, coin, radio, radioHover, radioClicked;
-    public static Font titleFont, invFont;
+    public static Font titleFont, invFont, smallFont;
     private static int widthSheet1 = 16;
     private static int heightSheet1 = 16;
     private static int widthPlayerSheet = 32;
@@ -16,7 +16,7 @@ public class Assets {
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
@@ -37,6 +37,7 @@ public class Assets {
         testRadioButton = new BufferedImage[6];
         doorWay = new BufferedImage[2];
         doorWayH = new BufferedImage[2];
+        textField = new BufferedImage[1];
 
 
         //Setting default button width and height
@@ -128,11 +129,15 @@ public class Assets {
 
         titleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 70);
         invFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 36);
+        smallFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 20);
+
 
 
         testRadioButton[0] = radio;
         testRadioButton[1] = radioHover;
         testRadioButton[2] = radioClicked;
+
+        textField[0] = ImageHandler.loadImage("/textures/TextField.png");
 
     }
 

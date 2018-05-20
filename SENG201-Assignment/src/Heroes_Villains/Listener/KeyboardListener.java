@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 public class KeyboardListener implements KeyListener {
 
-    private boolean[] keys, justPressed, cantPress;
+    public boolean[] keys, justPressed, cantPress;
 
     public Boolean up, down, left, right;
-    public Boolean arrowUp, arrowDown, arrowLeft, arrowRight, f;
+    public Boolean arrowUp, arrowDown, arrowLeft, arrowRight, f, enter;
     public Boolean esc;
     public Boolean invOpen;
 
@@ -46,6 +46,8 @@ public class KeyboardListener implements KeyListener {
         arrowRight = keys[KeyEvent.VK_RIGHT];
 
         f = keys[KeyEvent.VK_F];
+
+        enter = keys[KeyEvent.VK_ENTER];
     }
 
     public boolean keyJustPressed(int keyCode){

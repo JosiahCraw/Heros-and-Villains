@@ -18,7 +18,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     private boolean running = false;
 
     //State Variables
-    private State gameState, menuState, pauseState, battleState, controlsState;
+    private State gameState, menuState, pauseState, battleState, controlsState, setupState;
     private StateHandler stateHandler = new StateHandler();
 
     //Keyboard Listener
@@ -82,6 +82,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         pauseState = new PauseState(this);
         battleState = new BattleState(this);
         controlsState = new ControlsState(this);
+        setupState = new SetupState(this);
         stateHandler.setState(menuState);
     }
 
@@ -200,6 +201,8 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     }
 
     public State getControlsState() { return controlsState; }
+
+    public State getSetupState() { return setupState; }
 
     //Main Game settings Getters and Setters
 

@@ -44,8 +44,8 @@ public class DoorWay{
             if (game.getKeyboardListener().f) {
                 game.getKeyboardListener().f = false;
                 game.getPlayer().setCurrentRoom(room);
-                game.getPlayer().setX(1150);
-                game.getPlayer().setY(300);
+                game.getPlayer().setX(640 - (game.getPlayer().getWidth())/2);
+                game.getPlayer().setY(360 - (game.getPlayer().getHeight())/2);
 
             }
         } else {

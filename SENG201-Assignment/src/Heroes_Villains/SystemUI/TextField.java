@@ -18,9 +18,10 @@ public class TextField extends UIElement {
     private boolean editing;
     private char[] toLoop = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' '};
     private ArrayList<Character> acceptedCharacters;
+    private int maxInput;
 
 
-    public TextField(int x, int y, int width, int height, Game game, BufferedImage[] images) {
+    public TextField(int x, int y, int width, int height, Game game, BufferedImage[] images, int maxInput) {
         super(x,y,game,images);
         this.x = x;
         this.y = y;
@@ -33,6 +34,7 @@ public class TextField extends UIElement {
         for (char c : toLoop) {
             acceptedCharacters.add(new Character(c));
         }
+        this.maxInput = maxInput;
 
 
     }
@@ -51,7 +53,7 @@ public class TextField extends UIElement {
                         if (game.getKeyboardListener().delete && input.length() > 0) {
                             game.getKeyboardListener().delete = false;
                             input = input.substring(0, input.length() - 1);
-                        } else if (acceptedCharacters.contains((char)i)) {
+                        } else if (acceptedCharacters.contains((char)i) && input.length() < maxInput) {
                             input = input + (char)i;
                         }
                     }

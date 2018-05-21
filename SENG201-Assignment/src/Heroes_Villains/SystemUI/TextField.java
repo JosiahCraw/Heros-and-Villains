@@ -3,6 +3,9 @@ package Heroes_Villains.SystemUI;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import Heroes_Villains.Game;
 import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.graphics.DrawText;
@@ -13,6 +16,8 @@ public class TextField extends UIElement {
     private int width, height;
     private String input;
     private boolean editing;
+    private char[] toLoop = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' '};
+    private ArrayList<Character> acceptedCharacters;
 
 
     public TextField(int x, int y, int width, int height, Game game, BufferedImage[] images) {
@@ -24,6 +29,10 @@ public class TextField extends UIElement {
         this.height = height;
         this.input = "";
         this.editing = false;
+        this.acceptedCharacters = new ArrayList<Character>();
+        for (char c : toLoop) {
+            acceptedCharacters.add(new Character(c));
+        }
 
     }
 
@@ -34,43 +43,35 @@ public class TextField extends UIElement {
             game.getMouseListener().leftClicked = false;
             System.out.println(input + "clicked");
             editing = true;
-            //if (editing) {
-            //while (!game.getKeyboardListener().enter) {
                 game.getKeyboardListener().update();
                 for (int i = 0; i < game.getKeyboardListener().keys.length; i++) {
                     if (game.getKeyboardListener().keys[i]) {
                         game.getKeyboardListener().keys[i] = false;
-                        input = input + (char)i;
-                        this.render(game.getGraphics());
-
-                        //break;
+                        if (game.getKeyboardListener().delete && input.length() > 0) {
+                            game.getKeyboardListener().delete = false;
+                            input = input.substring(0, input.length() - 1);
+                        } else if (acceptedCharacters.contains((char)i)) {
+                            input = input + (char)i;
+                        }
                     }
-                    //break;
+
 
                 }
                 if (game.getKeyboardListener().enter) {
 
                     System.out.println("Enter");
                     System.out.println(input);
+                    //input = input.substring(0, input.length() - 1);
                     editing = false;
                     //break;
                 }
-                //break;
-
-
-                /*for (int i = 0; i < game.getKeyboardListener().keys.length; i++) {
-                    if (game.getKeyboardListener().keys[i]) {
-                        input = input + (char)i;
-                    }
-                }*/
-            //}
-
 
         }
     }
 
     @Override
     public void render(Graphics graphics) {
+
         if(game.getMouseListener().isHovering(x, y, width, height)) {
             graphics.drawImage(images[1], x, y, width, height,null);
         }else if(editing){
@@ -79,6 +80,8 @@ public class TextField extends UIElement {
             graphics.drawImage(images[0], x, y, width, height,null);
         }
         DrawText.draw(game.getGraphics(), input, x+width/2, y+height/2, true, Color.WHITE, Assets.smallFont);
+        System.out.println("Just drew " + input + input.length());
+
     }
 
     @Override

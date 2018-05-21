@@ -1,11 +1,13 @@
 package Heroes_Villains.minigames;
 
+import Heroes_Villains.Game;
+
 import java.awt.*;
 
 public class PaperScissorsRock extends MiniGame {
 
-    public PaperScissorsRock(int trys, int villainLives, int villainMove) {
-        super(trys, villainLives, villainMove);
+    public PaperScissorsRock(int villainMove, Game game) {
+        super(villainMove, game);
     }
 
     @Override

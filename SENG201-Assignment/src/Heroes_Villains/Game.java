@@ -6,6 +6,7 @@ import Heroes_Villains.States.*;
 import Heroes_Villains.display.Display;
 import Heroes_Villains.entities.Player;
 import Heroes_Villains.graphics.Assets;
+import Heroes_Villains.minigames.MiniGameHandler;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -28,6 +29,9 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     //Keyboard Listener
     private KeyboardListener keyboardListener;
     private MouseListener mouseListener;
+
+    //Mini game handler
+    public MiniGameHandler miniGameHandler;
 
     public int width, height;
 
@@ -79,6 +83,8 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         display.getFrame().addMouseMotionListener(mouseListener);
         display.getCanvas().addMouseListener(mouseListener);
         display.getCanvas().addMouseMotionListener(mouseListener);
+        miniGameHandler = new MiniGameHandler(this);
+        miniGameHandler.init();
         Assets.init();
         gameState = new GameState(this);
         player = ((GameState) gameState).player;

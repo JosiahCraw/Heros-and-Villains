@@ -1,11 +1,13 @@
 package Heroes_Villains.minigames;
 
+import Heroes_Villains.Game;
+
 import java.awt.*;
 
 public class DiceRoll extends MiniGame {
 
-    public DiceRoll(int trys, int villainLives, int villainMove) {
-        super(trys, villainLives, villainMove);
+    public DiceRoll(int villainMove, Game game) {
+        super(villainMove, game);
     }
 
     @Override

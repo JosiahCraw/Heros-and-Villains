@@ -8,12 +8,10 @@ public abstract class MiniGame {
 
     public int trys;
     public int villainLives;
-    public int villainMove;
+    protected int villainMove;
     protected Game game;
 
-    public MiniGame(int trys, int villainLives, int villainMove, Game game) {
-        this.trys = trys;
-        this.villainLives = villainLives;
+    public MiniGame(int villainMove, Game game) {
         this.villainMove = villainMove;
         this.game = game;
     }

@@ -30,6 +30,7 @@ public class BattleState extends State {
             game.getPlayer().setX(576);
             game.getStateHandler().setState(game.getGameState());
         }
+        game.miniGameHandler.miniGames[game.getPlayer().getCurrentCity()].update();
     }
 
     @Override
@@ -37,6 +38,6 @@ public class BattleState extends State {
         graphics.setFont(Assets.titleFont);
         graphics.drawString("Battle State!!!", 550, 400);
         battleButton.render(graphics);
-
+        game.miniGameHandler.miniGames[game.getPlayer().getCurrentCity()].render(graphics);
     }
 }

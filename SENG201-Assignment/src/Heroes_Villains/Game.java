@@ -9,6 +9,7 @@ import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.minigames.MiniGameHandler;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 
 public class Game implements Runnable{ //Runnable allows the class to use threads
@@ -23,7 +24,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     private boolean running = false;
 
     //State Variables
-    private State gameState, menuState, pauseState, battleState, controlsState, setupState;
+    private State gameState, menuState, pauseState, battleState, controlsState, setupState, adminState;
     private StateHandler stateHandler = new StateHandler();
 
     //Keyboard Listener
@@ -52,6 +53,13 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         keyboardListener.update();
         if(stateHandler.state != null) {
             stateHandler.state.update();
+        }
+        if(keyboardListener.keyJustPressed(KeyEvent.VK_CONTROL)) {
+            if(stateHandler.getState() instanceof AdminState) {
+                stateHandler.setState(stateHandler.getLastState());
+            } else {
+                stateHandler.setState(adminState);
+            }
         }
     }
 
@@ -83,9 +91,9 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         display.getFrame().addMouseMotionListener(mouseListener);
         display.getCanvas().addMouseListener(mouseListener);
         display.getCanvas().addMouseMotionListener(mouseListener);
+        Assets.init();
         miniGameHandler = new MiniGameHandler(this);
         miniGameHandler.init();
-        Assets.init();
         gameState = new GameState(this);
         player = ((GameState) gameState).player;
         menuState = new MenuState(this);
@@ -93,6 +101,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         battleState = new BattleState(this);
         controlsState = new ControlsState(this);
         setupState = new SetupState(this);
+        adminState = new AdminState(this);
         stateHandler.setState(menuState);
     }
 

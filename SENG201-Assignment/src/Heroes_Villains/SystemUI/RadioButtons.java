@@ -73,4 +73,7 @@ public class RadioButtons extends UIElement{
         return false;
     }
 
+    public int getCurrentlyClicked() {
+        return currentlyClicked;
+    }
 }

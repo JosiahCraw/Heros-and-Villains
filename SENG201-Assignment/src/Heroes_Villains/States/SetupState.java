@@ -25,7 +25,7 @@ public class SetupState extends State{
         backButton = new UIButton(540, 483, game, Assets.backButton, 200, 35);
         citySelect = new RadioButtons(900, 268, game, Assets.testRadioButton, 6, 25, true, 32, 32);
         heroSelect = new RadioButtons(900, 368, game, Assets.testRadioButton, 3, 25, true, 32, 32);
-        entry = new TextField(500, 200, 200, 25, game, Assets.textField);
+        entry = new TextField(500, 200, 200, 25, game, Assets.textField, 10);
 
     }
 

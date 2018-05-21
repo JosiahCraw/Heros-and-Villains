@@ -25,6 +25,7 @@ public class TextField extends UIElement {
         this.input = "";
         this.editing = false;
 
+
     }
 
     @Override

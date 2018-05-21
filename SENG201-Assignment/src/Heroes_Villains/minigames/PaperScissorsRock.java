@@ -10,12 +10,17 @@ import java.awt.*;
 public class PaperScissorsRock extends MiniGame {
 
     private UIElement buttons;
-    public String gameName;
 
     public PaperScissorsRock(int villainMove, Game game) {
-        super(villainMove, game);
+        super(villainMove, game, "Paper, Scissors, Rock");
         buttons = new RadioButtons(100, 300, game, Assets.testRadioButton, 3, 10, true, 100, 100);
-        gameName = "Paper, Scissors, Rock";
+        if(villainMove == 0) {
+            this.villainMoveWords = "Rock";
+        }else if(villainMove == 1) {
+            this.villainMoveWords = "Scissors";
+        }else {
+            this.villainMoveWords = "Rock";
+        }
     }
 
     @Override

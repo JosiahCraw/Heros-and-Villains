@@ -10,12 +10,11 @@ import java.awt.*;
 public class DiceRoll extends MiniGame {
 
     private UIElement rollButton;
-    public String gameName;
 
     public DiceRoll(int villainMove, Game game) {
-        super(villainMove, game);
-        gameName = "Dice Roll";
+        super(villainMove, game, "Dice Roll");
         rollButton = new UIButton(100, 300, game, Assets.backButton, Assets.buttonWidth, Assets.buttonHeight);
+        this.villainMoveWords = Integer.toString(villainMove);
     }
 
     @Override

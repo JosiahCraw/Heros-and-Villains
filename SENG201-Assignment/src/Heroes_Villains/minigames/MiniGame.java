@@ -10,10 +10,13 @@ public abstract class MiniGame {
     public int villainLives;
     protected int villainMove;
     protected Game game;
+    public String gameName;
+    public String villainMoveWords;
 
-    public MiniGame(int villainMove, Game game) {
+    public MiniGame(int villainMove, Game game, String gameName) {
         this.villainMove = villainMove;
         this.game = game;
+        this.gameName = gameName;
     }
 
     public abstract void update();

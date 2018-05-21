@@ -13,7 +13,7 @@ public class RadioButtons extends UIElement{
     protected RadioButton[] buttons;
     private BufferedImage[][] imagesArray;
     private int width, height;
-    private int currentlyClicked;
+    public int currentlyClicked;
 
 
     public RadioButtons(int x, int y, Game game, BufferedImage[] images, int numButtons, int spacing, boolean horizontal, int width, int height) {
@@ -26,6 +26,7 @@ public class RadioButtons extends UIElement{
         buttons = new RadioButton[numButtons];
         imagesArray = new BufferedImage[numButtons][3];
         int imageIndex = 0;
+        this.currentlyClicked = 0;
         for(int i=0; i<numButtons; i++) {
             imagesArray[i][0] = images[imageIndex];
             imageIndex++;
@@ -71,9 +72,5 @@ public class RadioButtons extends UIElement{
     @Override
     public boolean click() {
         return false;
-    }
-
-    public int getCurrentlyClicked() {
-        return currentlyClicked;
     }
 }

@@ -34,6 +34,7 @@ public class TextField extends UIElement {
             acceptedCharacters.add(new Character(c));
         }
 
+
     }
 
     @Override

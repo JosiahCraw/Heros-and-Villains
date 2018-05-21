@@ -31,12 +31,12 @@ public class TextField extends UIElement {
     @Override
     public void update() {
         this.render(game.getGraphics());
-        if (game.getMouseListener().isHovering(x, y, width, height) && game.getMouseListener().isLeftClicked()) {
+        if (game.getMouseListener().isHovering(x, y, width, height) && game.getMouseListener().isLeftClicked() || editing) {
             game.getMouseListener().leftClicked = false;
             System.out.println(input + "clicked");
             editing = true;
             //if (editing) {
-            while (!game.getKeyboardListener().enter) {
+            //while (!game.getKeyboardListener().enter) {
                 game.getKeyboardListener().update();
                 for (int i = 0; i < game.getKeyboardListener().keys.length; i++) {
                     if (game.getKeyboardListener().keys[i]) {
@@ -64,7 +64,7 @@ public class TextField extends UIElement {
                         input = input + (char)i;
                     }
                 }*/
-            }
+            //}
 
 
         }

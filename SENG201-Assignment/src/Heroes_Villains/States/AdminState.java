@@ -47,21 +47,25 @@ public class AdminState extends State{
         left.update();
         right.update();
         if(((UIButton) up).isHovering() && game.getMouseListener().leftClicked) {
+            game.getMouseListener().leftClicked = false;
             game.getPlayer().setX(640);
             game.getPlayer().setY(360);
             game.getPlayer().setCurrentRoom(1);
         }
         if(((UIButton) right).isHovering() && game.getMouseListener().leftClicked) {
+            game.getMouseListener().leftClicked = false;
             game.getPlayer().setX(640);
             game.getPlayer().setY(360);
             game.getPlayer().setCurrentRoom(2);
         }
         if(((UIButton) down).isHovering() && game.getMouseListener().leftClicked) {
+            game.getMouseListener().leftClicked = false;
             game.getPlayer().setX(640);
             game.getPlayer().setY(360);
             game.getPlayer().setCurrentRoom(3);
         }
         if(((UIButton) left).isHovering() && game.getMouseListener().leftClicked) {
+            game.getMouseListener().leftClicked = false;
             game.getPlayer().setX(640);
             game.getPlayer().setY(360);
             game.getPlayer().setCurrentRoom(0);

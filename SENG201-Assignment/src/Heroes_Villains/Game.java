@@ -49,6 +49,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     //Main Game Settings
     public int noOfCities;
     public int noOfHeros;
+    public String teamName;
 
 
     public ArrayList<Hero> getTeam() {

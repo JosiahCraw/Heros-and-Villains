@@ -21,6 +21,8 @@ public class SetupState extends State{
     private UIElement teamButton;
     private TextField entry;
 
+    private UIElement testButton;
+
 
     public SetupState(Game game) {
         super(game);
@@ -29,6 +31,7 @@ public class SetupState extends State{
         citySelect = new RadioButtons(900, 268, game, Assets.testRadioButton, 4, 25, true, 32, 32);
         heroSelect = new RadioButtons(900, 368, game, Assets.testRadioButton, 3, 25, true, 32, 32);
         entry = new TextField(500, 175, 200, 25, game, Assets.textField, 10, 2);
+        testButton = new UIButton(game.width - 210, game.height - 45, game, Assets.backButton, 200, 35);
 
     }
 
@@ -39,11 +42,19 @@ public class SetupState extends State{
         heroSelect.update();
         entry.update();
         teamButton.update();
+        testButton.update();
 
         if(game.getMouseListener().isLeftClicked() && backButton.click()){
             game.getMouseListener().leftClicked = false;
             game.getStateHandler().setState(game.getMenuState());
         }
+
+        if(game.getMouseListener().isLeftClicked() && testButton.click()){
+            game.getMouseListener().leftClicked = false;
+            game.teamBuilderState = new TeamBuilderState(game);
+            game.getStateHandler().setState(game.getTeamBuilderState());
+        }
+
 
         if(game.getMouseListener().isLeftClicked() && teamButton.click()){
             game.getMouseListener().leftClicked = false;
@@ -56,6 +67,9 @@ public class SetupState extends State{
             game.player = ((GameState) game.gameState).player;
             game.miniGameHandler.init();
             game.adminState = new AdminState(game);
+            game.teamBuilderState = new TeamBuilderState(game);
+            game.getStateHandler().setState(game.getGameState());
+
         }
     }
 
@@ -79,6 +93,7 @@ public class SetupState extends State{
         heroSelect.render(graphics);
         teamButton.render(graphics);
         entry.render(graphics);
+        testButton.render(graphics);
     }
     //pass
 }

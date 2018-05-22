@@ -6,6 +6,7 @@ import Heroes_Villains.SystemUI.RadioButtons;
 import Heroes_Villains.SystemUI.TextField;
 import Heroes_Villains.SystemUI.UIButton;
 import Heroes_Villains.SystemUI.UIElement;
+import Heroes_Villains.entities.Player;
 import Heroes_Villains.graphics.Assets;
 import com.sun.corba.se.spi.servicecontext.UEInfoServiceContext;
 
@@ -50,6 +51,9 @@ public class SetupState extends State{
             int numC = citySelect.currentlyClicked + 3;
             int numH = heroSelect.currentlyClicked + 1;
             System.out.println(teamname + " " + numC + " " + numH);
+            game.setNoOfCities(numC);
+            game.gameState = new GameState(game);
+            game.player = ((GameState) game.gameState).player;
         }
     }
 

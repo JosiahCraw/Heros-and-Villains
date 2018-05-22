@@ -24,7 +24,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     private boolean running = false;
 
     //State Variables
-    private State gameState, menuState, pauseState, battleState, controlsState, setupState, adminState;
+    public State gameState, menuState, pauseState, battleState, controlsState, setupState, adminState;
     private StateHandler stateHandler = new StateHandler();
 
     //Keyboard Listener
@@ -43,7 +43,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     public Graphics graphics;
 
     //Main Game Settings
-    public int noOfCities = 5;
+    public int noOfCities;
     public int noOfHeros;
     
     public double delta;
@@ -94,8 +94,8 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         Assets.init();
         miniGameHandler = new MiniGameHandler(this);
         miniGameHandler.init();
-        gameState = new GameState(this);
-        player = ((GameState) gameState).player;
+        //gameState = new GameState(this);
+        //player = ((GameState) gameState).player;
         menuState = new MenuState(this);
         pauseState = new PauseState(this);
         battleState = new BattleState(this);

@@ -54,6 +54,7 @@ public class SetupState extends State{
             game.setNoOfCities(numC);
             game.gameState = new GameState(game);
             game.player = ((GameState) game.gameState).player;
+            game.miniGameHandler.init();
         }
     }
 

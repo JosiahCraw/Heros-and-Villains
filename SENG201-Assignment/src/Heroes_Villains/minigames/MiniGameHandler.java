@@ -13,11 +13,12 @@ public class MiniGameHandler {
 
     public MiniGameHandler(Game game) {
         this.game = game;
-        miniGames = new MiniGame[game.getNoOfCities()];
-        villainMoves = new int[game.getNoOfCities()];
+
     }
 
     public void init() {
+        miniGames = new MiniGame[game.getNoOfCities()];
+        villainMoves = new int[game.getNoOfCities()];
         for(int i=0; i<game.noOfCities; i++) {
             pickedGame = RandomNum.getNum(3);
             if(pickedGame == 0) {

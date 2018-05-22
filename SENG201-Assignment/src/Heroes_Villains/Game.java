@@ -93,7 +93,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         display.getCanvas().addMouseMotionListener(mouseListener);
         Assets.init();
         miniGameHandler = new MiniGameHandler(this);
-        miniGameHandler.init();
+        //miniGameHandler.init();
         //gameState = new GameState(this);
         //player = ((GameState) gameState).player;
         menuState = new MenuState(this);

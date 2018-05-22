@@ -18,19 +18,21 @@ public class MiniGameHandler {
 
     public MiniGame getGame() {
         MiniGame miniGame;
-            pickedGame = RandomNum.getNum(3);
+        RandomNum randomNum;
+        randomNum = new RandomNum();
+            pickedGame = randomNum.getNum(3);
             if(pickedGame == 0) {
-                villainMove = RandomNum.getNum(3);
+                villainMove = randomNum.getNum(3);
                 miniGame = new PaperScissorsRock(villainMove, game);
                 return miniGame;
             }
             else if(pickedGame == 1) {
-                villainMove = RandomNum.getNum(6) + 1;
+                villainMove = randomNum.getNum(6) + 1;
                 miniGame = new DiceRoll(villainMove, game);
                 return miniGame;
             }
             else{
-                villainMove = RandomNum.getNum(10) + 1;
+                villainMove = randomNum.getNum(10) + 1;
                 miniGame = new GuessTheNumber(villainMove, game);
                 return miniGame;
             }

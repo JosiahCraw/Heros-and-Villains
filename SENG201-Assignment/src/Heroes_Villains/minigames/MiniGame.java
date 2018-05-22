@@ -12,6 +12,7 @@ public abstract class MiniGame {
     protected Game game;
     public String gameName;
     public String villainMoveWords;
+    public int playerTurns;
 
     public MiniGame(int villainMove, Game game, String gameName) {
         this.villainMove = villainMove;

@@ -19,7 +19,7 @@ public class City {
     public City(int cityNo, Game game) {
         this.cityNo = cityNo;
         this.game = game;
-        rooms = new Rooms[game.noOfCities];
+        rooms = new Rooms[5];
         homeBase = new HomeBase(game);
         hospital = new Hospital(game);
         inn = new Inn(game);

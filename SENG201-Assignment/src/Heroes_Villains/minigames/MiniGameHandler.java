@@ -13,8 +13,8 @@ public class MiniGameHandler {
 
     public MiniGameHandler(Game game) {
         this.game = game;
-        miniGames = new MiniGame[game.noOfCities];
-        villainMoves = new int[game.noOfCities];
+        miniGames = new MiniGame[game.getNoOfCities()];
+        villainMoves = new int[game.getNoOfCities()];
     }
 
     public void init() {

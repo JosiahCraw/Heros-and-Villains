@@ -5,12 +5,16 @@ import Heroes_Villains.Listener.MouseListener;
 import Heroes_Villains.States.*;
 import Heroes_Villains.display.Display;
 import Heroes_Villains.entities.Player;
+import Heroes_Villains.entities.heroes.Hero;
+import Heroes_Villains.entities.heroes.HeroTeam;
 import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.minigames.MiniGameHandler;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Game implements Runnable{ //Runnable allows the class to use threads
 
@@ -45,6 +49,13 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     //Main Game Settings
     public int noOfCities;
     public int noOfHeros;
+
+
+    public ArrayList<Hero> getTeam() {
+        return team;
+    }
+
+    private ArrayList<Hero> team = new ArrayList<Hero>();
     
     public double delta;
 

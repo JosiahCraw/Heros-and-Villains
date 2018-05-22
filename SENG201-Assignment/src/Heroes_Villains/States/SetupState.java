@@ -51,6 +51,16 @@ public class SetupState extends State{
 
         if(game.getMouseListener().isLeftClicked() && testButton.click()){
             game.getMouseListener().leftClicked = false;
+
+            String teamname = entry.getInput();
+            int numC = citySelect.currentlyClicked + 3;
+            int numH = heroSelect.currentlyClicked + 1;
+            System.out.println(teamname + " " + numC + " " + numH);
+            game.setNoOfCities(numC);
+            game.setNoOfHeros(numH);
+
+
+
             game.teamBuilderState = new TeamBuilderState(game);
             game.getStateHandler().setState(game.getTeamBuilderState());
         }
@@ -63,6 +73,7 @@ public class SetupState extends State{
             int numH = heroSelect.currentlyClicked + 1;
             System.out.println(teamname + " " + numC + " " + numH);
             game.setNoOfCities(numC);
+            game.setNoOfHeros(numH);
             game.gameState = new GameState(game);
             game.player = ((GameState) game.gameState).player;
             game.miniGameHandler.init();

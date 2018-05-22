@@ -32,7 +32,7 @@ public class GameState extends State {
         player.getInventory().addItem(itemHandler.masterPotion);
         player.getInventory().addItem(itemHandler.masterPotion);
         player.getInventory().addItem(itemHandler.masterPotion);
-        player.getInventory().addItem(itemHandler.coins);
+        //player.getInventory().addItem(itemHandler.coins);
     }
 
     public Player getPlayer() {
@@ -43,7 +43,7 @@ public class GameState extends State {
     public void update() {
         masterCities.update();
         player.update();
-        itemHandler.coins.count = game.getPlayer().money;
+        //itemHandler.coins.count = game.getPlayer().money;
         if(game.getKeyboardListener().keyJustPressed(KeyEvent.VK_ESCAPE)) {
             game.getStateHandler().setState(game.getPauseState());
         }

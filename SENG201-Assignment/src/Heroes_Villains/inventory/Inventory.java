@@ -92,6 +92,7 @@ public class Inventory {
         }
         graphics.drawImage(items.get(currentIndex).image, imageX, imageY, imageWidth, imageHeight, null);
         DrawText.draw(graphics, Integer.toString(items.get(currentIndex).getCount()), countX, countY, true, Color.WHITE, Assets.invFont);
+        DrawText.draw(graphics, "Coins: " + Integer.toString(game.getPlayer().money), countX, countY+200, true, Color.WHITE, Assets.invFont);
         if(items.get(currentIndex).isUseable() && game.getMouseListener().isHovering(inventoryX+583, inventoryY+258, 144, 64)) {
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.WHITE, Assets.invFont);
             if(game.getMouseListener().isLeftClicked()) {

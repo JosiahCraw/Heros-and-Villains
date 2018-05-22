@@ -10,9 +10,10 @@ public class HealingItem extends Item {
 
     private int healthAmount;
 
-    public HealingItem(int id, String name, BufferedImage image, Game game, Citys cityClass, int healthAmount) {
+    public HealingItem(int id, String name, BufferedImage image, Game game, Citys cityClass, int healthAmount, int cost) {
         super(id, name, image, game, cityClass);
         this.healthAmount = healthAmount;
+        this.cost = cost;
     }
 
     @Override

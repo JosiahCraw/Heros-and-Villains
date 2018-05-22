@@ -11,7 +11,7 @@ public class Coins extends Item {
 
     public Coins(int id, String name, BufferedImage image, Game game, Citys cityClass, Player player) {
         super(id, name, image, game, cityClass);
-        count = player.money;
+        count = game.getPlayer().money;
     }
 
     @Override

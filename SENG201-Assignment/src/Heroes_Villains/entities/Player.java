@@ -96,7 +96,7 @@ public class Player extends Living {
         this.game = game;
         currentRoom = 0;
         currentCity = 0;
-        money = 0;
+        money = 100;
     }
 
     private BufferedImage getCurrentImage(Animation tempAnim) {

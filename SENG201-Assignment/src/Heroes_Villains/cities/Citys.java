@@ -19,7 +19,7 @@ public class Citys {
 
     public void init() {
         for(int x=0; x < noOfCities; x++) {
-             City tempCity = new City(x, game);
+             City tempCity = new City(x, game, this);
              cities[x] = tempCity;
         }
     }

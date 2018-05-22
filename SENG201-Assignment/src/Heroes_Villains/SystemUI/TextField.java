@@ -51,6 +51,14 @@ public class TextField extends UIElement {
     public void update() {
         this.render(game.getGraphics());
         if((!game.getMouseListener().isHovering(x, y, width, height)) && game.getMouseListener().leftClicked) {
+            if (input.length() < minInput) {
+                input = "";
+                underLimit = true;
+
+                //game.getGraphics().drawString("Minimum name length 2", x + width, y);
+            } else {
+                underLimit = false;
+            }
             editing = false;
         }
         if (game.getMouseListener().isHovering(x, y, width, height) && game.getMouseListener().isLeftClicked() || editing) {
@@ -102,7 +110,7 @@ public class TextField extends UIElement {
         }
         DrawText.draw(game.getGraphics(), input, x+width/2, y+height/2, true, Color.WHITE, Assets.smallFont);
         if (underLimit) {
-            DrawText.draw(graphics,"Minimum name length: " + minInput , x+width+30, y + 25, false, Color.BLACK, Assets.smallFont);
+            DrawText.draw(graphics,"Minimum name length: " + minInput , x, y - 10, false, Color.BLACK, Assets.smallFont);
         }
         //System.out.println("Just drew " + input + input.length());
 

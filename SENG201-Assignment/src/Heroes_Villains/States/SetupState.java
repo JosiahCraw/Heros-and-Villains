@@ -34,6 +34,8 @@ public class SetupState extends State{
         heroSelect = new RadioButtons(900, 368, game, Assets.testRadioButton, 3, 25, true, 32, 32);
         entry = new TextField(900, 175, 200, 25, game, Assets.textField, 10, 2);
         noTeam = false;
+        citySelect.clicked(0);
+        heroSelect.clicked(0);
 
     }
 

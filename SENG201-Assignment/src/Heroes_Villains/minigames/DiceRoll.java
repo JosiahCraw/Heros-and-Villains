@@ -7,7 +7,9 @@ import Heroes_Villains.graphics.Assets;
 
 import java.awt.*;
 
+
 public class DiceRoll extends MiniGame {
+    protected Game game;
 
     private UIElement rollButton;
 

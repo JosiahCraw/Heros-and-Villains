@@ -18,10 +18,11 @@ public class TextField extends UIElement {
     private boolean editing;
     private char[] toLoop = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' '};
     private ArrayList<Character> acceptedCharacters;
-    private int maxInput;
+    private int maxInput, minInput;
+    private boolean underLimit;
 
 
-    public TextField(int x, int y, int width, int height, Game game, BufferedImage[] images, int maxInput) {
+    public TextField(int x, int y, int width, int height, Game game, BufferedImage[] images, int maxInput, int minInput) {
         super(x,y,game,images);
         this.x = x;
         this.y = y;
@@ -35,6 +36,8 @@ public class TextField extends UIElement {
             acceptedCharacters.add(new Character(c));
         }
         this.maxInput = maxInput;
+        this.minInput = minInput;
+        this.underLimit = true;
 
 
     }
@@ -44,7 +47,7 @@ public class TextField extends UIElement {
         this.render(game.getGraphics());
         if (game.getMouseListener().isHovering(x, y, width, height) && game.getMouseListener().isLeftClicked() || editing) {
             game.getMouseListener().leftClicked = false;
-            System.out.println(input + "clicked");
+            //System.out.println(input + "clicked");
             editing = true;
                 game.getKeyboardListener().update();
                 for (int i = 0; i < game.getKeyboardListener().keys.length; i++) {
@@ -61,9 +64,16 @@ public class TextField extends UIElement {
 
                 }
                 if (game.getKeyboardListener().enter) {
+                    if (input.length() < minInput) {
+                        input = "";
+                        underLimit = true;
 
-                    System.out.println("Enter");
-                    System.out.println(input);
+                        //game.getGraphics().drawString("Minimum name length 2", x + width, y);
+                    } else {
+                        underLimit = false;
+                    }
+                    //System.out.println("Enter");
+                    //System.out.println(input);
                     //input = input.substring(0, input.length() - 1);
                     editing = false;
                     //break;
@@ -83,12 +93,24 @@ public class TextField extends UIElement {
             graphics.drawImage(images[0], x, y, width, height,null);
         }
         DrawText.draw(game.getGraphics(), input, x+width/2, y+height/2, true, Color.WHITE, Assets.smallFont);
-        System.out.println("Just drew " + input + input.length());
+        if (underLimit) {
+            DrawText.draw(graphics,"Minimum name length: " + minInput , x+width+30, y + 25, false, Color.BLACK, Assets.smallFont);
+        }
+        //System.out.println("Just drew " + input + input.length());
 
     }
 
     @Override
     public boolean click() {
         return false;
+    }
+
+
+    public String getInput() {
+        return input;
+    }
+
+    public void setInput(String input) {
+        this.input = input;
     }
 }

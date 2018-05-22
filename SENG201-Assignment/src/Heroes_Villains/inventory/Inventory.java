@@ -1,6 +1,8 @@
 package Heroes_Villains.inventory;
 
 import Heroes_Villains.Game;
+import Heroes_Villains.SystemUI.RadioButtons;
+import Heroes_Villains.SystemUI.UIElement;
 import Heroes_Villains.entities.items.Item;
 import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.graphics.DrawText;
@@ -24,10 +26,14 @@ public class Inventory {
     private int countX = 1076, countY = 241;
     private int listSpacing = 47;
     private int currentIndex = 0;
+    private int totalWidth;
+    private UIElement heroSelector;
 
     public Inventory(Game game) {
         this.game = game;
         items = new ArrayList<>();
+        totalWidth = (game.noOfHeros-1)*10 + 50*game.noOfHeros;
+        heroSelector = new RadioButtons(countX-(totalWidth/2), countY+150, game, Assets.invRadioButton, game.noOfHeros, 10, true, 50, 50);
     }
 
     public void addItem(Item item) {
@@ -43,6 +49,7 @@ public class Inventory {
 
 
     public void update() {
+        heroSelector.update();
         if(game.getKeyboardListener().keyJustPressed(KeyEvent.VK_E)) {
             open = !open;
         }
@@ -92,6 +99,7 @@ public class Inventory {
         }
         graphics.drawImage(items.get(currentIndex).image, imageX, imageY, imageWidth, imageHeight, null);
         DrawText.draw(graphics, Integer.toString(items.get(currentIndex).getCount()), countX, countY, true, Color.WHITE, Assets.invFont);
+        DrawText.draw(graphics, "Coins: " + Integer.toString(game.getPlayer().money), countX, countY+300, true, Color.WHITE, Assets.invFont);
         if(items.get(currentIndex).isUseable() && game.getMouseListener().isHovering(inventoryX+583, inventoryY+258, 144, 64)) {
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.WHITE, Assets.invFont);
             if(game.getMouseListener().isLeftClicked()) {
@@ -103,5 +111,6 @@ public class Inventory {
         }else {
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.GRAY, Assets.invFont);
         }
+        heroSelector.render(graphics);
     }
 }

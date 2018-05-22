@@ -19,6 +19,10 @@ public class UIButton extends UIElement {
         isHovering = false;
     }
 
+    public boolean isHovering() {
+        return isHovering;
+    }
+
     @Override
     public void update() {
         isHovering = game.getMouseListener().isHovering(x, y, width, height);
@@ -26,9 +30,9 @@ public class UIButton extends UIElement {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(images[0], x, y, null);
-        if(isHovering) {
-            graphics.drawImage(images[1], x, y, null);
+        graphics.drawImage(images[0], x, y, width, height, null);
+        if(isHovering && images.length == 2) {
+            graphics.drawImage(images[1], x, y, width, height, null);
         }
     }
 
@@ -37,3 +41,4 @@ public class UIButton extends UIElement {
         return isHovering;
     }
 }
+

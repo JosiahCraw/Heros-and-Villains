@@ -37,16 +37,16 @@ public class Player extends Living {
         animLeft.update();
         animRight.update();
         if(game.getKeyboardListener().up /*|| game.getKeyboardListener().arrowUp*/) {
-            y-=5;
+            y-=20;
         }
         if(game.getKeyboardListener().left || game.getKeyboardListener().arrowLeft) {
-            x-=5;
+            x-=20;
         }
         if(game.getKeyboardListener().down /*|| game.getKeyboardListener().arrowDown*/) {
-            y+=5;
+            y+=20;
         }
         if(game.getKeyboardListener().right || game.getKeyboardListener().arrowRight) {
-            x+=5;
+            x+=20;
         }
         inventory.update();
 
@@ -96,7 +96,7 @@ public class Player extends Living {
         this.game = game;
         currentRoom = 0;
         currentCity = 0;
-        money = 0;
+        money = 100;
     }
 
     private BufferedImage getCurrentImage(Animation tempAnim) {

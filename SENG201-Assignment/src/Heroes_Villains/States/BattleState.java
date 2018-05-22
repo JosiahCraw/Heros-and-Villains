@@ -4,40 +4,69 @@ import Heroes_Villains.Game;
 import Heroes_Villains.SystemUI.UIButton;
 import Heroes_Villains.SystemUI.UIElement;
 import Heroes_Villains.graphics.Assets;
+import Heroes_Villains.minigames.MiniGame;
+import Heroes_Villains.minigames.MiniGameHandler;
 
 import java.awt.*;
 
 public class BattleState extends State {
 
-    private UIElement battleButton;
+    private UIElement battleButton, backButton;
+    public MiniGame currMiniGame;
+    public boolean battling;
+    private MiniGameHandler miniGameHandler;
 
     public BattleState(Game game) {
         super(game);
         battleButton = new UIButton(100, 500, game, Assets.battleButton, Assets.buttonWidth, Assets.buttonHeight);
+        backButton = new UIButton(100, 600, game, Assets.backButton, Assets.buttonWidth, Assets.buttonHeight);
+        battling = false;
+        miniGameHandler = new MiniGameHandler(game);
+        currMiniGame = null;
+
     }
 
     @Override
     public void update() {
-        battleButton.update();
-        if(game.getMouseListener().isLeftClicked() && battleButton.click()) {
-            try {
-                game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity()+1);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("You won!!");
+        if(!battling) {
+            battleButton.update();
+            backButton.update();
+            if (game.getMouseListener().isLeftClicked() && backButton.click()) {
+                game.getStateHandler().setState(game.getGameState());
+                return;
             }
-            game.getPlayer().setCurrentRoom(4);
-            game.getPlayer().setY(296);
-            game.getPlayer().setX(576);
-            game.getStateHandler().setState(game.getGameState());
+            if (game.getMouseListener().isLeftClicked() && battleButton.click()) {
+                currMiniGame = miniGameHandler.getGame();
+                battling = true;
+                return;
+                /*try {
+                    game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity()+1);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("You won!!");
+                }
+                game.getPlayer().setCurrentRoom(4);
+                game.getPlayer().setY(296);
+                game.getPlayer().setX(576);
+                game.getStateHandler().setState(game.getGameState());*/
+            }
+            return;
         }
-        game.miniGameHandler.miniGames[game.getPlayer().getCurrentCity()].update();
+        currMiniGame.update();
     }
 
     @Override
     public void render(Graphics graphics) {
-        graphics.setFont(Assets.titleFont);
-        graphics.drawString("Battle State!!!", 550, 400);
-        battleButton.render(graphics);
-        game.miniGameHandler.miniGames[game.getPlayer().getCurrentCity()].render(graphics);
+        if(!battling){
+            graphics.setFont(Assets.titleFont);
+            graphics.drawString("Battle State!!!", 550, 400);
+            battleButton.render(graphics);
+            backButton.render(graphics);
+            return;
+        }
+        currMiniGame.render(graphics);
+    }
+
+    public MiniGame getCurrMiniGame() {
+        return currMiniGame;
     }
 }

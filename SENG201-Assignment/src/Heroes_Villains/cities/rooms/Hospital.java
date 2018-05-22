@@ -12,6 +12,7 @@ public class Hospital extends  Rooms{
 
     public Hospital(Game game) {
         super(game);
+        roomName = "Hospital";
     }
 
     @Override

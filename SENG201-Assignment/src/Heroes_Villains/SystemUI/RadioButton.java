@@ -7,8 +7,16 @@ import java.awt.image.BufferedImage;
 
 public class RadioButton extends UIElement {
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     private int width, height;
-    private boolean clicked;
+    public boolean clicked;
     private int buttonNum;
     private RadioButtons buttons;
 

@@ -12,6 +12,7 @@ public class VillainRoom extends Rooms{
 
     public VillainRoom(Game game) {
         super(game);
+        roomName = "Villain's Lair";
     }
 
     @Override
@@ -25,6 +26,7 @@ public class VillainRoom extends Rooms{
         }
         */
         if(game.getMouseListener().isLeftClicked() && game.getMouseListener().isHovering(50, 328, 128, 128)) {
+            game.getMouseListener().leftClicked = false;
             game.getStateHandler().setState(game.getBattleState());
         }
         exit.update();

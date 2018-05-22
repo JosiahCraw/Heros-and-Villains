@@ -5,12 +5,16 @@ import Heroes_Villains.Listener.MouseListener;
 import Heroes_Villains.States.*;
 import Heroes_Villains.display.Display;
 import Heroes_Villains.entities.Player;
+import Heroes_Villains.entities.heroes.Hero;
+import Heroes_Villains.entities.heroes.HeroTeam;
 import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.minigames.MiniGameHandler;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Game implements Runnable{ //Runnable allows the class to use threads
 
@@ -24,7 +28,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     private boolean running = false;
 
     //State Variables
-    private State gameState, menuState, pauseState, battleState, controlsState, setupState, adminState;
+    public State gameState, menuState, pauseState, battleState, controlsState, setupState, adminState, teamBuilderState;
     private StateHandler stateHandler = new StateHandler();
 
     //Keyboard Listener
@@ -43,8 +47,16 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     public Graphics graphics;
 
     //Main Game Settings
-    public int noOfCities = 5;
+    public int noOfCities;
     public int noOfHeros;
+    public String teamName;
+
+
+    public ArrayList<Hero> getTeam() {
+        return team;
+    }
+
+    private ArrayList<Hero> team = new ArrayList<Hero>();
     
     public double delta;
 
@@ -54,12 +66,14 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         if(stateHandler.state != null) {
             stateHandler.state.update();
         }
-        if(keyboardListener.keyJustPressed(KeyEvent.VK_CONTROL)) {
-            if(stateHandler.getState() instanceof AdminState) {
+        if(adminState != null){
+        if(keyboardListener.keyJustPressed(KeyEvent.VK_CONTROL) && !((stateHandler.getState() instanceof MenuState) || (stateHandler.getState() instanceof SetupState))) {
+            if (stateHandler.getState() instanceof AdminState) {
                 stateHandler.setState(stateHandler.getLastState());
             } else {
                 stateHandler.setState(adminState);
             }
+        }
         }
     }
 
@@ -92,16 +106,13 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         display.getCanvas().addMouseListener(mouseListener);
         display.getCanvas().addMouseMotionListener(mouseListener);
         Assets.init();
-        miniGameHandler = new MiniGameHandler(this);
-        miniGameHandler.init();
-        gameState = new GameState(this);
-        player = ((GameState) gameState).player;
+        //gameState = new GameState(this);
+        //player = ((GameState) gameState).player;
         menuState = new MenuState(this);
         pauseState = new PauseState(this);
         battleState = new BattleState(this);
         controlsState = new ControlsState(this);
         setupState = new SetupState(this);
-        adminState = new AdminState(this);
         stateHandler.setState(menuState);
     }
 
@@ -222,6 +233,8 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     public State getControlsState() { return controlsState; }
 
     public State getSetupState() { return setupState; }
+
+    public State getTeamBuilderState() { return teamBuilderState; }
 
     //Main Game settings Getters and Setters
 

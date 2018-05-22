@@ -9,32 +9,34 @@ public class MiniGameHandler {
     public Game game;
     private int pickedGame;
     private int villainMove;
-    private int[] villainMoves;
+
 
     public MiniGameHandler(Game game) {
         this.game = game;
-        miniGames = new MiniGame[game.noOfCities];
-        villainMoves = new int[game.noOfCities];
+
     }
 
-    public void init() {
-        for(int i=0; i<game.noOfCities; i++) {
-            pickedGame = RandomNum.getNum(3);
+    public MiniGame getGame() {
+        MiniGame miniGame;
+        RandomNum randomNum;
+        randomNum = new RandomNum();
+            pickedGame = randomNum.getNum(3);
             if(pickedGame == 0) {
-                villainMove = RandomNum.getNum(3);
-                miniGames[i] = new PaperScissorsRock(villainMove, game);
+                villainMove = randomNum.getNum(3);
+                miniGame = new PaperScissorsRock(villainMove, game);
+                return miniGame;
             }
             else if(pickedGame == 1) {
-                villainMove = RandomNum.getNum(6) + 1;
-                miniGames[i] = new DiceRoll(villainMove, game);
+                villainMove = randomNum.getNum(6) + 1;
+                miniGame = new DiceRoll(villainMove, game);
+                return miniGame;
             }
-            else if(pickedGame == 2) {
-                villainMove = RandomNum.getNum(10) + 1;
-                miniGames[i] = new GuessTheNumber(villainMove, game);
+            else{
+                villainMove = randomNum.getNum(10) + 1;
+                miniGame = new GuessTheNumber(villainMove, game);
+                return miniGame;
             }
-            villainMoves[i] = villainMove;
         }
-    }
 
     public MiniGame getCurrentGame(int cityNum) {
         return miniGames[cityNum];

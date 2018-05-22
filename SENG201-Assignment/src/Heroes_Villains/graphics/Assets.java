@@ -16,7 +16,7 @@ public class Assets {
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, gamblerButton, psychicButton, sacrificeButton, scoutButton, tankButton, thiefButton, invRadioButton;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
@@ -35,9 +35,18 @@ public class Assets {
         batLeft = new BufferedImage[3];
         batRight = new BufferedImage[3];
         testRadioButton = new BufferedImage[6];
+        invRadioButton = new BufferedImage[3];
         doorWay = new BufferedImage[2];
         doorWayH = new BufferedImage[2];
         textField = new BufferedImage[2];
+        teamButton = new BufferedImage[2];
+        blankButton = new BufferedImage[1];
+        gamblerButton = new BufferedImage[2];
+        psychicButton = new BufferedImage[2];
+        sacrificeButton = new BufferedImage[2];
+        scoutButton = new BufferedImage[2];
+        tankButton = new BufferedImage[2];
+        thiefButton = new BufferedImage[2];
 
 
         //Setting default button width and height
@@ -63,9 +72,32 @@ public class Assets {
         controlsButton[1] = ImageHandler.loadImage("/textures/ControlsButton1.png");
         controlsButton[0] = ImageHandler.loadImage("/textures/ControlsButton2.png");
 
+        blankButton[0] = ImageHandler.loadImage("/textures/BlankButton.png");
+
         radio = ImageHandler.loadImage("/textures/RadioUnclicked.png");
         radioHover = ImageHandler.loadImage("/textures/RadioHover.png");
         radioClicked = ImageHandler.loadImage("/textures/RadioClicked.png");
+
+        teamButton[1] = ImageHandler.loadImage("/textures/TeamButton1.png");
+        teamButton[0] = ImageHandler.loadImage("/textures/TeamButton2.png");
+
+        gamblerButton[1] = ImageHandler.loadImage("/textures/GamblerButton1.png");
+        gamblerButton[0] = ImageHandler.loadImage("/textures/GamblerButton2.png");
+
+        psychicButton[1] = ImageHandler.loadImage("/textures/PsychicButton1.png");
+        psychicButton[0] = ImageHandler.loadImage("/textures/PsychicButton2.png");
+
+        sacrificeButton[1] = ImageHandler.loadImage("/textures/SacrificeButton1.png");
+        sacrificeButton[0] = ImageHandler.loadImage("/textures/SacrificeButton2.png");
+
+        scoutButton[1] = ImageHandler.loadImage("/textures/ScoutButton1.png");
+        scoutButton[0] = ImageHandler.loadImage("/textures/ScoutButton2.png");
+
+        tankButton[1] = ImageHandler.loadImage("/textures/TankButton1.png");
+        tankButton[0] = ImageHandler.loadImage("/textures/TankButton2.png");
+
+        thiefButton[1] = ImageHandler.loadImage("/textures/ThiefButton1.png");
+        thiefButton[0] = ImageHandler.loadImage("/textures/ThiefButton2.png");
 
         //Player animation frame to crop
         walkingUp[0] = playerSheet.getImage(0, 0, widthPlayerSheet, heightPlayerSheet);
@@ -136,6 +168,10 @@ public class Assets {
         testRadioButton[0] = radio;
         testRadioButton[1] = radioHover;
         testRadioButton[2] = radioClicked;
+
+        invRadioButton[0] = ImageHandler.loadImage("/textures/InvRadioUnclicked.png");
+        invRadioButton[1] = ImageHandler.loadImage("/textures/InvRadioClicked.png");
+        invRadioButton[2] = ImageHandler.loadImage("/textures/InvRadioHover.png");
 
         textField[0] = ImageHandler.loadImage("/textures/TextField.png");
         textField[1] = ImageHandler.loadImage("/textures/TextField2.png");

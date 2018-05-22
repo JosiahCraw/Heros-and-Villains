@@ -7,6 +7,7 @@ import java.awt.*;
 public abstract class Rooms {
 
     protected Game game;
+    public String roomName;
 
     public Rooms(Game game) {
         this.game = game;

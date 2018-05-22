@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class UIElement {
 
-    protected int x, y;
+    public int x, y;
     protected Game game;
     protected BufferedImage[] images;
 

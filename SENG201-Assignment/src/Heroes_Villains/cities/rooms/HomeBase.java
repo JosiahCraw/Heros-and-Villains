@@ -16,7 +16,7 @@ public class HomeBase extends Rooms{
 
     public HomeBase(Game game) {
         super(game);
-
+        roomName = "Home Base";
     }
 
     @Override

@@ -16,13 +16,13 @@ public class City {
 
     public Rooms homeBase, hospital, inn, powerUpDen, villainRoom;
 
-    public City(int cityNo, Game game) {
+    public City(int cityNo, Game game, Citys cities) {
         this.cityNo = cityNo;
         this.game = game;
-        rooms = new Rooms[game.noOfCities];
+        rooms = new Rooms[5];
         homeBase = new HomeBase(game);
         hospital = new Hospital(game);
-        inn = new Inn(game);
+        inn = new Inn(game, cities);
         powerUpDen = new PowerUpDen(game);
         villainRoom = new VillainRoom(game);
         rooms[4] = homeBase;

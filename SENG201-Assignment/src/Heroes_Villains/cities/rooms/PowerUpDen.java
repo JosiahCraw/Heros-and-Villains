@@ -12,6 +12,7 @@ public class PowerUpDen extends Rooms{
 
     public PowerUpDen(Game game) {
         super(game);
+        roomName = "Power Up Den";
     }
 
     @Override

@@ -66,10 +66,10 @@ public class SetupState extends State{
             game.gameState = new GameState(game);
             game.player = ((GameState) game.gameState).player;
             game.miniGameHandler.init();
-            game.adminState = new AdminState(game);
             game.teamBuilderState = new TeamBuilderState(game);
             game.getStateHandler().setState(game.getGameState());
 
+            game.adminState = new AdminState(game, ((GameState) game.gameState).masterCities);
         }
     }
 

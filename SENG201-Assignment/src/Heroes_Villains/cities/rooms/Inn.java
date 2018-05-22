@@ -12,6 +12,7 @@ public class Inn extends Rooms{
 
     public Inn(Game game) {
         super(game);
+        roomName = "Inn";
     }
 
     @Override

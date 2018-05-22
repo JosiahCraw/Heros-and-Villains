@@ -16,7 +16,7 @@ public class RadioButton extends UIElement {
     }
 
     private int width, height;
-    private boolean clicked;
+    public boolean clicked;
     private int buttonNum;
     private RadioButtons buttons;
 

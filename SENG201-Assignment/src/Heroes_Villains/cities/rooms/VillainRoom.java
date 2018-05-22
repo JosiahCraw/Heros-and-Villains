@@ -12,6 +12,7 @@ public class VillainRoom extends Rooms{
 
     public VillainRoom(Game game) {
         super(game);
+        roomName = "Villain's Lair";
     }
 
     @Override

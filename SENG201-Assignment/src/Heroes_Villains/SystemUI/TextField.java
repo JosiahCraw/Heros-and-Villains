@@ -50,6 +50,9 @@ public class TextField extends UIElement {
     @Override
     public void update() {
         this.render(game.getGraphics());
+        if((!game.getMouseListener().isHovering(x, y, width, height)) && game.getMouseListener().leftClicked) {
+            editing = false;
+        }
         if (game.getMouseListener().isHovering(x, y, width, height) && game.getMouseListener().isLeftClicked() || editing) {
             game.getMouseListener().leftClicked = false;
             //System.out.println(input + "clicked");

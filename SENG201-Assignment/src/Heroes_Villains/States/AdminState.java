@@ -13,18 +13,17 @@ import java.awt.*;
 
 public class AdminState extends State{
 
-    private UIElement cityInfoRadio;
     public int buttonClicked;
     private Rooms[] currRooms;
     private UIElement up, down, left, right;
     private Color colour;
     private Citys citysClass;
+    private BattleState battleState;
 
-    public AdminState(Game game, Citys citysClass) {
+    public AdminState(Game game, Citys citysClass, BattleState battleState) {
         super(game);
         this.citysClass = citysClass;
-        cityInfoRadio = new RadioButtons(50, 50, game, Assets.testRadioButton, game.getNoOfCities(), 50, true, 150, 150);
-        ((RadioButtons) cityInfoRadio).getButtons()[0].clicked = true;
+        this.battleState = battleState;
         up = new UIButton(200, 550, game, Assets.blankButton, 200, 35);
         down = new UIButton(200, 650, game, Assets.blankButton, 200, 35);
         left = new UIButton(50, 600, game, Assets.blankButton, 200, 35);
@@ -43,7 +42,6 @@ public class AdminState extends State{
         for(int i=0; i<4; i++) {
         currRooms[i] = citysClass.cities[game.getPlayer().getCurrentCity()].rooms[i];
     }
-        cityInfoRadio.update();
         up.update();
         down.update();
         left.update();
@@ -68,12 +66,10 @@ public class AdminState extends State{
             game.getPlayer().setY(360);
             game.getPlayer().setCurrentRoom(0);
         }
-        buttonClicked = ((RadioButtons) cityInfoRadio).currentlyClicked;
     }
 
     @Override
     public void render(Graphics graphics) {
-        cityInfoRadio.render(graphics);
         up.render(graphics);
         down.render(graphics);
         left.render(graphics);
@@ -94,8 +90,10 @@ public class AdminState extends State{
         if(((UIButton) right).isHovering()) {
             DrawText.draw(graphics, currRooms[2].roomName, 450, 618, true, Color.CYAN, Assets.smallFont);
         }
-        DrawText.draw(graphics, game.miniGameHandler.miniGames[buttonClicked].gameName, 600, 300, true, Color.BLACK, Assets.invFont);
-        DrawText.draw(graphics, game.miniGameHandler.miniGames[buttonClicked].villainMoveWords, 600, 400, true, Color.BLACK, Assets.invFont);
+        if(battleState.currMiniGame != null) {
+            DrawText.draw(graphics, "Current Mini Game: " + battleState.currMiniGame.gameName, 640, 100, true, Color.BLACK, Assets.invFont);
+            DrawText.draw(graphics, "Villains Move: " + battleState.currMiniGame.villainMoveWords, 640, 150, true, Color.BLACK, Assets.invFont);
+        }
 
     }
 }

@@ -76,11 +76,10 @@ public class SetupState extends State{
             game.setNoOfHeros(numH);
             game.gameState = new GameState(game);
             game.player = ((GameState) game.gameState).player;
-            game.miniGameHandler.init();
             game.teamBuilderState = new TeamBuilderState(game);
             game.getStateHandler().setState(game.getGameState());
 
-            game.adminState = new AdminState(game, ((GameState) game.gameState).masterCities);
+            game.adminState = new AdminState(game, ((GameState) game.gameState).masterCities, ((BattleState) game.battleState));
         }
     }
 

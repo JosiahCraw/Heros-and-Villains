@@ -16,7 +16,7 @@ public class Assets {
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, invRadioButton;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
@@ -35,6 +35,7 @@ public class Assets {
         batLeft = new BufferedImage[3];
         batRight = new BufferedImage[3];
         testRadioButton = new BufferedImage[6];
+        invRadioButton = new BufferedImage[3];
         doorWay = new BufferedImage[2];
         doorWayH = new BufferedImage[2];
         textField = new BufferedImage[2];
@@ -143,6 +144,10 @@ public class Assets {
         testRadioButton[0] = radio;
         testRadioButton[1] = radioHover;
         testRadioButton[2] = radioClicked;
+
+        invRadioButton[0] = ImageHandler.loadImage("/textures/InvRadioUnclicked.png");
+        invRadioButton[1] = ImageHandler.loadImage("/textures/InvRadioClicked.png");
+        invRadioButton[2] = ImageHandler.loadImage("/textures/InvRadioHover.png");
 
         textField[0] = ImageHandler.loadImage("/textures/TextField.png");
         textField[1] = ImageHandler.loadImage("/textures/TextField2.png");

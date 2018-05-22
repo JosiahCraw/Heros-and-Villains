@@ -14,9 +14,8 @@ import java.awt.*;
 public class AdminState extends State{
 
     private UIElement cityInfoRadio;
-    private int buttonClicked;
+    public int buttonClicked;
     private Rooms[] currRooms;
-    private UIElement[] navButtons= new UIElement[5];
     private UIElement up, down, left, right;
     private Color colour;
     private Citys citysClass;
@@ -31,6 +30,9 @@ public class AdminState extends State{
         left = new UIButton(50, 600, game, Assets.blankButton, 200, 35);
         right = new UIButton(350, 600, game, Assets.blankButton, 200, 35);
         currRooms = new Rooms[5];
+        for(int i=0; i<4; i++) {
+            currRooms[i] = citysClass.cities[game.getPlayer().getCurrentCity()].rooms[i];
+        }
         colour = Color.WHITE;
 
     }
@@ -39,7 +41,7 @@ public class AdminState extends State{
     @Override
     public void update() {
         for(int i=0; i<4; i++) {
-        currRooms[i] = citysClass.cities[buttonClicked].rooms[i];
+        currRooms[i] = citysClass.cities[game.getPlayer().getCurrentCity()].rooms[i];
     }
         cityInfoRadio.update();
         up.update();

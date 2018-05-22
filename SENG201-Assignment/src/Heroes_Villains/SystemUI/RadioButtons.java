@@ -49,6 +49,12 @@ public class RadioButtons extends UIElement{
 
         }
     }
+
+    public RadioButton[] getButtons() {
+        return buttons;
+    }
+
+
     public void clicked(int buttonClicked) {
         for(int i=0; i<numButtons; i++) {
             buttons[i].setClicked(false);
@@ -69,8 +75,11 @@ public class RadioButtons extends UIElement{
         }
     }
 
+
     @Override
     public boolean click() {
         return false;
     }
+
+
 }

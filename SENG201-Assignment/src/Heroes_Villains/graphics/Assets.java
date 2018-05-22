@@ -16,7 +16,7 @@ public class Assets {
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
@@ -38,6 +38,7 @@ public class Assets {
         doorWay = new BufferedImage[2];
         doorWayH = new BufferedImage[2];
         textField = new BufferedImage[2];
+        teamButton = new BufferedImage[2];
 
 
         //Setting default button width and height
@@ -66,6 +67,9 @@ public class Assets {
         radio = ImageHandler.loadImage("/textures/RadioUnclicked.png");
         radioHover = ImageHandler.loadImage("/textures/RadioHover.png");
         radioClicked = ImageHandler.loadImage("/textures/RadioClicked.png");
+
+        teamButton[1] = ImageHandler.loadImage("/textures/TeamButton1.png");
+        teamButton[0] = ImageHandler.loadImage("/textures/TeamButton2.png");
 
         //Player animation frame to crop
         walkingUp[0] = playerSheet.getImage(0, 0, widthPlayerSheet, heightPlayerSheet);

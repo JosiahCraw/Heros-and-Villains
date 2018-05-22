@@ -19,9 +19,11 @@ public class AdminState extends State{
     private UIElement[] navButtons= new UIElement[5];
     private UIElement up, down, left, right;
     private Color colour;
+    private Citys citysClass;
 
     public AdminState(Game game, Citys citysClass) {
         super(game);
+        this.citysClass = citysClass;
         cityInfoRadio = new RadioButtons(50, 50, game, Assets.testRadioButton, game.getNoOfCities(), 50, true, 150, 150);
         ((RadioButtons) cityInfoRadio).getButtons()[0].clicked = true;
         up = new UIButton(200, 550, game, Assets.blankButton, 200, 35);
@@ -30,14 +32,15 @@ public class AdminState extends State{
         right = new UIButton(350, 600, game, Assets.blankButton, 200, 35);
         currRooms = new Rooms[5];
         colour = Color.WHITE;
-        for(int i=0; i<4; i++) {
-            currRooms[i] = citysClass.cities[buttonClicked].rooms[i];
-        }
+
     }
 
 
     @Override
     public void update() {
+        for(int i=0; i<4; i++) {
+        currRooms[i] = citysClass.cities[buttonClicked].rooms[i];
+    }
         cityInfoRadio.update();
         up.update();
         down.update();

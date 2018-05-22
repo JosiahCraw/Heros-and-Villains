@@ -15,7 +15,7 @@ public class AdminState extends State{
 
     public AdminState(Game game) {
         super(game);
-        cityInfoRadio = new RadioButtons(50, 50, game, Assets.testRadioButton, game.noOfCities, 50, true, 150, 150);
+        cityInfoRadio = new RadioButtons(50, 50, game, Assets.testRadioButton, game.getNoOfCities(), 50, true, 150, 150);
     }
 
     @Override

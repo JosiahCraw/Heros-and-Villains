@@ -54,12 +54,14 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         if(stateHandler.state != null) {
             stateHandler.state.update();
         }
-        if(keyboardListener.keyJustPressed(KeyEvent.VK_CONTROL)) {
-            if(stateHandler.getState() instanceof AdminState) {
+        if(adminState != null){
+        if(keyboardListener.keyJustPressed(KeyEvent.VK_CONTROL) && !((stateHandler.getState() instanceof MenuState) || (stateHandler.getState() instanceof SetupState))) {
+            if (stateHandler.getState() instanceof AdminState) {
                 stateHandler.setState(stateHandler.getLastState());
             } else {
                 stateHandler.setState(adminState);
             }
+        }
         }
     }
 
@@ -101,7 +103,6 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         battleState = new BattleState(this);
         controlsState = new ControlsState(this);
         setupState = new SetupState(this);
-        adminState = new AdminState(this);
         stateHandler.setState(menuState);
     }
 

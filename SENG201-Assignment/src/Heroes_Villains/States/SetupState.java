@@ -55,6 +55,7 @@ public class SetupState extends State{
             game.gameState = new GameState(game);
             game.player = ((GameState) game.gameState).player;
             game.miniGameHandler.init();
+            game.adminState = new AdminState(game);
         }
     }
 

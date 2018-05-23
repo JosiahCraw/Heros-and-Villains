@@ -113,7 +113,7 @@ public class PaperScissorsRock extends MiniGame {
         }
         if(battleWon) {
             nextCityButton.render(graphics);
-        }else if(youWon) {
+        } else if (youWon) {
             DrawText.draw(graphics, "Congrats, you won Villain has " + Integer.toString(villainLives) + " lives left", 200, 600, true, Color.BLACK, Assets.invFont);
         }
 

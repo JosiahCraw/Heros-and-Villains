@@ -117,8 +117,8 @@ public class Assets {
         battleStateNext[0] = ImageHandler.loadImage("/textures/BattleStateNext2.png");
         battleStateNext[1] = ImageHandler.loadImage("/textures/BattleStateNext1.png");
 
-        battleStateNext[0] = ImageHandler.loadImage("/textures/BattleStateOK2.png");
-        battleStateNext[1] = ImageHandler.loadImage("/textures/BattleStateOK1.png");
+        battleStateOK[0] = ImageHandler.loadImage("/textures/BattleStateOK2.png");
+        battleStateOK[1] = ImageHandler.loadImage("/textures/BattleStateOK1.png");
 
         deleteButton[1] = ImageHandler.loadImage("/textures/DeleteButton1.png");
         deleteButton[0] = ImageHandler.loadImage("/textures/DeleteButton2.png");

@@ -13,7 +13,7 @@ import java.awt.*;
 
 public class BattleState extends State {
 
-    private UIElement battleButton, backButton, nextCity, okButton;
+    private UIButton battleButton, backButton, nextCity, okButton;
     private RadioButtons heroSelect;
     public MiniGame currMiniGame;
     public boolean battling;
@@ -29,7 +29,7 @@ public class BattleState extends State {
         super(game);
         nextCity = new UIButton(640-Assets.buttonWidth/2, 500, game, Assets.battleStateNext, Assets.buttonWidth, Assets.buttonHeight);
         battleButton = new UIButton(640-Assets.buttonWidth/2, 200, game, Assets.battleStateBattle, Assets.buttonWidth, Assets.buttonHeight);
-        okButton = new UIButton(640-Assets.buttonWidth/2, 300, game, Assets.battleStateOK, Assets.buttonWidth, Assets.buttonHeight);
+        okButton = new UIButton(640-Assets.buttonWidth/2, 250, game, Assets.battleStateOK, Assets.buttonWidth, Assets.buttonHeight);
         backButton = new UIButton(640-Assets.buttonWidth/2, 300, game, Assets.battleStateBack, Assets.buttonWidth, Assets.buttonHeight);
         radioTotalWidth = (game.noOfHeros-1)*10 + 50*game.noOfHeros;
         heroSelect = new RadioButtons(1070-(radioTotalWidth/2), 211, game, Assets.invRadioButton, game.noOfHeros, 10, true, 50, 50);
@@ -82,6 +82,8 @@ public class BattleState extends State {
         }
         if(won || lost) {
             okButton.update();
+            //okButton.render(game.getGraphics());
+            //System.out.println("I am here");
             if(okButton.click() && game.getMouseListener().leftClicked) {
                 game.getMouseListener().leftClicked = false;
                 this.nextGame();
@@ -114,16 +116,18 @@ public class BattleState extends State {
         heroSelect.render(graphics);
         currMiniGame.render(graphics);
         if(won) {
-            okButton.render(graphics);
+
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
+            okButton.render(graphics);
 
             DrawText.draw(graphics, "The villain played:", 640, 350,true, Color.WHITE, Assets.invFont);
             DrawText.draw(graphics, currMiniGame.villainMoveWords, 640, 400,true, Color.WHITE, Assets.invFont);
             DrawText.draw(graphics, " and you beat him", 640, 450,true, Color.WHITE, Assets.invFont);
         }
         if(lost) {
-            okButton.render(graphics);
+
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
+            okButton.render(graphics);
 
             DrawText.draw(graphics, "The villain played:", 640, 350,true, Color.WHITE, Assets.invFont);
             DrawText.draw(graphics, currMiniGame.villainMoveWords, 640, 400,true, Color.WHITE, Assets.invFont);

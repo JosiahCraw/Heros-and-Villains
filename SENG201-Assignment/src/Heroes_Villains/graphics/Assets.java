@@ -16,7 +16,7 @@ public class Assets {
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, gamblerButton, psychicButton, sacrificeButton, scoutButton, tankButton, thiefButton, invRadioButton;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, gamblerButton, psychicButton, sacrificeButton, scoutButton, tankButton, thiefButton, invRadioButton, deleteButton;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
@@ -47,6 +47,7 @@ public class Assets {
         scoutButton = new BufferedImage[2];
         tankButton = new BufferedImage[2];
         thiefButton = new BufferedImage[2];
+        deleteButton = new BufferedImage[2];
 
 
         //Setting default button width and height
@@ -98,6 +99,9 @@ public class Assets {
 
         thiefButton[1] = ImageHandler.loadImage("/textures/ThiefButton1.png");
         thiefButton[0] = ImageHandler.loadImage("/textures/ThiefButton2.png");
+
+        deleteButton[1] = ImageHandler.loadImage("/textures/DeleteButton1.png");
+        deleteButton[0] = ImageHandler.loadImage("/textures/DeleteButton2.png");
 
         //Player animation frame to crop
         walkingUp[0] = playerSheet.getImage(0, 0, widthPlayerSheet, heightPlayerSheet);

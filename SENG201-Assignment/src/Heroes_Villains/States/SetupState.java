@@ -62,6 +62,7 @@ public class SetupState extends State{
             game.setNoOfCities(numC);
             game.setNoOfHeros(numH);
             if (teamname.length() > 1) {
+                noTeam = false;
                 game.gameState = new GameState(game);
                 game.player = ((GameState) game.gameState).player;
                 game.teamBuilderState = new TeamBuilderState(game);
@@ -91,7 +92,7 @@ public class SetupState extends State{
         }
 
         if (noTeam) {
-            DrawText.draw(graphics,"Please enter a team name...", game.width/2,  600, true, Color.RED, Assets.smallFont);
+            DrawText.draw(graphics,"Please enter a team name...", game.width/2,  625, true, Color.RED, Assets.smallFont);
         }
 
         backButton.render(graphics);

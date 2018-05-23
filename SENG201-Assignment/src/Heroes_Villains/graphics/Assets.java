@@ -6,8 +6,8 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red, basicPotion, advancedPotion, masterPotion, coin, radio, radioHover, radioClicked;
-    public static Font titleFont, invFont, smallFont;
+    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red, basicPotion, advancedPotion, masterPotion, coin, radio, radioHover, radioClicked, battlePopup, battleState, paper, scissors, rock;
+    public static Font titleFont, invFont, smallFont, battleFont, tinyFont;
     private static int widthSheet1 = 16;
     private static int heightSheet1 = 16;
     private static int widthPlayerSheet = 32;
@@ -16,7 +16,7 @@ public class Assets {
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, gamblerButton, psychicButton, sacrificeButton, scoutButton, tankButton, thiefButton, invRadioButton;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, gamblerButton, psychicButton, sacrificeButton, scoutButton, tankButton, thiefButton, invRadioButton, deleteButton, battleStateBattle, battleStateBack, battleStatePlay, battleStateNext, battleStateOK;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
@@ -47,6 +47,12 @@ public class Assets {
         scoutButton = new BufferedImage[2];
         tankButton = new BufferedImage[2];
         thiefButton = new BufferedImage[2];
+        battleStateBattle = new BufferedImage[2];
+        battleStateBack = new BufferedImage[2];
+        battleStatePlay = new BufferedImage[2];
+        battleStateNext = new BufferedImage[2];
+        deleteButton = new BufferedImage[2];
+        battleStateOK = new BufferedImage[2];
 
 
         //Setting default button width and height
@@ -98,6 +104,24 @@ public class Assets {
 
         thiefButton[1] = ImageHandler.loadImage("/textures/ThiefButton1.png");
         thiefButton[0] = ImageHandler.loadImage("/textures/ThiefButton2.png");
+
+        battleStateBattle[0] = ImageHandler.loadImage("/textures/BattleStateBattle2.png");
+        battleStateBattle[1] = ImageHandler.loadImage("/textures/BattleStateBattle1.png");
+
+        battleStateBack[0] = ImageHandler.loadImage("/textures/BattleStateBack2.png");
+        battleStateBack[1] = ImageHandler.loadImage("/textures/BattleStateBack1.png");
+
+        battleStatePlay[0] = ImageHandler.loadImage("/textures/BattleStatePlay2.png");
+        battleStatePlay[1] = ImageHandler.loadImage("/textures/BattleStatePlay1.png");
+
+        battleStateNext[0] = ImageHandler.loadImage("/textures/BattleStateNext2.png");
+        battleStateNext[1] = ImageHandler.loadImage("/textures/BattleStateNext1.png");
+
+        battleStateOK[0] = ImageHandler.loadImage("/textures/BattleStateOK2.png");
+        battleStateOK[1] = ImageHandler.loadImage("/textures/BattleStateOK1.png");
+
+        deleteButton[1] = ImageHandler.loadImage("/textures/DeleteButton1.png");
+        deleteButton[0] = ImageHandler.loadImage("/textures/DeleteButton2.png");
 
         //Player animation frame to crop
         walkingUp[0] = playerSheet.getImage(0, 0, widthPlayerSheet, heightPlayerSheet);
@@ -155,6 +179,14 @@ public class Assets {
         playerLeft = ImageHandler.loadImage("/textures/PlayerLeft.png");
         playerRight = ImageHandler.loadImage("/textures/PlayerRight.png");
 
+        rock = ImageHandler.loadImage("/textures/Rock.png");
+        paper = ImageHandler.loadImage("/textures/Paper.png");
+        scissors = ImageHandler.loadImage("/textures/Scissors.png");
+
+        //Battle state
+        battleState = ImageHandler.loadImage("/textures/BattleState.png");
+        battlePopup = ImageHandler.loadImage("/textures/BattlePopup.png");
+
         //Fonts
 
         //titleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 70);
@@ -162,6 +194,9 @@ public class Assets {
         titleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 70);
         invFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 36);
         smallFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 20);
+        battleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 24);
+        tinyFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 16);
+
 
 
 

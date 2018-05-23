@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Game implements Runnable{ //Runnable allows the class to use threads
 
@@ -105,7 +106,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         //player = ((GameState) gameState).player;
         menuState = new MenuState(this);
         pauseState = new PauseState(this);
-        battleState = new BattleState(this);
+        //battleState = new BattleState(this);
         controlsState = new ControlsState(this);
         setupState = new SetupState(this);
         stateHandler.setState(menuState);
@@ -116,11 +117,14 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     public void run() { //Following function is run when the thread is started
         init();
 
+        //System.out.println(System.currentTimeMillis() / 1000);
+
         long lastTime = System.nanoTime();
         final int  FPS = 60;
         final long OPTIMAL_TIME = 1000000000 / FPS ;
         int lastFpsTime = 0;
         int fps = 0;
+        int count = 0;
 
         while(running){
             long timeNow = System.nanoTime();
@@ -135,6 +139,8 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
             if (lastFpsTime >= 1000000000) {
             	//System.out.println("(FPS: "+fps+")");
             	//System.out.println(delta);
+                count ++;
+                System.out.println(count);
             	lastFpsTime = 0;
             	fps = 0;
             }

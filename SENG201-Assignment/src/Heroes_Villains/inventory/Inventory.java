@@ -1,6 +1,7 @@
 package Heroes_Villains.inventory;
 
 import Heroes_Villains.Game;
+import Heroes_Villains.SystemUI.RadioButton;
 import Heroes_Villains.SystemUI.RadioButtons;
 import Heroes_Villains.SystemUI.UIElement;
 import Heroes_Villains.entities.items.Item;
@@ -27,7 +28,7 @@ public class Inventory {
     private int listSpacing = 47;
     private int currentIndex = 0;
     private int totalWidth;
-    private UIElement heroSelector;
+    private RadioButtons heroSelector;
 
     public Inventory(Game game) {
         this.game = game;
@@ -100,11 +101,13 @@ public class Inventory {
         graphics.drawImage(items.get(currentIndex).image, imageX, imageY, imageWidth, imageHeight, null);
         DrawText.draw(graphics, Integer.toString(items.get(currentIndex).getCount()), countX, countY, true, Color.WHITE, Assets.invFont);
         DrawText.draw(graphics, "Coins: " + Integer.toString(game.getPlayer().money), countX, countY+300, true, Color.WHITE, Assets.invFont);
+
         if(items.get(currentIndex).isUseable() && game.getMouseListener().isHovering(inventoryX+583, inventoryY+258, 144, 64)) {
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.WHITE, Assets.invFont);
             if(game.getMouseListener().isLeftClicked()) {
                 game.getMouseListener().leftClicked = false;
-                items.get(currentIndex).use();
+                System.out.println(game.getTeam().get(heroSelector.currentlyClicked).getName() + ": " +game.getTeam().get(heroSelector.currentlyClicked).getHealth());
+                items.get(currentIndex).use(game.getTeam().get(heroSelector.currentlyClicked));
             }
         }else if(items.get(currentIndex).isUseable()) {
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.YELLOW, Assets.invFont);

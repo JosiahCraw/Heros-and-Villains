@@ -1,6 +1,7 @@
 package Heroes_Villains.minigames;
 
 import Heroes_Villains.Game;
+import Heroes_Villains.States.BattleState;
 
 import java.awt.*;
 
@@ -16,11 +17,13 @@ public abstract class MiniGame {
     public boolean playing;
     public boolean won, battleWon;
     public static int DAMAGE_TAKEN = 30;
+    protected BattleState battleState;
 
     public MiniGame(int villainMove, Game game, String gameName) {
         this.villainMove = villainMove;
         this.game = game;
         this.gameName = gameName;
+        this.battleState = ((BattleState) game.getBattleState());
     }
 
     public abstract void update();

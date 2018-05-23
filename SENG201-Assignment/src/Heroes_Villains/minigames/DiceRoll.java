@@ -31,14 +31,13 @@ public class DiceRoll extends MiniGame {
             game.getMouseListener().leftClicked = false;
             if (villainMove > playerRoll) {
                 battleState.lost(currHero);
+            }else if (villainMove == playerRoll) {
+                battleState.currMiniGame = new DiceRoll(RandomNum.getNum(6), game);
+                return;
+            }else if (playerRoll > villainMove) {
+                battleState.won(currHero);
             }
-        }
-        if (villainMove == playerRoll) {
-            battleState.currMiniGame = new DiceRoll(RandomNum.getNum(6), game);
-            return;
-        }
-        if (playerRoll > villainMove) {
-            battleState.won(currHero);
+
         }
     }
 

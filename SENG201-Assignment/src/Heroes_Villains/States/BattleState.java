@@ -40,6 +40,7 @@ public class BattleState extends State {
         currDead = 0;
         won = false;
         lost = false;
+        //currLives = VILLAIN_LIVES;
     }
 
     @Override
@@ -80,6 +81,9 @@ public class BattleState extends State {
             }
             return;
         }
+        currMiniGame.update();
+        heroSelect.update();
+
         if(won || lost) {
             okButton.update();
             //okButton.render(game.getGraphics());
@@ -91,8 +95,8 @@ public class BattleState extends State {
                 lost = false;
             }
         }
-        currMiniGame.update();
-        heroSelect.update();
+        //currMiniGame.update();
+        //heroSelect.update();
     }
 
     @Override

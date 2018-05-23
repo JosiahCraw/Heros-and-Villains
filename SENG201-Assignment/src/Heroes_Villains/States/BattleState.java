@@ -71,6 +71,7 @@ public class BattleState extends State {
 
     @Override
     public void render(Graphics graphics) {
+        heroSelect.render(graphics);
         graphics.drawImage(Assets.battleState, 0, 0, null);
         if(!battling){
             graphics.drawImage(Assets.battlePopup, 384, 168, null);

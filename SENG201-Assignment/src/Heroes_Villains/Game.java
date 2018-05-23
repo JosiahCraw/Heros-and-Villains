@@ -106,7 +106,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         //player = ((GameState) gameState).player;
         menuState = new MenuState(this);
         pauseState = new PauseState(this);
-        battleState = new BattleState(this);
+        //battleState = new BattleState(this);
         controlsState = new ControlsState(this);
         setupState = new SetupState(this);
         stateHandler.setState(menuState);

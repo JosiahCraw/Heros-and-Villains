@@ -15,12 +15,9 @@ public class DiceRoll extends MiniGame {
 
     private UIElement nextButton;
     public int playerRoll, currHero;
-    private boolean playing, played;
 
     public DiceRoll(int villainMove, Game game) {
         super(villainMove, game, "Dice Roll");
-        playing = false;
-        played = false;
         nextButton = new UIButton(100, 400, game, Assets.battleStateNext, Assets.buttonWidth, Assets.buttonHeight);
         this.villainMoveWords = Integer.toString(villainMove);
         playerRoll = RandomNum.getNum(6)+1;
@@ -31,19 +28,17 @@ public class DiceRoll extends MiniGame {
     public void update() {
         currHero = battleState.getCurrHero();
         if (game.getMouseListener().isHovering(55, 520, 150, 66) && game.getMouseListener().leftClicked) {
-            playing = true;
             game.getMouseListener().leftClicked = false;
             if (villainMove > playerRoll) {
                 battleState.lost(currHero);
             }
         }
         if (villainMove == playerRoll) {
-            battleState.currMiniGame = new PaperScissorsRock(RandomNum.getNum(3), game);
+            battleState.currMiniGame = new DiceRoll(RandomNum.getNum(6), game);
+            return;
         }
         if (playerRoll > villainMove) {
             battleState.won(currHero);
-            playing = true;
-            played = true;
         }
     }
 
@@ -53,17 +48,6 @@ public class DiceRoll extends MiniGame {
         DrawText.draw(graphics, "Go", 130, 552, true, Color.WHITE, Assets.invFont);
         if(game.getMouseListener().isHovering(55, 520, 150, 66)) {
             DrawText.draw(graphics, "Go", 130, 552, true, Color.YELLOW, Assets.invFont);
-        }
-        if(playing) {
-            if(villainMove == playerRoll) {
-                return;
-            }
-            if(villainMove > playerRoll) {
-                //nextButton.render(graphics);
-            }
-            if(playerRoll > villainMove) {
-                //nextButton.render(graphics);
-            }
         }
     }
 }

@@ -56,7 +56,7 @@ public class PaperScissorsRock extends MiniGame {
                 ((BattleState) game.getBattleState()).won(currHero);
             }else if(villainMove == 1 && playerChoice == 2) {
                 ((BattleState) game.getBattleState()).won(currHero);
-            }else if(villainMove == 2 && playerChoice == 1) {
+            }else if(villainMove == 2 && playerChoice == 0) {
                 ((BattleState) game.getBattleState()).won(currHero);
             }else {
                 ((BattleState) game.getBattleState()).lost(currHero);

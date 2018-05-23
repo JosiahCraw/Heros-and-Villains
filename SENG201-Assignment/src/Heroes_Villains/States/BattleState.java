@@ -54,20 +54,29 @@ public class BattleState extends State {
                 return;
             }
             if (game.getMouseListener().isLeftClicked() && battleButton.click()) {
+                won = false;
+                lost = false;
                 currLives = VILLAIN_LIVES;
                 battleWon = false;
                 game.getMouseListener().leftClicked = false;
                 currMiniGame = miniGameHandler.getGame();
                 battling = true;
-                /*try {
-                    game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity()+1);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("You won!!");
-                }
+            }
+            return;
+        }
+        if(battleWon) {
+            nextCity.update();
+            if(nextCity.click() && game.getMouseListener().leftClicked) {
+                battling = false;
+                battleWon = false;
+                won = false;
+                lost = false;
+                currLives = VILLAIN_LIVES;
+                game.getMouseListener().leftClicked = false;
                 game.getPlayer().setCurrentRoom(4);
-                game.getPlayer().setY(296);
-                game.getPlayer().setX(576);
-                game.getStateHandler().setState(game.getGameState());*/
+                game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity()+1);
+                game.getStateHandler().setState(game.getGameState());
+                return;
             }
             return;
         }
@@ -78,15 +87,6 @@ public class BattleState extends State {
                 this.nextGame();
                 won = false;
                 lost = false;
-            }
-        }
-        if(battleWon) {
-            nextCity.update();
-            if(nextCity.click() && game.getMouseListener().leftClicked) {
-                game.getMouseListener().leftClicked = false;
-                game.getPlayer().setCurrentRoom(4);
-                game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity()+1);
-                game.getStateHandler().setState(game.getGameState());
             }
         }
         currMiniGame.update();
@@ -101,6 +101,11 @@ public class BattleState extends State {
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
             battleButton.render(graphics);
             backButton.render(graphics);
+            return;
+        }
+        if(battleWon) {
+            graphics.drawImage(Assets.battlePopup, 384, 168, null);
+            nextCity.render(graphics);
             return;
         }
         DrawText.draw(graphics, currMiniGame.gameName, 1070, 80, true, Color.WHITE, Assets.battleFont);
@@ -122,16 +127,14 @@ public class BattleState extends State {
             DrawText.draw(graphics, currMiniGame.villainMoveWords, 640, 400,true, Color.WHITE, Assets.invFont);
             DrawText.draw(graphics, " and you lost", 640, 450,true, Color.WHITE, Assets.invFont);
         }
-        if(battleWon) {
-            graphics.drawImage(Assets.battlePopup, 384, 168, null);
-            nextCity.render(graphics);
-        }
+
         DrawText.draw(graphics, "Villain lives remaining: " + Integer.toString(currLives), 376, 97, true, Color.WHITE, Assets.smallFont);
     }
 
     public void won(int hero) {
-        currLives--;
+        currLives -= 1;
         if(currLives <= 0) {
+            currLives = 0;
             battleWon = true;
             return;
         }
@@ -147,7 +150,7 @@ public class BattleState extends State {
             game.getTeam().get(hero).setDead(true);
             currDead++;
             if(currDead == game.getNoOfHeros()) {
-                //TODO endGame();
+                //TODO game.endGame();
             }
         }
 

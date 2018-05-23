@@ -15,6 +15,7 @@ public class PaperScissorsRock extends MiniGame {
     private UIElement buttons, goButton, nextCityButton;
     private int playerChoice;
     private boolean youWon;
+    private int currHero;
 
     public PaperScissorsRock(int villainMove, Game game) {
         super(villainMove, game, "Paper, Scissors, Rock");
@@ -23,6 +24,7 @@ public class PaperScissorsRock extends MiniGame {
         ((RadioButtons) buttons).clicked(0);
         goButton = new UIButton(100, 400, game, Assets.startButton, Assets.buttonWidth, Assets.buttonHeight);
         villainLives = 3;
+        currHero = 0; //TODO make heroes choosable;
         if(villainMove == 0) {
             this.villainMoveWords = "Paper";
         }else if(villainMove == 1) {
@@ -54,51 +56,13 @@ public class PaperScissorsRock extends MiniGame {
                 playing = true;
                 ((RadioButtons) buttons).clicked(0);
             }else if(villainMove == 0 && playerChoice == 1) {
-                playing = false;
-                won = true;
-                youWon = true;
-                System.out.println("You Won!");
+                ((BattleState) game.getBattleState()).won(currHero);
             }else if(villainMove == 1 && playerChoice == 2) {
-                playing = false;
-                won = true;
-                youWon = true;
-                System.out.println("You Won!");
+                ((BattleState) game.getBattleState()).won(currHero);
             }else if(villainMove == 2 && playerChoice == 1) {
-                playing = false;
-                won = true;
-                youWon = true;
-                System.out.println("You Won!");
+                ((BattleState) game.getBattleState()).won(currHero);
             }else {
-                playing = false;
-                won = false;
-                youWon = false;
-                System.out.println("You lost");
-            }
-            if(won) {
-                villainLives--;
-                won = false;
-                if(villainLives <= 0) {
-                    battleWon = true;
-                }else {
-                    battleWon = false;
-                }
-            }else {
-                game.getTeam().get(0).setHealth(game.getTeam().get(0).getHealth()-DAMAGE_TAKEN); //TODO implement choosing heroes
-                if(game. getTeam().get(0).getHealth() <= 0) {
-                    game.getTeam().get(0).setDead(true);
-                }
-            }
-        }
-        if(battleWon) {
-            won = false;
-            nextCityButton.update();
-            if(nextCityButton.click() && game.getMouseListener().leftClicked) {
-                game.getMouseListener().leftClicked = false;
-                game.getPlayer().setCurrentRoom(4);
-                game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity()+1);
-                ((BattleState) game.getBattleState()).battling = false;
-                won = false;
-                battleWon = false;
+                ((BattleState) game.getBattleState()).lost(currHero);
             }
         }
     }
@@ -111,11 +75,5 @@ public class PaperScissorsRock extends MiniGame {
         if(villainMove == playerChoice) {
             DrawText.draw(graphics, "You Both played: " + villainMoveWords + ", Try again", 200, 600, false, Color.BLACK, Assets.invFont);
         }
-        if(battleWon) {
-            nextCityButton.render(graphics);
-        }else if(youWon) {
-            DrawText.draw(graphics, "Congrats, you won Villain has " + Integer.toString(villainLives) + " lives left", 200, 600, true, Color.BLACK, Assets.invFont);
-        }
-
     }
 }

@@ -32,10 +32,6 @@ public class PaperScissorsRock extends MiniGame {
         draw = false;
         goHovering = false;
         played = false;
-    }
-
-    @Override
-    public void update() {
         if(villainMove == 0) {
             this.villainMoveWords = "Paper";
         }else if(villainMove == 1) {
@@ -43,6 +39,10 @@ public class PaperScissorsRock extends MiniGame {
         }else {
             this.villainMoveWords = "Rock";
         }
+    }
+
+    @Override
+    public void update() {
         currHero = battleState.getCurrHero();
         buttons.update();
         //goButton.update();
@@ -61,6 +61,7 @@ public class PaperScissorsRock extends MiniGame {
             }else {
                 ((BattleState) game.getBattleState()).lost(currHero);
             }
+            played = false;
         }
         if(game.getMouseListener().isHovering(55, 520, 150, 66)) {
             goHovering = true;
@@ -79,13 +80,12 @@ public class PaperScissorsRock extends MiniGame {
     public void render(Graphics graphics) {
         buttons.render(graphics);
         //goButton.render(graphics);
+        DrawText.draw(graphics, "Go", 130, 552, true, Color.WHITE, Assets.invFont);
         if(goHovering) {
-
-        }else {
-            DrawText.draw(graphics, "Go", 130, 552, true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, "Go", 130, 552, true, Color.YELLOW, Assets.invFont);
         }
         if(draw) {
-            DrawText.draw(graphics, "You Both played: " + villainMoveWords + ", Try again", 522, 405, true, Color.BLACK, Assets.invFont);
+            DrawText.draw(graphics, "You Both played: " + villainMoveWords + ", Try again", 522, 405, true, Color.WHITE, Assets.invFont);
         }
     }
 }

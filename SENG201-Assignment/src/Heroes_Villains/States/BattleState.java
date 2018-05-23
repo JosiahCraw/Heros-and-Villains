@@ -13,7 +13,7 @@ import java.awt.*;
 
 public class BattleState extends State {
 
-    private UIElement battleButton, backButton, nextCity;
+    private UIElement battleButton, backButton, nextCity, okButton;
     private RadioButtons heroSelect;
     public MiniGame currMiniGame;
     public boolean battling;
@@ -28,6 +28,7 @@ public class BattleState extends State {
     public BattleState(Game game) {
         super(game);
         battleButton = new UIButton(640-Assets.buttonWidth/2, 200, game, Assets.battleStateBattle, Assets.buttonWidth, Assets.buttonHeight);
+        okButton = new UIButton(640-Assets.buttonWidth/2, 300, game, Assets.battleStateOK, Assets.buttonWidth, Assets.buttonHeight);
         backButton = new UIButton(640-Assets.buttonWidth/2, 300, game, Assets.battleStateBack, Assets.buttonWidth, Assets.buttonHeight);
         nextCity = new UIButton(game.width/2-Assets.buttonWidth, 150, game, Assets.backButton, Assets.buttonWidth, Assets.buttonHeight);
         radioTotalWidth = (game.noOfHeros-1)*10 + 50*game.noOfHeros;
@@ -71,7 +72,11 @@ public class BattleState extends State {
             return;
         }
         if(won) {
-
+            okButton.update();
+            if(okButton.click() && game.getMouseListener().leftClicked) {
+                game.getMouseListener().leftClicked = false;
+                won = false;
+            }
         }
         currMiniGame.update();
         heroSelect.update();
@@ -92,6 +97,13 @@ public class BattleState extends State {
         DrawText.draw(graphics, "Health: " + Integer.toString(game.getTeam().get(currHero).getHealth()), 1065, 407, true, Color.WHITE, Assets.smallFont);
         heroSelect.render(graphics);
         currMiniGame.render(graphics);
+        if(won) {
+            graphics.drawImage(Assets.battlePopup, 384, 168, null);
+            okButton.render(graphics);
+            DrawText.draw(graphics, "The villain played:", 640, 350,true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, currMiniGame.villainMoveWords, 640, 400,true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, " and you beat him", 640, 450,true, Color.WHITE, Assets.invFont);
+        }
     }
 
     public void won(int hero) {

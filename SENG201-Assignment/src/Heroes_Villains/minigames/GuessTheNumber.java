@@ -15,7 +15,7 @@ public class GuessTheNumber extends MiniGame {
 
     private UIElement numberSelector, playButton;
     public int numMoves;
-    private int currHero;
+    private int currHero, currClicked;
     private boolean lower, higher, playing;
 
     public GuessTheNumber(int villainMove, Game game) {
@@ -23,6 +23,7 @@ public class GuessTheNumber extends MiniGame {
         numberSelector = new RadioButtons(235, 517, game, Assets.invRadioButton, 10, 7, true, 50, 50);
         ((RadioButtons) numberSelector).currentlyClicked = 0;
         ((RadioButtons) numberSelector).clicked(0);
+        currClicked = ((RadioButtons) numberSelector).currentlyClicked;
         this.villainMoveWords = Integer.toString(villainMove);
         numMoves = 2;
         currHero = battleState.getCurrHero();
@@ -33,21 +34,29 @@ public class GuessTheNumber extends MiniGame {
     public void update() {
         currHero = battleState.getCurrHero();
         numberSelector.update();
+        currClicked = ((RadioButtons) numberSelector).currentlyClicked;
         if((game.getMouseListener().isHovering(55, 520, 150, 66) && game.getMouseListener().leftClicked) && numMoves > 0 && playing) {
             numMoves--;
             game.getMouseListener().leftClicked = false;
-            if(((RadioButtons) numberSelector).currentlyClicked+1 == villainMove) {
+            if ((((RadioButtons) numberSelector).currentlyClicked + 1) == villainMove) {
                 playing = false;
                 battleState.won(currHero);
-            }else if(((RadioButtons) numberSelector).currentlyClicked+1 > villainMove) {
-                if(numMoves>1){lower = true;}
-            }else if(((RadioButtons) numberSelector).currentlyClicked+1 < villainMove) {
-                if(numMoves>1){higher = true;}
+            } else if ((((RadioButtons) numberSelector).currentlyClicked + 1) > villainMove) {
+                if (numMoves >= 1) {
+                    lower = true;
+                }
+                playing = true;
+            } else if ((((RadioButtons) numberSelector).currentlyClicked + 1) < villainMove) {
+                if (numMoves >= 1) {
+                    higher = true;
+                }
+                playing = true;
             }
-        }else if(numMoves <= 0) {
-            numMoves = 2;
-            playing = false;
-            battleState.lost(currHero);
+            if(numMoves <= 0 && (((RadioButtons) numberSelector).currentlyClicked + 1 != villainMove)) {
+                numMoves = 2;
+                playing = false;
+                battleState.lost(currHero);
+            }
         }
     }
 
@@ -59,9 +68,9 @@ public class GuessTheNumber extends MiniGame {
             DrawText.draw(graphics, "Go", 130, 552, true, Color.YELLOW, Assets.invFont);
         }
         if(lower) {
-            DrawText.draw(graphics, "To high try again" ,510, 227, true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, "To high" ,592, 262, true, Color.WHITE, Assets.battleFont);
         }else if(higher) {
-            DrawText.draw(graphics, "To high try again" ,510, 227, true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, "To low" ,592, 262, true, Color.WHITE, Assets.battleFont);
         }
         for(int i=0; i<10; i++) {
             int x = i*50 + i*7 + 260;

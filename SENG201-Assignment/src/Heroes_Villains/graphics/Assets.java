@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red, basicPotion, advancedPotion, masterPotion, coin, radio, radioHover, radioClicked, battlePopup, battleState, paper, scissors, rock;
-    public static Font titleFont, invFont, smallFont, battleFont;
+    public static Font titleFont, invFont, smallFont, battleFont, tinyFont;
     private static int widthSheet1 = 16;
     private static int heightSheet1 = 16;
     private static int widthPlayerSheet = 32;
@@ -195,6 +195,8 @@ public class Assets {
         invFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 36);
         smallFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 20);
         battleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 24);
+        tinyFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 16);
+
 
 
 

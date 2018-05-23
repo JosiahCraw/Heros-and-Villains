@@ -15,6 +15,30 @@ public class Hero {
         this.name = name;
     }
 
+    public boolean isAbilityUsed() {
+        return abilityUsed;
+    }
+
+    public void setAbilityUsed(boolean abilityUsed) {
+        this.abilityUsed = abilityUsed;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public String getType() {
         return type;
     }

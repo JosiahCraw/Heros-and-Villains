@@ -18,8 +18,8 @@ public class BattleState extends State {
 
     public BattleState(Game game) {
         super(game);
-        battleButton = new UIButton(100, 500, game, Assets.battleButton, Assets.buttonWidth, Assets.buttonHeight);
-        backButton = new UIButton(100, 600, game, Assets.backButton, Assets.buttonWidth, Assets.buttonHeight);
+        battleButton = new UIButton(900, 500, game, Assets.battleButton, Assets.buttonWidth, Assets.buttonHeight);
+        backButton = new UIButton(900, 600, game, Assets.backButton, Assets.buttonWidth, Assets.buttonHeight);
         battling = false;
         miniGameHandler = new MiniGameHandler(game);
         currMiniGame = null;
@@ -32,10 +32,12 @@ public class BattleState extends State {
             battleButton.update();
             backButton.update();
             if (game.getMouseListener().isLeftClicked() && backButton.click()) {
+                game.getMouseListener().leftClicked = false;
                 game.getStateHandler().setState(game.getGameState());
                 return;
             }
             if (game.getMouseListener().isLeftClicked() && battleButton.click()) {
+                game.getMouseListener().leftClicked = false;
                 currMiniGame = miniGameHandler.getGame();
                 battling = true;
                 return;

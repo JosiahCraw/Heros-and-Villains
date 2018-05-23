@@ -11,7 +11,6 @@ import java.awt.*;
 
 
 public class DiceRoll extends MiniGame {
-    protected Game game;
 
     private UIElement rollButton, nextButton;
     public int playerRoll;
@@ -21,8 +20,8 @@ public class DiceRoll extends MiniGame {
         super(villainMove, game, "Dice Roll");
         playing = false;
         played = false;
-        rollButton = new UIButton(100, 300, game, Assets.backButton, Assets.buttonWidth, Assets.buttonHeight);
-        nextButton = new UIButton(100, 400, game, Assets.startButton, Assets.buttonWidth, Assets.buttonHeight);
+        rollButton = new UIButton(100, 300, game, Assets.startButton, Assets.buttonWidth, Assets.buttonHeight);
+        nextButton = new UIButton(100, 400, game, Assets.backButton, Assets.buttonWidth, Assets.buttonHeight);
         this.villainMoveWords = Integer.toString(villainMove);
         playerRoll = RandomNum.getNum(6)+1;
     }

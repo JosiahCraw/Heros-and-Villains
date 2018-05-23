@@ -13,6 +13,9 @@ public abstract class MiniGame {
     public String gameName;
     public String villainMoveWords;
     public int playerTurns;
+    public boolean playing;
+    public boolean won, battleWon;
+    public static int DAMAGE_TAKEN = 30;
 
     public MiniGame(int villainMove, Game game, String gameName) {
         this.villainMove = villainMove;

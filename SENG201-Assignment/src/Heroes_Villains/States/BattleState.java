@@ -48,17 +48,17 @@ public class BattleState extends State {
         if(!battling) {
             battleButton.update();
             backButton.update();
-            if (game.getMouseListener().isLeftClicked() && backButton.click()) {
+            if (game.getMouseListener().leftClicked && backButton.click()) {
                 game.getMouseListener().leftClicked = false;
                 game.getStateHandler().setState(game.getGameState());
                 return;
             }
-            if (game.getMouseListener().isLeftClicked() && battleButton.click()) {
+            if (game.getMouseListener().leftClicked && battleButton.click()) {
+                game.getMouseListener().leftClicked = false;
                 won = false;
                 lost = false;
                 currLives = VILLAIN_LIVES;
                 battleWon = false;
-                game.getMouseListener().leftClicked = false;
                 currMiniGame = miniGameHandler.getGame();
                 battling = true;
             }
@@ -67,12 +67,12 @@ public class BattleState extends State {
         if(battleWon) {
             nextCity.update();
             if(nextCity.click() && game.getMouseListener().leftClicked) {
+                game.getMouseListener().leftClicked = false;
                 battling = false;
                 battleWon = false;
                 won = false;
                 lost = false;
                 currLives = VILLAIN_LIVES;
-                game.getMouseListener().leftClicked = false;
                 game.getPlayer().setCurrentRoom(4);
                 game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity()+1);
                 game.getStateHandler().setState(game.getGameState());
@@ -114,20 +114,21 @@ public class BattleState extends State {
         heroSelect.render(graphics);
         currMiniGame.render(graphics);
         if(won) {
-            graphics.drawImage(Assets.battlePopup, 384, 168, null);
             okButton.render(graphics);
+            graphics.drawImage(Assets.battlePopup, 384, 168, null);
+
             DrawText.draw(graphics, "The villain played:", 640, 350,true, Color.WHITE, Assets.invFont);
             DrawText.draw(graphics, currMiniGame.villainMoveWords, 640, 400,true, Color.WHITE, Assets.invFont);
             DrawText.draw(graphics, " and you beat him", 640, 450,true, Color.WHITE, Assets.invFont);
         }
         if(lost) {
-            graphics.drawImage(Assets.battlePopup, 384, 168, null);
             okButton.render(graphics);
+            graphics.drawImage(Assets.battlePopup, 384, 168, null);
+
             DrawText.draw(graphics, "The villain played:", 640, 350,true, Color.WHITE, Assets.invFont);
             DrawText.draw(graphics, currMiniGame.villainMoveWords, 640, 400,true, Color.WHITE, Assets.invFont);
             DrawText.draw(graphics, " and you lost", 640, 450,true, Color.WHITE, Assets.invFont);
         }
-
         DrawText.draw(graphics, "Villain lives remaining: " + Integer.toString(currLives), 376, 97, true, Color.WHITE, Assets.smallFont);
     }
 

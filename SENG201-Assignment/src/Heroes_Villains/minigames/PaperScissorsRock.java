@@ -22,7 +22,7 @@ public class PaperScissorsRock extends MiniGame {
     public PaperScissorsRock(int villainMove, Game game) {
         super(villainMove, game, "Paper, Scissors, Rock");
         radioTotalWidth = (game.noOfHeros-1)*25 + 100*game.noOfHeros;
-        buttons = new RadioButtons(516-(radioTotalWidth/2), 529, game, Assets.invRadioButton, 3, 25, true, 100, 100);
+        buttons = new RadioButtons(516-(radioTotalWidth/2), 509, game, Assets.invRadioButton, 3, 25, true, 100, 100);
         nextCityButton = new UIButton(600, 600, game, Assets.backButton, Assets.buttonWidth, Assets.buttonHeight);
         ((RadioButtons) buttons).clicked(0);
         //goButton = new UIButton(100, 400, game, Assets.battleStatePlay, Assets.buttonWidth, Assets.buttonHeight);
@@ -64,7 +64,6 @@ public class PaperScissorsRock extends MiniGame {
             played = false;
         }
         if(game.getMouseListener().isHovering(55, 520, 150, 66)) {
-            goHovering = true;
             if(game.getMouseListener().leftClicked) {
                 game.getMouseListener().leftClicked = false;
                 played = true;
@@ -72,7 +71,7 @@ public class PaperScissorsRock extends MiniGame {
         }
         if(draw) {
             played = false;
-            villainMove = RandomNum.getNum(3);
+            battleState.currMiniGame = new PaperScissorsRock(RandomNum.getNum(3), game);
         }
     }
 
@@ -81,7 +80,7 @@ public class PaperScissorsRock extends MiniGame {
         buttons.render(graphics);
         //goButton.render(graphics);
         DrawText.draw(graphics, "Go", 130, 552, true, Color.WHITE, Assets.invFont);
-        if(goHovering) {
+        if(game.getMouseListener().isHovering(55, 520, 150, 66)) {
             DrawText.draw(graphics, "Go", 130, 552, true, Color.YELLOW, Assets.invFont);
         }
         if(draw) {

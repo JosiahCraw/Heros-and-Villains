@@ -27,10 +27,10 @@ public class BattleState extends State {
 
     public BattleState(Game game) {
         super(game);
+        nextCity = new UIButton(640-Assets.buttonWidth/2, 500, game, Assets.battleStateNext, Assets.buttonWidth, Assets.buttonHeight);
         battleButton = new UIButton(640-Assets.buttonWidth/2, 200, game, Assets.battleStateBattle, Assets.buttonWidth, Assets.buttonHeight);
         okButton = new UIButton(640-Assets.buttonWidth/2, 300, game, Assets.battleStateOK, Assets.buttonWidth, Assets.buttonHeight);
         backButton = new UIButton(640-Assets.buttonWidth/2, 300, game, Assets.battleStateBack, Assets.buttonWidth, Assets.buttonHeight);
-        nextCity = new UIButton(game.width/2-Assets.buttonWidth, 150, game, Assets.backButton, Assets.buttonWidth, Assets.buttonHeight);
         radioTotalWidth = (game.noOfHeros-1)*10 + 50*game.noOfHeros;
         heroSelect = new RadioButtons(1070-(radioTotalWidth/2), 211, game, Assets.invRadioButton, game.noOfHeros, 10, true, 50, 50);
         heroSelect.clicked(0);
@@ -71,11 +71,22 @@ public class BattleState extends State {
             }
             return;
         }
-        if(won) {
+        if(won || lost) {
             okButton.update();
             if(okButton.click() && game.getMouseListener().leftClicked) {
                 game.getMouseListener().leftClicked = false;
+                this.nextGame();
                 won = false;
+                lost = false;
+            }
+        }
+        if(battleWon) {
+            nextCity.update();
+            if(nextCity.click() && game.getMouseListener().leftClicked) {
+                game.getMouseListener().leftClicked = false;
+                game.getPlayer().setCurrentRoom(4);
+                game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity()+1);
+                game.getStateHandler().setState(game.getGameState());
             }
         }
         currMiniGame.update();
@@ -104,6 +115,18 @@ public class BattleState extends State {
             DrawText.draw(graphics, currMiniGame.villainMoveWords, 640, 400,true, Color.WHITE, Assets.invFont);
             DrawText.draw(graphics, " and you beat him", 640, 450,true, Color.WHITE, Assets.invFont);
         }
+        if(lost) {
+            graphics.drawImage(Assets.battlePopup, 384, 168, null);
+            okButton.render(graphics);
+            DrawText.draw(graphics, "The villain played:", 640, 350,true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, currMiniGame.villainMoveWords, 640, 400,true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, " and you lost", 640, 450,true, Color.WHITE, Assets.invFont);
+        }
+        if(battleWon) {
+            graphics.drawImage(Assets.battlePopup, 384, 168, null);
+            nextCity.render(graphics);
+        }
+        DrawText.draw(graphics, "Villain lives remaining: " + Integer.toString(currLives), 376, 97, true, Color.WHITE, Assets.smallFont);
     }
 
     public void won(int hero) {
@@ -113,20 +136,26 @@ public class BattleState extends State {
             return;
         }
         won = true;
-        currMiniGame = miniGameHandler.getGame();
     }
 
     public void lost(int hero) {
         game.getTeam().get(hero).setHealth(game.getTeam().get(hero).getHealth()-HEALTH_LOST_ON_LOSS);
         battleWon = false;
+        lost = true;
         if(game.getTeam().get(hero).getHealth() <= 0) {
+            game.getTeam().get(currHero).setHealth(0);
             game.getTeam().get(hero).setDead(true);
             currDead++;
             if(currDead == game.getNoOfHeros()) {
                 //TODO endGame();
             }
         }
-        currMiniGame = miniGameHandler.getGame();
+
+    }
+
+    public void nextGame() {
+        MiniGameHandler tempHandler = new MiniGameHandler(game);
+        currMiniGame = tempHandler.getGame();
     }
 
     public void winBattle() {

@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red, basicPotion, advancedPotion, masterPotion, coin, radio, radioHover, radioClicked, battlePopup, paper, scissors, rock;
+    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red, basicPotion, advancedPotion, masterPotion, coin, radio, radioHover, radioClicked, battlePopup, battleState, paper, scissors, rock;
     public static Font titleFont, invFont, smallFont;
     private static int widthSheet1 = 16;
     private static int heightSheet1 = 16;
@@ -16,7 +16,7 @@ public class Assets {
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, gamblerButton, psychicButton, sacrificeButton, scoutButton, tankButton, thiefButton, invRadioButton, battleStateBattle, battleStateBack;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, gamblerButton, psychicButton, sacrificeButton, scoutButton, tankButton, thiefButton, invRadioButton, battleStateBattle, battleStateBack, battleStatePlay, battleStateNext;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
@@ -49,6 +49,8 @@ public class Assets {
         thiefButton = new BufferedImage[2];
         battleStateBattle = new BufferedImage[2];
         battleStateBack = new BufferedImage[2];
+        battleStatePlay = new BufferedImage[2];
+        battleStateNext = new BufferedImage[2];
 
 
         //Setting default button width and height
@@ -106,6 +108,12 @@ public class Assets {
 
         battleStateBack[0] = ImageHandler.loadImage("/textures/BattleStateBack2.png");
         battleStateBack[1] = ImageHandler.loadImage("/textures/BattleStateBack1.png");
+
+        battleStatePlay[0] = ImageHandler.loadImage("/textures/BattleStatePlay2.png");
+        battleStatePlay[1] = ImageHandler.loadImage("/textures/BattleStatePlay1.png");
+
+        battleStateNext[0] = ImageHandler.loadImage("/textures/BattleStateNext2.png");
+        battleStateNext[1] = ImageHandler.loadImage("/textures/BattleStateNext1.png");
 
 
         //Player animation frame to crop
@@ -167,6 +175,10 @@ public class Assets {
         rock = ImageHandler.loadImage("/textures/Rock.png");
         paper = ImageHandler.loadImage("/textures/Paper.png");
         scissors = ImageHandler.loadImage("/textures/Scissors.png");
+
+        //Battle state
+        battleState = ImageHandler.loadImage("/textures/BattleState.png");
+        battlePopup = ImageHandler.loadImage("/textures/BattlePopup.png");
 
         //Fonts
 

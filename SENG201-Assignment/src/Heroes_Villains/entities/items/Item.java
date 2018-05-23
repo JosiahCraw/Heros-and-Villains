@@ -2,6 +2,7 @@ package Heroes_Villains.entities.items;
 
 import Heroes_Villains.Game;
 import Heroes_Villains.cities.Citys;
+import Heroes_Villains.entities.heroes.Hero;
 
 import java.awt.image.BufferedImage;
 
@@ -23,7 +24,7 @@ public abstract class Item {
         this.cityClass = cityClass;
     }
 
-    public abstract void use();
+    public abstract void use(Hero hero);
 
     public abstract boolean isUseable();
 

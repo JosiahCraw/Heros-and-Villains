@@ -6,9 +6,11 @@ public class Hero {
     protected boolean isDead;
     protected boolean abilityUsed;
     protected String type, name;
+    protected int maxHealth;
 
     public Hero(int health, String type, String name) {
         this.health = health;
+        this.maxHealth = health;
         isDead = false;
         abilityUsed = false;
         this.type = type;
@@ -45,5 +47,9 @@ public class Hero {
 
     public String getName() {
         return name;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
     }
 }

@@ -150,6 +150,7 @@ public class TeamBuilderState extends State {
                     }
                     if (!dontAdd) {
                         game.getTeam().add(new Hero(200, "Tank", nameinput.getInput()));
+                        game.getTeam().get(0).setHealth(100);
                         nameinput.setInput("");
                     }
 

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.nio.channels.AsynchronousServerSocketChannel;
 
 import Heroes_Villains.Game;
+import Heroes_Villains.SystemUI.RadioButtons;
 import Heroes_Villains.SystemUI.UIButton;
 import Heroes_Villains.SystemUI.UIElement;
 import Heroes_Villains.entities.heroes.Hero;
@@ -17,6 +18,9 @@ public class TeamBuilderState extends State {
     private UIElement backButton2;
     private UIElement startButton;
 
+    private UIElement deleteButton;
+    private RadioButtons teamDelete;
+
     private UIElement heroTypeA;
     private UIElement heroTypeB;
     private UIElement heroTypeC;
@@ -25,6 +29,8 @@ public class TeamBuilderState extends State {
     private UIElement heroTypeF;
 
     private TextField nameinput;
+
+    private boolean notFull;
 
 
     public TeamBuilderState(Game game) {
@@ -40,6 +46,11 @@ public class TeamBuilderState extends State {
         heroTypeF = new UIButton(1066, 450, game, Assets.sacrificeButton, 200, 35);
 
         nameinput = new TextField(540, 250, 200, 25, game, Assets.textField, 10, 2);
+
+        notFull = false;
+
+        deleteButton = new UIButton(1000, 100, game, Assets.deleteButton, 200, 35);
+
 
 
 
@@ -59,6 +70,16 @@ public class TeamBuilderState extends State {
 
         nameinput.update();
 
+        deleteButton.update();
+
+
+
+
+        if (game.getMouseListener().leftClicked && deleteButton.click()) {
+            game.getMouseListener().leftClicked = false;
+            game.getTeam().remove(game.getTeam().size()-1);
+        }
+
 
         if (game.getMouseListener().leftClicked && backButton2.click()) {
             game.getMouseListener().leftClicked = false;
@@ -68,7 +89,13 @@ public class TeamBuilderState extends State {
 
         if (game.getMouseListener().leftClicked && startButton.click()) {
             game.getMouseListener().leftClicked = false;
-            game.getStateHandler().setState(game.getGameState());
+            if (game.getTeam().size() < game.noOfHeros) {
+                notFull = true;
+            } else {
+                notFull = false;
+                game.getStateHandler().setState(game.getGameState());
+            }
+
         }
     }
 
@@ -83,6 +110,9 @@ public class TeamBuilderState extends State {
         heroTypeD.render(graphics);
         heroTypeE.render(graphics);
         heroTypeF.render(graphics);
+
+        deleteButton.render(graphics);
+
 
         graphics.setFont(Assets.smallFont);
 
@@ -220,6 +250,12 @@ public class TeamBuilderState extends State {
         for (Hero hero : game.getTeam()) {
             DrawText.draw(game.getGraphics(), hero.getName() + ": " + hero.getType(), 640, 100 + i, true, Color.BLACK, Assets.smallFont);
             i += 40;
+        }
+
+
+
+        if (notFull) {
+            DrawText.draw(graphics,"Team not full...", game.width/2,  625, true, Color.RED, Assets.smallFont);
         }
 
         nameinput.render(graphics);

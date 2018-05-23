@@ -21,8 +21,8 @@ public class BattleState extends State {
     private static final int HEALTH_LOST_ON_LOSS = 25;
     private static final int VILLAIN_LIVES = 3;
     private int currLives;
-    private boolean battleWon;
-    private int currHero;
+    private boolean won, lost, battleWon;
+    private int currHero, currDead;
     private int radioTotalWidth;
 
     public BattleState(Game game) {
@@ -31,14 +31,19 @@ public class BattleState extends State {
         backButton = new UIButton(640-Assets.buttonWidth/2, 300, game, Assets.battleStateBack, Assets.buttonWidth, Assets.buttonHeight);
         nextCity = new UIButton(game.width/2-Assets.buttonWidth, 150, game, Assets.backButton, Assets.buttonWidth, Assets.buttonHeight);
         radioTotalWidth = (game.noOfHeros-1)*10 + 50*game.noOfHeros;
-        heroSelect = new RadioButtons(1070-(radioTotalWidth/2), 236, game, Assets.testRadioButton, game.noOfHeros, 10, true, 100, 100);
+        heroSelect = new RadioButtons(1070-(radioTotalWidth/2), 211, game, Assets.invRadioButton, game.noOfHeros, 10, true, 50, 50);
+        heroSelect.clicked(0);
         battling = false;
         miniGameHandler = new MiniGameHandler(game);
         currMiniGame = null;
+        currDead = 0;
+        won = false;
+        lost = false;
     }
 
     @Override
     public void update() {
+        currHero = heroSelect.currentlyClicked;
         if(!battling) {
             battleButton.update();
             backButton.update();
@@ -65,6 +70,9 @@ public class BattleState extends State {
             }
             return;
         }
+        if(won) {
+
+        }
         currMiniGame.update();
         heroSelect.update();
     }
@@ -79,7 +87,7 @@ public class BattleState extends State {
             backButton.render(graphics);
             return;
         }
-        DrawText.draw(graphics, currMiniGame.gameName, 1070, 80, true, Color.WHITE, Assets.invFont);
+        DrawText.draw(graphics, currMiniGame.gameName, 1070, 80, true, Color.WHITE, Assets.battleFont);
         DrawText.draw(graphics, "Hero: " + game.getTeam().get(currHero).getName(), 1065, 347, true, Color.WHITE, Assets.smallFont);
         DrawText.draw(graphics, "Health: " + Integer.toString(game.getTeam().get(currHero).getHealth()), 1065, 407, true, Color.WHITE, Assets.smallFont);
         heroSelect.render(graphics);
@@ -90,7 +98,9 @@ public class BattleState extends State {
         currLives--;
         if(currLives <= 0) {
             battleWon = true;
+            return;
         }
+        won = true;
         currMiniGame = miniGameHandler.getGame();
     }
 
@@ -99,11 +109,27 @@ public class BattleState extends State {
         battleWon = false;
         if(game.getTeam().get(hero).getHealth() <= 0) {
             game.getTeam().get(hero).setDead(true);
+            currDead++;
+            if(currDead == game.getNoOfHeros()) {
+                //TODO endGame();
+            }
         }
         currMiniGame = miniGameHandler.getGame();
     }
 
+    public void winBattle() {
+
+    }
+
+    public void loseBattle() {
+
+    }
+
     public MiniGame getCurrMiniGame() {
         return currMiniGame;
+    }
+
+    public int getCurrHero() {
+        return currHero;
     }
 }

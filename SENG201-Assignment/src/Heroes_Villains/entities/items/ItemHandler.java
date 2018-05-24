@@ -16,8 +16,8 @@ public class ItemHandler {
         masterPotion = new HealingItem(2, "Master Potion", Assets.masterPotion, game, citys, 80, 75, 4);
         //coins = new Coins(3, "Coins", Assets.coin, game, citys, player);
 
-        speedScroll = new PowerUpItem(3, "Speed Scroll", Assets.basicPotion, game, citys,"SPEED", 25);
-        healthScroll = new PowerUpItem(4, "Health Scroll", Assets.basicPotion, game, citys, "HEALTH", 20);
-        abilityScroll = new PowerUpItem(5, "Ability Scroll", Assets.basicPotion, game, citys, "ABILITY", 50);
+        speedScroll = new PowerUpItem(3, "Speed Scroll", Assets.greenScroll, game, citys,"SPEED", 25);
+        healthScroll = new PowerUpItem(4, "Health Scroll", Assets.redScroll, game, citys, "HEALTH", 20);
+        abilityScroll = new PowerUpItem(5, "Ability Scroll", Assets.blueScroll, game, citys, "ABILITY", 50);
     }
 }

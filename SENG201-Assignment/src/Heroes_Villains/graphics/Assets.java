@@ -153,7 +153,7 @@ public class Assets {
         advancedPotion = ImageHandler.loadImage("/textures/pt2.png");
         masterPotion = ImageHandler.loadImage("/textures/pt3.png");
         coin = ImageHandler.loadImage("/textures/coin.png");
-        map = ImageHandler.loadImage("/textures/map.png");
+        map = ImageHandler.loadImage("/textures/Map.png");
         blueScroll = ImageHandler.loadImage("/textures/BlueScroll.png");
         redScroll = ImageHandler.loadImage("/textures/RedScroll.png");
         greenScroll = ImageHandler.loadImage("/textures/GreenScroll.png");

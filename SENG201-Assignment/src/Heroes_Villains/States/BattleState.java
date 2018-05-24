@@ -23,7 +23,7 @@ public class BattleState extends State {
     private int currLives;
     private boolean won, lost, battleWon, taunting;
     private int currHero, currDead;
-    private int radioTotalWidth1, radioTotalWidth2, radioTotalWidth3, taunt;
+    private int radioTotalWidth1, radioTotalWidth2, radioTotalWidth3, taunt, reward;
     private String[] villainNames, villainTaunts;
 
     public BattleState(Game game) {
@@ -119,6 +119,13 @@ public class BattleState extends State {
                 won = false;
                 lost = false;
                 currLives = VILLAIN_LIVES;
+                reward = 50;
+                for(int i=0; i<game.getTeam().size(); i++) {
+                    if(game.getTeam().get(i).getType() == "Thief") {
+                        reward += 25;
+                    }
+                }
+                game.getPlayer().money += reward;
                 game.getPlayer().setCurrentRoom(4);
                 game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity()+1);
                 game.getStateHandler().setState(game.getGameState());
@@ -168,7 +175,8 @@ public class BattleState extends State {
         }
         if(battleWon) {
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
-            DrawText.draw(graphics,villainNames[game.getPlayer().getCurrentCity()] + " was defeated", 640, 400, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, "You won " + Integer.toString(reward), 640, 350, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics,villainNames[game.getPlayer().getCurrentCity()] + " was defeated", 640, 300, true, Color.WHITE, Assets.smallFont);
             nextCity.render(graphics);
             return;
         }

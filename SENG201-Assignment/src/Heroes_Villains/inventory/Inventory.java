@@ -25,7 +25,7 @@ public class Inventory {
     private int countX = 1076, countY = 241;
     private int listSpacing = 47;
     private int currentIndex = 0;
-    private int totalWidth1, totalWidth2, totalWidth3;
+    private int totalWidth1, totalWidth2, totalWidth3, clicked;
     private RadioButtons heroSelector1, heroSelector2, heroSelector3;
 
     public Inventory(Game game) {
@@ -54,12 +54,15 @@ public class Inventory {
     public void update() {
         if(game.getTeam().size()==1) {
             heroSelector1.update();
+            clicked = heroSelector1.currentlyClicked;
         }
         if(game.getTeam().size()==2) {
             heroSelector2.update();
+            clicked = heroSelector2.currentlyClicked;
         }
         if(game.getTeam().size()==3) {
             heroSelector3.update();
+            clicked = heroSelector3.currentlyClicked;
         }
         if(game.getKeyboardListener().keyJustPressed(KeyEvent.VK_E)) {
             heroSelector1.clicked(0);
@@ -159,5 +162,9 @@ public class Inventory {
             DrawText.draw(graphics, "Health: "+Integer.toString(game.getTeam().get(heroSelector3.currentlyClicked).getHealth()), countX, countY+270, true, Color.WHITE, Assets.smallFont);
         }
 
+    }
+
+    public int getClicked() {
+        return clicked;
     }
 }

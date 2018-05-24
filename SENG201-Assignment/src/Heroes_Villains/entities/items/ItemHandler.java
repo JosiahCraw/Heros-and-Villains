@@ -7,7 +7,7 @@ import Heroes_Villains.graphics.Assets;
 
 public class ItemHandler {
 
-    public Item basicPotion, advancedPotion, masterPotion, coins, speedScroll, healthScroll, abilityScroll, map;
+    public Item basicPotion, advancedPotion, masterPotion, speedScroll, healthScroll, abilityScroll, map;
 
     public ItemHandler(Game game, Citys citys, Player player) {
 

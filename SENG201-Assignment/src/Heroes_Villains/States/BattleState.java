@@ -112,6 +112,12 @@ public class BattleState extends State {
         }
         if(battleWon) {
             nextCity.update();
+            reward = 50;
+            for(int i=0; i<game.getTeam().size(); i++) {
+                if(game.getTeam().get(i).getType() == "Thief") {
+                    reward += 25;
+                }
+            }
             if(nextCity.click() && game.getMouseListener().leftClicked) {
                 game.getMouseListener().leftClicked = false;
                 battling = false;
@@ -119,12 +125,6 @@ public class BattleState extends State {
                 won = false;
                 lost = false;
                 currLives = VILLAIN_LIVES;
-                reward = 50;
-                for(int i=0; i<game.getTeam().size(); i++) {
-                    if(game.getTeam().get(i).getType() == "Thief") {
-                        reward += 25;
-                    }
-                }
                 game.getPlayer().money += reward;
                 game.getPlayer().setCurrentRoom(4);
                 game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity()+1);

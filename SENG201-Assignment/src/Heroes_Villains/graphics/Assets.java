@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red, basicPotion, advancedPotion, masterPotion, coin, radio, radioHover, radioClicked, battlePopup, battleState, paper, scissors, rock;
+    public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red, basicPotion, advancedPotion, masterPotion, coin, radio, radioHover, radioClicked, battlePopup, battleState, paper, scissors, rock, map, greenScroll, blueScroll, redScroll;
     public static Font titleFont, invFont, smallFont, battleFont, tinyFont;
     private static int widthSheet1 = 16;
     private static int heightSheet1 = 16;
@@ -153,6 +153,10 @@ public class Assets {
         advancedPotion = ImageHandler.loadImage("/textures/pt2.png");
         masterPotion = ImageHandler.loadImage("/textures/pt3.png");
         coin = ImageHandler.loadImage("/textures/coin.png");
+        map = ImageHandler.loadImage("/textures/map.png");
+        blueScroll = ImageHandler.loadImage("/textures/BlueScroll.png");
+        redScroll = ImageHandler.loadImage("/textures/RedScroll.png");
+        greenScroll = ImageHandler.loadImage("/textures/GreenScroll.png");
 
         //NPCs
         villain = villainSheet.getImage(0, 0, 64, 64);

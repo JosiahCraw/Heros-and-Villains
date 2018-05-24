@@ -143,9 +143,6 @@ public class Player extends Living {
         }
 
     }
-
-
-
     @Override
     public void render(Graphics graphics) {
         //graphics.drawImage(Assets.playerDown, (int) x, (int) y, null);
@@ -174,15 +171,12 @@ public class Player extends Living {
             okButton.render(graphics);
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
             if(game.getTeam().size() == 1) {
-                heroSelector1.render(graphics);
-                attributeDraw(heroSelector3, graphics);
+                attributeDraw(heroSelector1, graphics);
                 return;
             }else if(game.getTeam().size() == 2) {
-                heroSelector2.render(graphics);
-                attributeDraw(heroSelector3, graphics);
+                attributeDraw(heroSelector2, graphics);
                 return;
             }else if(game.getTeam().size() == 3) {
-                heroSelector3.render(graphics);
                 attributeDraw(heroSelector3, graphics);
                 return;
             }

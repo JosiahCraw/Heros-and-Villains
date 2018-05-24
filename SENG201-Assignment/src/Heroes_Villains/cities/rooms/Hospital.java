@@ -23,8 +23,8 @@ public class Hospital extends  Rooms{
         roomName = "Hospital";
         int offSet = 0;
         for (int i = 0; i < game.getTeam().size(); i++) {
-            timerList.add(new PotionTimer(game.width/2,(game.height-400)/2 + offSet, game.getTeam().get(i), game, Assets.deleteButton));
-            offSet += 20;
+            timerList.add(new PotionTimer(50, 100 + offSet, game.getTeam().get(i), game, Assets.blankButton));
+            offSet += 170;
         }
     }
 

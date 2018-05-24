@@ -46,7 +46,7 @@ public class City {
     }
     public void render(Graphics graphics) {
         graphics.setFont(Assets.titleFont);
-        graphics.drawString("City: " + Integer.toString(cityNo), 300, 400);
+        graphics.drawString("City: " + Integer.toString(cityNo)+1, 300, 400);
         rooms[game.getPlayer().getCurrentRoom()].render(graphics);
 
     }

@@ -290,7 +290,7 @@ public class TeamBuilderState extends State {
         if (notFull) {
             DrawText.draw(graphics,"Team not full...", game.width/2,  625, true, Color.RED, Assets.smallFont);
         }
-
+        DrawText.draw(game.getGraphics(), "Enter a hero name in the text field and then click on the hero type to add hero", game.width/2, 545, true, Color.BLACK, Assets.smallFont);
         nameinput.render(graphics);
 
 

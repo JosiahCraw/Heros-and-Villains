@@ -9,13 +9,20 @@ import Heroes_Villains.utils.RandomNum;
 
 import java.awt.*;
 
-
+/**
+ * Class for the dice roll game, player rolls and villains rolls, highest roll wins
+ */
 public class DiceRoll extends MiniGame {
 
     public int playerRoll, currHero;
     private boolean draw;
     private UIElement okButton;
 
+    /**
+     * Constructor for DiceRoll
+     * @param villainMove integer of the villains roll
+     * @param game game object, generic pass-through
+     */
     public DiceRoll(int villainMove, Game game) {
         super(villainMove, game, "Dice Roll");
         this.villainMoveWords = Integer.toString(villainMove);

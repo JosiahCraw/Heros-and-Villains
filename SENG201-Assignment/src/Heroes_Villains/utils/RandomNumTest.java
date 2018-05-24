@@ -6,6 +6,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * A class for testing generating a random number within a given bound
+ */
 public class RandomNumTest {
 
     private RandomNum testRandom;

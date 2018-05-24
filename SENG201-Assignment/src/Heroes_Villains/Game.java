@@ -13,8 +13,15 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
+/**
+ * Main game object class that is passed through most other objects
+ */
 public class Game implements Runnable{ //Runnable allows the class to use threads
 
+    /**
+     * Method for returning the display
+     * @return displayObject
+     */
     public Display getDisplay() {
         return display;
     }
@@ -49,16 +56,24 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     public int noOfHeros;
     public String teamName;
 
-
+    /**
+     * Method for returning the team list
+     * @return team array list
+     */
     public ArrayList<Hero> getTeam() {
         return team;
     }
 
+    /**
+     * Declaration of team array list
+     */
     private ArrayList<Hero> team = new ArrayList<Hero>();
     
     public double delta;
 
-
+    /**
+     * Update method, checks state handler is not null, then updates the state, and checks for input that change the state
+     */
     private void update(){
         keyboardListener.update();
         if(stateHandler.state != null) {
@@ -75,6 +90,10 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         }
     }
 
+
+    /**
+     * Render method, gets a buffer strategy and declares graphics object
+     */
     private void render(){
         //Creating the buffer for the output frames
         buffer = display.getCanvas().getBufferStrategy();
@@ -94,6 +113,9 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
     }
 
+    /**
+     * Method called when the game is run to set up the display and initialize the first states required
+     */
     private void init(){ //Function run by run()
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyboardListener);
@@ -167,6 +189,9 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
     }
 
+    /**
+     * Method for starting the game thread
+     */
     public synchronized void start(){
         if (running){
             return;
@@ -178,6 +203,9 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
     }
 
+    /**
+     * Method for stopping the game thread
+     */
     public synchronized void stop(){
         if (!running){
             return;
@@ -191,6 +219,12 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
 
     }
 
+    /**
+     * Constructer method that takes a game title for the window, and a size for the window
+     * @param title String title of the game
+     * @param width int width of the window
+     * @param height int height of the window
+     */
     public Game(String title, int width, int height) {
         this.width = width;
         this.height = height;
@@ -199,64 +233,132 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         mouseListener = new MouseListener();
         }
 
+    /**
+     * Method for getting the mouse listener
+      * @return MouseListener object
+     */
     public MouseListener getMouseListener() {
         return mouseListener;
     }
 
+    /**
+     * Method for getting the keyboard listener
+     * @return KeyboardListener object
+     */
     public KeyboardListener getKeyboardListener() {
         return keyboardListener;
     }
 
+    /**
+     * Method for getting the state handler object
+     * @return StateHandler object
+     */
     public StateHandler getStateHandler() {
         return stateHandler;
     }
 
+    /**
+     * Method for getting the game state
+     * @return GameState object
+     */
     public State getGameState() {
         return gameState;
     }
 
+    /**
+     * method for getting the menu state
+     * @return MenuState object
+     */
     public State getMenuState() {
         return menuState;
     }
 
+    /**
+     * Method for getting the games graphics for use in rendering
+     * @return Graphics object
+     */
     public Graphics getGraphics() {
         return graphics;
     }
 
+    /**
+     * Method for getting the pause state
+     * @return PauseState object
+     */
     public State getPauseState() {
         return pauseState;
     }
 
+    /**
+     * Method for getting the battle state
+     * @return BattleState object
+     */
     public State getBattleState() {
         return battleState;
     }
 
+    /**
+     * Method for getting the controls state
+     * @return ControlsState object
+     */
     public State getControlsState() { return controlsState; }
 
+    /**
+     * Method for getting the setup state
+     * @return SetupState object
+     */
     public State getSetupState() { return setupState; }
 
+    /**
+     * Method for getting the team builder state
+     * @return TeamBuilder object
+     */
     public State getTeamBuilderState() { return teamBuilderState; }
 
+    /**
+     * Method for gettting the end state
+     * @return EndState object
+     */
     public State getEndState() { return endState; }
 
     //Main Game settings Getters and Setters
 
+    /**
+     * Method for getting the number of cities in the game
+     * @return integer, number of cities
+     */
     public int getNoOfCities() {
         return noOfCities;
     }
 
+    /**
+     * Method for setting the number of cities to the integer parameter
+     * @param noOfCities integer parameter number of cities
+     */
     public void setNoOfCities(int noOfCities) {
         this.noOfCities = noOfCities;
     }
 
+    /**
+     * Method for getting the number of heros in the game iniitially
+     * @return integer, number of heros
+     */
     public int getNoOfHeros() {
         return noOfHeros;
     }
 
+    /**
+     * Method for setting the number of heros
+     * @param noOfHeros integer, number of heros
+     */
     public void setNoOfHeros(int noOfHeros) {
         this.noOfHeros = noOfHeros;
     }
 
+    /**
+     * Method for returning the player of the game
+     * @return Player object: player
+     */
     public Player getPlayer() {
         return player;
     }

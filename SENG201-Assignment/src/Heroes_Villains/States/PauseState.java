@@ -9,10 +9,17 @@ import Heroes_Villains.graphics.Assets;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * Class for the pause state of the game, entered when the escape key is pressed, allows user to go back to menu or controls state
+ */
 public class PauseState extends State{
 
     private UIElement returnButton, menuButton, controlsButton;
 
+    /**
+     * Constructor for pause state of the game, initializes three buttons for switching between states of the game
+     * @param game game object, generic pass-through
+     */
     public PauseState(Game game) {
         super(game);
         returnButton = new UIButton(540, 413, game, Assets.backButton, Assets.buttonWidth, Assets.buttonHeight);

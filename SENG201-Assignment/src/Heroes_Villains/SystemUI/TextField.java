@@ -8,12 +8,19 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-
+/**
+ * Class object for a graphical text field
+ */
 public class TextField extends UIElement {
 
     private int width, height;
     private String input;
 
+
+    /**
+     * Method for setting whether or not the state of the text field should be in 'editing' mode
+     * @param editing boolean, true or false
+     */
     public void setEditing(boolean editing) {
         this.editing = editing;
     }
@@ -24,7 +31,17 @@ public class TextField extends UIElement {
     private int maxInput, minInput;
     private boolean underLimit;
 
-
+    /**
+     * TextField constructor method
+     * @param x integer, x position on screen
+     * @param y integer, y position on screen
+     * @param width integer, sets width of text field
+     * @param height integer, sets height of text field
+     * @param game game object
+     * @param images BufferedImage[] object, assets of text field
+     * @param maxInput integer, maximum length of input that the field will accept
+     * @param minInput integer, minimum length of input that the field will accept
+     */
     public TextField(int x, int y, int width, int height, Game game, BufferedImage[] images, int maxInput, int minInput) {
         super(x,y,game,images);
         this.x = x;
@@ -114,6 +131,10 @@ public class TextField extends UIElement {
 
     }
 
+    /**
+     * Method for getting whether or not the field is currently in editing mode
+     * @return boolean, true or false
+     */
     public boolean isEditing() {
         return editing;
     }
@@ -123,11 +144,18 @@ public class TextField extends UIElement {
         return false;
     }
 
-
+    /**
+     * Method for getting the current input value of the text field
+     * @return String, current input
+     */
     public String getInput() {
         return input;
     }
 
+    /**
+     * Method for setting the current input of the text field
+     * @param input String, the string you want to set the input to
+     */
     public void setInput(String input) {
         this.input = input;
     }

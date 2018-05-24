@@ -8,12 +8,19 @@ import Heroes_Villains.entities.items.ItemHandler;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * Class for game state of the game, this is the state in which the player is moving between rooms and cities, it includes core gameplay functionality
+ */
 public class GameState extends State {
 
     public Player player;
     public Citys masterCities;
     public ItemHandler itemHandler;
 
+    /**
+     * Constructor method for game state, initializes a player, and an amount of cities and sets the player to be in the homebase of the first city
+     * @param game game object, generic pass-through
+     */
     public GameState(Game game) {
         super(game);
         player = new Player(576, 296, "Da Boi", game);

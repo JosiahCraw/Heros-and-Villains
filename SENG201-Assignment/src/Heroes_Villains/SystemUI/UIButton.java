@@ -5,12 +5,24 @@ import Heroes_Villains.Game;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class object for a graphical button
+ */
 public class UIButton extends UIElement {
 
     private int width, height;
     private boolean isHovering;
     public boolean clickable;
 
+    /**
+     * Constructor for UIButton
+     * @param x integer, sets x location
+     * @param y integer, sets y locations
+     * @param game, game object
+     * @param images, BufferedImage[] object containing buttons assets
+     * @param width integer, sets button width
+     * @param height integer, sets button height
+     */
     public UIButton(int x, int y, Game game, BufferedImage[] images, int width, int height) {
         super(x, y, game, images);
         this.images = images;
@@ -19,6 +31,10 @@ public class UIButton extends UIElement {
         isHovering = false;
     }
 
+    /**
+     * method for returning if the mouse cursor is hovering over the area of the button
+     * @return boolean, depedning on mouse cursor location, true or false
+     */
     public boolean isHovering() {
         return isHovering;
     }

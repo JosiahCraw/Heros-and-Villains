@@ -7,6 +7,9 @@ import Heroes_Villains.graphics.DrawText;
 
 import java.awt.*;
 
+/**
+ * Class for the ending state of the game, takes a boolean value to determine wether the game was won or lost and displays the appropriate screen
+ */
 public class EndState extends State {
 
     private UIButton exitButton = new UIButton(540, 650,game, Assets.exitButton, Assets.buttonWidth, Assets.buttonHeight);
@@ -15,6 +18,10 @@ public class EndState extends State {
     private String timeString;
     private int totalSecs;
 
+    /**
+     * Endstate contructor, identical to parent
+     * @param game
+     */
     public EndState(Game game) {
         super(game);
 
@@ -63,10 +70,18 @@ public class EndState extends State {
 
     }
 
+    /**
+     * Method for setting whether or not the game was won
+     * @param won boolean, true or false
+     */
     public void setWon(boolean won) {
         this.won = won;
     }
 
+    /**
+     * Method for setting the total time that it took you to complete the game
+     * @param totalSecs integer, total seconds that it took to comeplete the game
+     */
     public void setTotalSecs(int totalSecs) {
         this.totalSecs = totalSecs;
     }

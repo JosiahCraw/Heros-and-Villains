@@ -13,6 +13,9 @@ import Heroes_Villains.SystemUI.TextField;
 import Heroes_Villains.graphics.DrawText;
 
 
+/**
+ * Class for the team builder state, renders the team and allows you to add and remove heros from it before eventually starting the game
+ */
 public class TeamBuilderState extends State {
 
     private UIElement backButton2;
@@ -32,7 +35,10 @@ public class TeamBuilderState extends State {
 
     private boolean notFull;
 
-
+    /**
+     * Constructor method for team builder state, creates a serious of buttons and a text field used to add heros to the game team
+     * @param game game object, as passed through everything in the game
+     */
     public TeamBuilderState(Game game) {
         super(game);
         backButton2 = new UIButton(540, 650, game, Assets.backButton, 200, 35);

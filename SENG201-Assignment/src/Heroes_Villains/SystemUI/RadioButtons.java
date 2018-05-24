@@ -5,6 +5,9 @@ import Heroes_Villains.Game;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class for a radio button cluster
+ */
 public class RadioButtons extends UIElement{
 
     private int numButtons;
@@ -15,7 +18,18 @@ public class RadioButtons extends UIElement{
     private int width, height;
     public int currentlyClicked;
 
-
+    /**
+     * Radio button constructor
+     * @param x integer, x position on screen
+     * @param y integer, y position on screen
+     * @param game game object
+     * @param images BufferedImage[] object, assets for the Radio buttons
+     * @param numButtons integer, number of buttons in the cluster
+     * @param spacing integer, spacing between the buttons
+     * @param horizontal boolean, wether the cluster is rendered horizontally or vertically
+     * @param width integer, width of buttons
+     * @param height integer, height of buttons
+     */
     public RadioButtons(int x, int y, Game game, BufferedImage[] images, int numButtons, int spacing, boolean horizontal, int width, int height) {
         super(x, y, game, images);
         this.numButtons = numButtons;
@@ -50,11 +64,18 @@ public class RadioButtons extends UIElement{
         }
     }
 
+    /**
+     * Method for getting the array of buttons
+     * @return RadioButton[] array
+     */
     public RadioButton[] getButtons() {
         return buttons;
     }
 
-
+    /**
+     * Sets the button at index: buttonClicked to clicked
+     * @param buttonClicked integer, button to be set to clicked
+     */
     public void clicked(int buttonClicked) {
         for(int i=0; i<numButtons; i++) {
             buttons[i].setClicked(false);
@@ -63,12 +84,18 @@ public class RadioButtons extends UIElement{
         currentlyClicked = buttonClicked;
     }
 
+    /**
+     * Method for looping through each button and calling its .update() method
+     */
     public void update() {
         for(int i=0; i<numButtons; i++) {
             buttons[i].update();
         }
     }
 
+    /**
+     * Method for looping through each button and calling its .render() method
+     */
     public void render(Graphics graphics) {
         for(int i=0; i<numButtons; i++) {
             buttons[i].render(graphics);

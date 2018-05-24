@@ -7,6 +7,9 @@ import Heroes_Villains.graphics.Assets;
 
 import java.awt.*;
 
+/**
+ * Class for the menu state of the game, this allows the user to start the game, view the controls, or exit the game
+ */
 public class MenuState extends State {
 
     private UIElement startButton;
@@ -14,6 +17,10 @@ public class MenuState extends State {
     private UIElement controlsButton;
     private UIElement testButton;
 
+    /**
+     * Constructor method for menu state of game, initializes three buttons for switching between states and exiting the game
+     * @param game game object, generic pass-through
+     */
     public MenuState(Game game) {
         super(game);
         startButton = new UIButton(540, 343, game, Assets.startButton, Assets.buttonWidth, Assets.buttonHeight);

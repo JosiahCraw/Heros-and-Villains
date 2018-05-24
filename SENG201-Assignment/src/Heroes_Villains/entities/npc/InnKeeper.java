@@ -47,10 +47,12 @@ public class InnKeeper extends NPC {
         }else if(shop.open && game.getKeyboardListener().keyJustPressed(KeyEvent.VK_F)) {
             shop.open = false;
         }
+        shop.update();
     }
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(image, (int) x-width/2, (int) y-height/2, width, height, null);
+        graphics.drawImage(image, (int) x, (int) y, width, height, null);
+        shop.render(graphics);
     }
 }

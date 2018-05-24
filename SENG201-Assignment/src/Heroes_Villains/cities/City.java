@@ -12,6 +12,7 @@ public class City {
 
     public int cityNo;
     public Rooms[] rooms;
+    private boolean hasMap;
 
     private Game game;
 
@@ -22,7 +23,7 @@ public class City {
         this.cityNo = cityNo;
         this.game = game;
         rooms = new Rooms[5];
-        homeBase = new HomeBase(game);
+        homeBase = new HomeBase(game, this);
         hospital = new Hospital(game);
         inn = new Inn(game, cities, player);
         powerUpDen = new PowerUpDen(game);
@@ -43,6 +44,11 @@ public class City {
     }
 
     public void update() {
+        for(int i=0; i<game.getTeam().size(); i++) {
+            if(game.getTeam().get(i).getType() == "Scout") {
+                hasMap = true;
+            }
+        }
         rooms[game.getPlayer().getCurrentRoom()].update();
     }
     public void render(Graphics graphics) {
@@ -54,5 +60,13 @@ public class City {
 
     public Rooms[] getRooms() {
         return rooms;
+    }
+
+    public boolean isHasMap() {
+        return hasMap;
+    }
+
+    public void setHasMap(boolean hasMap) {
+        this.hasMap = hasMap;
     }
 }

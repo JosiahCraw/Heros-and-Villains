@@ -92,11 +92,9 @@ public class Player extends Living {
             }
             if(game.getTeam().size() == 1) {
                 heroSelector1.update();
-            }
-            if(game.getTeam().size() == 2) {
+            }else if(game.getTeam().size() == 2) {
                 heroSelector2.update();
-            }
-            if(game.getTeam().size() == 3) {
+            }else if(game.getTeam().size() == 3) {
                 heroSelector3.update();
             }
         }
@@ -130,18 +128,20 @@ public class Player extends Living {
         }
         inventory.render(graphics);
         if(atributes) {
+            okButton.render(graphics);
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
             if(game.getTeam().size() == 1) {
                 heroSelector1.render(graphics);
                 attributeDraw(heroSelector3, graphics);
-            }
-            if(game.getTeam().size() == 2) {
+                return;
+            }else if(game.getTeam().size() == 2) {
                 heroSelector2.render(graphics);
                 attributeDraw(heroSelector3, graphics);
-            }
-            if(game.getTeam().size() == 3) {
+                return;
+            }else if(game.getTeam().size() == 3) {
                 heroSelector3.render(graphics);
                 attributeDraw(heroSelector3, graphics);
+                return;
             }
         }
     }

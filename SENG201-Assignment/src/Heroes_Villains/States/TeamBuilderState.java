@@ -40,7 +40,7 @@ public class TeamBuilderState extends State {
 
         heroTypeA = new UIButton(11, 450, game, Assets.thiefButton, 200, 35);
         heroTypeB = new UIButton(222, 450, game, Assets.tankButton, 200, 35);
-        heroTypeC = new UIButton(433, 450, game, Assets.gamblerButton, 200, 35);
+        heroTypeC = new UIButton(433, 450, game, Assets.nurseButton, 200, 35);
         heroTypeD = new UIButton(644, 450, game, Assets.psychicButton, 200, 35);
         heroTypeE = new UIButton(855, 450, game, Assets.scoutButton, 200, 35);
         heroTypeF = new UIButton(1066, 450, game, Assets.sacrificeButton, 200, 35);
@@ -70,14 +70,18 @@ public class TeamBuilderState extends State {
 
         nameinput.update();
 
+
         deleteButton.update();
+
 
 
 
 
         if (game.getMouseListener().leftClicked && deleteButton.click()) {
             game.getMouseListener().leftClicked = false;
-            game.getTeam().remove(game.getTeam().size()-1);
+            if (game.getTeam().size() > 0) {
+                game.getTeam().remove(game.getTeam().size()-1);
+            }
         }
 
 
@@ -96,6 +100,7 @@ public class TeamBuilderState extends State {
                 game.gameState = new GameState(game);
                 game.player = ((GameState) game.gameState).player;
                 game.battleState = new BattleState(game);
+                game.endState = new EndState(game);
                 if (game.teamName.equals("ADMIN")) {
                     game.adminState = new AdminState(game, ((GameState) game.gameState).masterCities, ((BattleState) game.battleState));
                 }
@@ -123,13 +128,18 @@ public class TeamBuilderState extends State {
         heroTypeE.render(graphics);
         heroTypeF.render(graphics);
 
-        deleteButton.render(graphics);
+        if (game.getTeam().size() > 0) {
+            deleteButton.render(graphics);
+        }
+
 
 
         graphics.setFont(Assets.smallFont);
 
         if (heroTypeA.click()) {
-            DrawText.draw(game.getGraphics(), "Thief: Steals extra gold from villains", game.width/2, game.height/2, true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Hero Type: Thief", game.width/2, (game.height/2)-20, true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Max Health: 100", game.width/2, (game.height/2), true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Ability (Passive): Steals 50% extra gold from villains", game.width/2, (game.height/2)+20, true, Color.BLACK, Assets.smallFont);
             boolean dontAdd = false;
             if (game.getMouseListener().leftClicked) {
                 game.getMouseListener().leftClicked = false;
@@ -150,7 +160,9 @@ public class TeamBuilderState extends State {
         }
 
         if (heroTypeB.click()) {
-            DrawText.draw(game.getGraphics(), "Tank: Has extra health", game.width/2, game.height/2, true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Hero Type: Tank", game.width/2, (game.height/2)-20, true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Max Health: 200", game.width/2, (game.height/2), true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Ability (Passive): Has an increased max health", game.width/2, (game.height/2)+20, true, Color.BLACK, Assets.smallFont);
             boolean dontAdd = false;
             if (game.getMouseListener().leftClicked) {
                 game.getMouseListener().leftClicked = false;
@@ -172,7 +184,9 @@ public class TeamBuilderState extends State {
         }
 
         if (heroTypeC.click()) {
-            DrawText.draw(game.getGraphics(), "Gambler: Has an extra go if he loses", game.width/2, game.height/2, true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Hero Type: Nurse", game.width/2, (game.height/2)-20, true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Max Health: 80", game.width/2, (game.height/2), true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Ability (Active): Can replenish her health completely during a battle", game.width/2, (game.height/2)+20, true, Color.BLACK, Assets.smallFont);
             boolean dontAdd = false;
             if (game.getMouseListener().leftClicked) {
                 game.getMouseListener().leftClicked = false;
@@ -183,7 +197,7 @@ public class TeamBuilderState extends State {
                         }
                     }
                     if (!dontAdd) {
-                        game.getTeam().add(new Hero(100, "Gambler", nameinput.getInput()));
+                        game.getTeam().add(new Hero(80, "Nurse", nameinput.getInput()));
                         nameinput.setInput("");
                     }
 
@@ -193,7 +207,9 @@ public class TeamBuilderState extends State {
         }
 
         if (heroTypeD.click()) {
-            DrawText.draw(game.getGraphics(), "Psychic: Can see the outcome of a game", game.width/2, game.height/2, true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Hero Type: Psychic", game.width/2, (game.height/2)-20, true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Max Health: 100", game.width/2, (game.height/2), true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Ability (Active): Can see what the villains next move will be", game.width/2, (game.height/2)+20, true, Color.BLACK, Assets.smallFont);
             boolean dontAdd = false;
             if (game.getMouseListener().leftClicked) {
                 game.getMouseListener().leftClicked = false;
@@ -214,7 +230,9 @@ public class TeamBuilderState extends State {
         }
 
         if (heroTypeE.click()) {
-            DrawText.draw(game.getGraphics(), "Scout: Comes with a map but has low health", game.width/2, game.height/2, true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Hero Type: Scout", game.width/2, (game.height/2)-20, true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Max Health: 60", game.width/2, (game.height/2), true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Ability (Passive): Knows where everything is in the game", game.width/2, (game.height/2)+20, true, Color.BLACK, Assets.smallFont);
             boolean dontAdd = false;
             if (game.getMouseListener().leftClicked) {
                 game.getMouseListener().leftClicked = false;
@@ -225,7 +243,7 @@ public class TeamBuilderState extends State {
                         }
                     }
                     if (!dontAdd) {
-                        game.getTeam().add(new Hero(40, "Scout", nameinput.getInput()));
+                        game.getTeam().add(new Hero(60, "Scout", nameinput.getInput()));
                         nameinput.setInput("");
                     }
 
@@ -235,7 +253,9 @@ public class TeamBuilderState extends State {
         }
 
         if (heroTypeF.click()) {
-            DrawText.draw(game.getGraphics(), "Sacrifice: Can instantly defeat a villain but will die", game.width/2, game.height/2, true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Hero Type: Sacrifice", game.width/2, (game.height/2)-20, true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Max Health: 10", game.width/2, (game.height/2), true, Color.BLACK, Assets.smallFont);
+            DrawText.draw(game.getGraphics(), "Ability (Active): Can instantly defeat a villain but will die, warning: has very low max health", game.width/2, (game.height/2)+20, true, Color.BLACK, Assets.smallFont);
             boolean dontAdd = false;
             if (game.getMouseListener().leftClicked) {
                 game.getMouseListener().leftClicked = false;
@@ -270,7 +290,7 @@ public class TeamBuilderState extends State {
         if (notFull) {
             DrawText.draw(graphics,"Team not full...", game.width/2,  625, true, Color.RED, Assets.smallFont);
         }
-
+        DrawText.draw(game.getGraphics(), "Enter a hero name in the text field and then click on the hero type to add hero", game.width/2, 545, true, Color.BLACK, Assets.smallFont);
         nameinput.render(graphics);
 
 

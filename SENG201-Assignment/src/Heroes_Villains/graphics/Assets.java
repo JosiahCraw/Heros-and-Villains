@@ -16,7 +16,7 @@ public class Assets {
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, gamblerButton, psychicButton, sacrificeButton, scoutButton, tankButton, thiefButton, invRadioButton, deleteButton, battleStateBattle, battleStateBack, battleStatePlay, battleStateNext, battleStateOK;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, nurseButton, psychicButton, sacrificeButton, scoutButton, tankButton, thiefButton, invRadioButton, deleteButton, battleStateBattle, battleStateBack, battleStatePlay, battleStateNext, battleStateOK, playAgainButton;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
@@ -41,7 +41,7 @@ public class Assets {
         textField = new BufferedImage[2];
         teamButton = new BufferedImage[2];
         blankButton = new BufferedImage[1];
-        gamblerButton = new BufferedImage[2];
+        nurseButton = new BufferedImage[2];
         psychicButton = new BufferedImage[2];
         sacrificeButton = new BufferedImage[2];
         scoutButton = new BufferedImage[2];
@@ -53,6 +53,7 @@ public class Assets {
         battleStateNext = new BufferedImage[2];
         deleteButton = new BufferedImage[2];
         battleStateOK = new BufferedImage[2];
+        playAgainButton = new BufferedImage[2];
 
 
         //Setting default button width and height
@@ -87,8 +88,8 @@ public class Assets {
         teamButton[1] = ImageHandler.loadImage("/textures/TeamButton1.png");
         teamButton[0] = ImageHandler.loadImage("/textures/TeamButton2.png");
 
-        gamblerButton[1] = ImageHandler.loadImage("/textures/GamblerButton1.png");
-        gamblerButton[0] = ImageHandler.loadImage("/textures/GamblerButton2.png");
+        nurseButton[1] = ImageHandler.loadImage("/textures/NurseButton1.png");
+        nurseButton[0] = ImageHandler.loadImage("/textures/NurseButton2.png");
 
         psychicButton[1] = ImageHandler.loadImage("/textures/PsychicButton1.png");
         psychicButton[0] = ImageHandler.loadImage("/textures/PsychicButton2.png");
@@ -122,6 +123,9 @@ public class Assets {
 
         deleteButton[1] = ImageHandler.loadImage("/textures/DeleteButton1.png");
         deleteButton[0] = ImageHandler.loadImage("/textures/DeleteButton2.png");
+
+        playAgainButton[1] = ImageHandler.loadImage("/textures/PlayAgainButton1.png");
+        playAgainButton[0] = ImageHandler.loadImage("/textures/PlayAgainButton2.png");
 
         //Player animation frame to crop
         walkingUp[0] = playerSheet.getImage(0, 0, widthPlayerSheet, heightPlayerSheet);

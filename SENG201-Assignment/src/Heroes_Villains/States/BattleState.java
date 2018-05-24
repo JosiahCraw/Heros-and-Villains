@@ -125,17 +125,26 @@ public class BattleState extends State {
                 }
             }
             if(nextCity.click() && game.getMouseListener().leftClicked) {
-                game.getMouseListener().leftClicked = false;
-                battling = false;
-                battleWon = false;
-                won = false;
-                lost = false;
-                currLives = VILLAIN_LIVES;
-                game.getPlayer().money += reward;
-                game.getPlayer().setCurrentRoom(4);
-                game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity()+1);
-                game.getStateHandler().setState(game.getGameState());
-                return;
+                if (game.getPlayer().getCurrentCity() < game.getNoOfCities() - 1) {
+                    game.getMouseListener().leftClicked = false;
+                    battling = false;
+                    battleWon = false;
+                    won = false;
+                    lost = false;
+                    currLives = VILLAIN_LIVES;
+                    game.getPlayer().money += reward;
+                    game.getPlayer().setCurrentRoom(4);
+                    game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity() + 1);
+                    game.getStateHandler().setState(game.getGameState());
+
+
+
+                    return;
+                } else {
+                    game.endState.setWon(true);
+                    game.endState.setTotalSecs(game.count);
+                    game.getStateHandler().setState(game.getEndState());
+                }
             }
             return;
         }
@@ -244,8 +253,9 @@ public class BattleState extends State {
             heroSelect2.clicked(0);
             heroSelect3.clicked(0);
             currDead++;
-            if(currDead == game.getNoOfHeros()) {
-                game.stop();
+            if(game.getTeam().size() == 0) {
+                game.endState.setWon(false);
+                game.getStateHandler().setState(game.getEndState());
             }
         }
 

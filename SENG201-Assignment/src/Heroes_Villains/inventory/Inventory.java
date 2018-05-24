@@ -140,6 +140,12 @@ public class Inventory {
         }else {
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.GRAY, Assets.invFont);
         }
+
+        if (game.getMouseListener().isHovering(imageX, imageY, imageWidth, imageHeight)) {
+            DrawText.draw(graphics, items.get(currentIndex).getDescription(), 30+inventoryX, 30+inventoryY,false, Color.GRAY, Assets.smallFont);
+        }
+
+
         if(game.getTeam().size()==1) {
             heroSelector1.render(graphics);
         }

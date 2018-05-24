@@ -17,8 +17,8 @@ public class HealingItem extends Item {
     private int healthAmount;
     private int applyTime;
 
-    public HealingItem(int id, String name, BufferedImage image, Game game, Citys cityClass, int healthAmount, int cost, int applyTime) {
-        super(id, name, image, game, cityClass);
+    public HealingItem(int id, String name, BufferedImage image, Game game, Citys cityClass, int healthAmount, int cost, int applyTime, String description) {
+        super(id, name, image, game, cityClass, description);
         this.healthAmount = healthAmount;
         this.cost = cost;
         this.applyTime = applyTime;

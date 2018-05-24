@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 
 public class Map extends Item {
 
-    public Map(int id, String name, BufferedImage image, Game game, Citys cityClass, int cost) {
-        super(id, name, image, game, cityClass);
+    public Map(int id, String name, BufferedImage image, Game game, Citys cityClass, int cost, String description) {
+        super(id, name, image, game, cityClass, description);
         this.cost = cost;
     }
 

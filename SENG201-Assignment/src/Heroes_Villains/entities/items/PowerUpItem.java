@@ -11,8 +11,8 @@ public class PowerUpItem extends Item {
 
     private String type;
 
-    public PowerUpItem(int id, String name, BufferedImage image, Game game, Citys cityClass, String type, int cost) {
-        super(id, name, image, game, cityClass);
+    public PowerUpItem(int id, String name, BufferedImage image, Game game, Citys cityClass, String type, int cost, String description) {
+        super(id, name, image, game, cityClass, description);
         this.type = type;
         this.cost = cost;
     }

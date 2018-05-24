@@ -18,7 +18,7 @@ public class MapTest {
 
     @Before
     public void setUp() throws Exception {
-        testMap = new Map(6, "Map", Assets.map, game, citys, 30);
+        testMap = new Map(6, "Map", Assets.map, game, citys, 30, "A Map");
     }
 
     @After

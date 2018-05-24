@@ -15,14 +15,16 @@ public abstract class Item {
     protected Game game;
     protected Citys cityClass;
     public int cost;
+    private String description;
 
 
-    public Item(int id, String name, BufferedImage image, Game game, Citys cityClass) {
+    public Item(int id, String name, BufferedImage image, Game game, Citys cityClass, String description) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.game = game;
         this.cityClass = cityClass;
+        this.description = description;
     }
 
     public abstract void use(Hero hero);
@@ -57,6 +59,10 @@ public abstract class Item {
     //Setter
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
 }

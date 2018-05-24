@@ -89,6 +89,10 @@ public class Shop {
         }else {
             DrawText.draw(graphics, ">BUY<", 655+inventoryX, 290+inventoryY,true, Color.GRAY, Assets.invFont);
         }
+
+
+        DrawText.draw(graphics, shopItems.get(currentIndex).getDescription(), 30+inventoryX, 30+inventoryY,false, Color.GRAY, Assets.smallFont);
+
     }
 
 }

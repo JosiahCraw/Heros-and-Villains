@@ -8,31 +8,18 @@ import Heroes_Villains.utils.RandomNum;
 
 import java.awt.*;
 
-/**
- * Represents the city object containing Rooms.
- */
 public class City {
 
-    private int cityNo;
+    public int cityNo;
     public Rooms[] rooms;
     private boolean hasMap;
+
     private Game game;
-    private Rooms homeBase, powerUpDen, villainRoom;
+
+    public Rooms homeBase, powerUpDen, villainRoom;
     public Hospital hospital;
     public Inn inn;
 
-    /**
-     * Constructor takes the game, a list of the object containing
-     * all the cities in the game and the player object.
-     *
-     * Constructor makes one new room for each type and the calls the init()
-     * method for each room.
-     *
-     * @param cityNo Is the index of this city object in the cities array.
-     * @param game object containing all objects and variables in the game.
-     * @param cities object containing an array of all the cities in the game.
-     * @param player object containing all the variables about the player
-     */
     public City(int cityNo, Game game, Citys cities, Player player) {
         this.cityNo = cityNo;
         this.game = game;
@@ -49,12 +36,6 @@ public class City {
         init(villainRoom);
     }
 
-    /**
-     * Takes the input of a room then randomly assigns the room to an empty
-     * index in the rooms array.
-     *
-     * @param room the room object to be randomly assigned an index.
-     */
     public void init(Rooms room) {
         int index = RandomNum.getNum(4);
         while(rooms[index] != null) {
@@ -63,12 +44,6 @@ public class City {
         rooms[index] = room;
     }
 
-    /**
-     * Checks if the team has a scout, if it does the city
-     * set hasMap to true to emulate having used a map item.
-     *
-     * Method then updates the room that the player is currently in.
-     */
     public void update() {
         for(int i=0; i<game.getTeam().size(); i++) {
             if(game.getTeam().get(i).getType() == "Scout") {
@@ -77,13 +52,6 @@ public class City {
         }
         rooms[game.getPlayer().getCurrentRoom()].update();
     }
-
-    /**
-     * The city number is drawn to the canvas and the
-     * render method is then called for the room the player is currently in.
-     *
-     * @param graphics the object that everything is drawn to.
-     */
     public void render(Graphics graphics) {
         graphics.setFont(Assets.titleFont);
         graphics.drawString("City: " + Integer.toString(cityNo+1), 300, 400);
@@ -91,32 +59,14 @@ public class City {
 
     }
 
-    /**
-     * Getes the array of rooms.
-     *
-     * @return the array of room objects.
-     */
     public Rooms[] getRooms() {
         return rooms;
     }
 
-    /**
-     * Gets the boolean value for if the city has
-     * a map
-     *
-     * @return the boolean value for if the city has a map.
-     */
     public boolean isHasMap() {
         return hasMap;
     }
 
-    /**
-     * Set has map, so when using the map from inventory
-     * the city can be updated.
-     *
-     * @param hasMap boolean value for wether the city
-     *               has a map object.
-     */
     public void setHasMap(boolean hasMap) {
         this.hasMap = hasMap;
     }

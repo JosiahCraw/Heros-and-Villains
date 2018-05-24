@@ -3,10 +3,6 @@ package Heroes_Villains.display;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Class that creates the window, JFrame and canvas that the
- * game is rendered to.
- */
 public class Display {
 
     private JFrame frame;
@@ -15,13 +11,6 @@ public class Display {
     private String title;
     int width, height;
 
-    /**
-     * Constructor that takes variables to create the window.
-     *
-     * @param title the title to be displayed on the window.
-     * @param width the width in pixels of the window and canvas.
-     * @param height the height in pixels of the window and the canvas.
-     */
     public Display(String title, int width, int height) {
         this.title = title;
         this.width = width;
@@ -29,9 +18,6 @@ public class Display {
         createDisplay();
     }
 
-    /**
-     * Crea
-     */
     private void createDisplay(){
 
         //JFrame creation and init

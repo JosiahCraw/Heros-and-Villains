@@ -147,16 +147,16 @@ public class Inventory {
             heroSelector3.render(graphics);
         }
         if(game.getTeam().size()==1) {
-            DrawText.draw(graphics, game.getTeam().get(heroSelector1.currentlyClicked).getName(), countX, countY+225, true, Color.WHITE, Assets.smallFont);
-            DrawText.draw(graphics, "Health: "+Integer.toString(game.getTeam().get(heroSelector1.currentlyClicked).getHealth()), countX, countY+240, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, game.getTeam().get(heroSelector1.currentlyClicked).getName(), countX, countY+240, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, "Health: "+Integer.toString(game.getTeam().get(heroSelector1.currentlyClicked).getHealth()), countX, countY+270, true, Color.WHITE, Assets.smallFont);
         }
         if(game.getTeam().size()==2) {
-            DrawText.draw(graphics, game.getTeam().get(heroSelector2.currentlyClicked).getName(), countX, countY+225, true, Color.WHITE, Assets.smallFont);
-            DrawText.draw(graphics, "Health: "+Integer.toString(game.getTeam().get(heroSelector2.currentlyClicked).getHealth()), countX, countY+240, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, game.getTeam().get(heroSelector2.currentlyClicked).getName(), countX, countY+240, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, "Health: "+Integer.toString(game.getTeam().get(heroSelector2.currentlyClicked).getHealth()), countX, countY+270, true, Color.WHITE, Assets.smallFont);
         }
         if(game.getTeam().size()==3) {
-            DrawText.draw(graphics, game.getTeam().get(heroSelector3.currentlyClicked).getName(), countX, countY+225, true, Color.WHITE, Assets.smallFont);
-            DrawText.draw(graphics, "Health: "+Integer.toString(game.getTeam().get(heroSelector3.currentlyClicked).getHealth()), countX, countY+240, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, game.getTeam().get(heroSelector3.currentlyClicked).getName(), countX, countY+240, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, "Health: "+Integer.toString(game.getTeam().get(heroSelector3.currentlyClicked).getHealth()), countX, countY+270, true, Color.WHITE, Assets.smallFont);
         }
 
     }

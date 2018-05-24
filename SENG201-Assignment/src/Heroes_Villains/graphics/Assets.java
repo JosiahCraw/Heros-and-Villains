@@ -202,11 +202,11 @@ public class Assets {
 
         //titleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 70);
 
-        titleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 70);
-        invFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 36);
-        smallFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 20);
-        battleFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 24);
-        tinyFont = FontLoader.load("SENG201-Assignment/res/fonts/Symtext.ttf", 16);
+        titleFont = FontLoader.load("/textures/Symtext.ttf", 70);
+        invFont = FontLoader.load("/textures/Symtext.ttf", 36);
+        smallFont = FontLoader.load("/textures/Symtext.ttf", 20);
+        battleFont = FontLoader.load("/textures/Symtext.ttf", 24);
+        tinyFont = FontLoader.load("/textures/Symtext.ttf", 16);
 
 
 

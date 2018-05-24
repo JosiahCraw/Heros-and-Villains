@@ -214,8 +214,8 @@ public class Player extends Living {
                 DrawText.draw(graphics, rob, 640, 360, true, Color.WHITE, Assets.smallFont);
                 return;
             }
-            robButton.render(graphics);
             graphics.drawImage(Assets.stolenPopup, 384, 168, null);
+            robButton.render(graphics);
             graphics.drawImage(robItem.image,577,230, 128, 128, null);
             DrawText.draw(graphics,  "A " + robItem.name + " was stolen", 640, 380, true, Color.WHITE, Assets.smallFont);
         }
@@ -226,8 +226,8 @@ public class Player extends Living {
                 DrawText.draw(graphics, gift, 640, 360, true, Color.WHITE, Assets.smallFont);
                 return;
             }
-            giftButton.render(graphics);
             graphics.drawImage(Assets.stolenPopup, 384, 168, null);
+            giftButton.render(graphics);
             graphics.drawImage(giftItem.image,577,230, 128, 128, null);
             DrawText.draw(graphics, "You were gifted: "+ giftItem.name, 640, 380, true, Color.WHITE, Assets.smallFont);
         }

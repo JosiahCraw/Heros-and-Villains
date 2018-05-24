@@ -26,6 +26,7 @@ public class Player extends Living {
 
     private int width;
     private int height;
+    private int speed;
 
     //Inventory
     private Inventory inventory;
@@ -40,16 +41,16 @@ public class Player extends Living {
         animLeft.update();
         animRight.update();
         if(game.getKeyboardListener().up) {
-            y-=20;
+            y-=speed;
         }
         if(game.getKeyboardListener().left) {
-            x-=20;
+            x-=speed;
         }
         if(game.getKeyboardListener().down) {
-            y+=20;
+            y+=speed;
         }
         if(game.getKeyboardListener().right) {
-            x+=20;
+            x+=speed;
         }
         inventory.update();
 
@@ -98,6 +99,7 @@ public class Player extends Living {
 
     public Player(float x, float y, String name, Game game) {
         super(x, y);
+        speed = 20;
         this.name = name;
         this.width = 128;
         this.height = 128;
@@ -160,6 +162,14 @@ public class Player extends Living {
 
     public int getHeight() {
         return height;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 }
 

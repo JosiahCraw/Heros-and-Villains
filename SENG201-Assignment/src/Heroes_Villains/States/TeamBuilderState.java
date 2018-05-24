@@ -98,6 +98,10 @@ public class TeamBuilderState extends State {
                 game.battleState = new BattleState(game);
                 game.adminState = new AdminState(game, ((GameState) game.gameState).masterCities, ((BattleState) game.battleState));
                 game.getStateHandler().setState(game.getGameState());
+
+                game.getTeam().get(0).setHealth(100);
+                game.getTeam().get(1).setHealth(100);
+                game.getTeam().get(2).setHealth(100);
             }
 
         }
@@ -154,7 +158,7 @@ public class TeamBuilderState extends State {
                     }
                     if (!dontAdd) {
                         game.getTeam().add(new Hero(200, "Tank", nameinput.getInput()));
-                        game.getTeam().get(0).setHealth(100);
+
                         nameinput.setInput("");
                     }
 

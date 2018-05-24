@@ -58,7 +58,7 @@ public class HealingItem extends Item {
 
 
             //GameState currentState = (GameState)game.gameState;
-            game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].hospital.test.setTimeRemaining((applyTime/4)*loops);
+            game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].hospital.getTimerList().get(game.getTeam().indexOf(hero)).setTimeRemaining((applyTime/4)*loops);
             //PotionTimer test = new PotionTimer(200,200,hero,game,Assets.deleteButton, applyTime);
 
             TimerTask task = new TimerTask() {

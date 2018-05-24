@@ -7,7 +7,7 @@ import Heroes_Villains.graphics.Assets;
 
 public class ItemHandler {
 
-    public Item basicPotion, advancedPotion, masterPotion, coins;
+    public Item basicPotion, advancedPotion, masterPotion, coins, speedScroll, healthScroll, abilityScroll;
 
     public ItemHandler(Game game, Citys citys, Player player) {
 
@@ -15,5 +15,9 @@ public class ItemHandler {
         advancedPotion = new HealingItem(1, "Advanced Potion", Assets.advancedPotion, game, citys, 40, 50, 20);
         masterPotion = new HealingItem(2, "Master Potion", Assets.masterPotion, game, citys, 80, 75, 4);
         //coins = new Coins(3, "Coins", Assets.coin, game, citys, player);
+
+        speedScroll = new PowerUpItem(3, "Speed Scroll", Assets.basicPotion, game, citys,"SPEED", 25);
+        healthScroll = new PowerUpItem(4, "Health Scroll", Assets.basicPotion, game, citys, "HEALTH", 20);
+        abilityScroll = new PowerUpItem(5, "Ability Scroll", Assets.basicPotion, game, citys, "ABILITY", 50);
     }
 }

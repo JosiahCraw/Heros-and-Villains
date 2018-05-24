@@ -34,6 +34,9 @@ public class InnKeeper extends NPC {
         items.add(itemHandler.basicPotion);
         items.add(itemHandler.advancedPotion);
         items.add(itemHandler.masterPotion);
+        items.add(itemHandler.abilityScroll);
+        items.add(itemHandler.healthScroll);
+        items.add(itemHandler.speedScroll);
         shop = new Shop(game, items);
     }
 

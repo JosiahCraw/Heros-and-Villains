@@ -9,8 +9,11 @@ import java.awt.image.BufferedImage;
 
 public class PowerUpItem extends Item {
 
-    public PowerUpItem(int id, String name, BufferedImage image, Game game, Citys cityClass) {
+    private String type;
+
+    public PowerUpItem(int id, String name, BufferedImage image, Game game, Citys cityClass, String type, int cost) {
         super(id, name, image, game, cityClass);
+        this.type = type;
     }
 
     @Override

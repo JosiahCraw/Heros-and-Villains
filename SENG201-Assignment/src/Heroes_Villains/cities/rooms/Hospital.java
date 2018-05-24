@@ -8,16 +8,36 @@ import Heroes_Villains.graphics.Assets;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Hospital extends  Rooms{
+/**
+ * Represents the Hospital room of each city.
+ */
+public class Hospital extends Rooms{
 
+    /**
+     * Creates a new DoorWay object in the room.
+     */
     private DoorWay exit = new DoorWay(game,1230, 310, Assets.doorWay, true, 4);
 
+    /**
+     * Gets the ArrayList containing the potion timers.
+     * @return Returns an ArrayList containing all of the active potion timers.
+     */
     public ArrayList<PotionTimer> getTimerList() {
         return  timerList;
     }
 
+    /**
+     * Creates a new ArrayList to contain the potion timers.
+     */
     public ArrayList<PotionTimer> timerList = new ArrayList<PotionTimer>();
 
+    /**
+     * Constructor for the Hospital room.
+     * the variable for the name of the room in the abstract room class
+     * and initiates the int offset variable.
+     *
+     * @param game
+     */
     public Hospital(Game game) {
         super(game);
         roomName = "Hospital";
@@ -30,14 +50,6 @@ public class Hospital extends  Rooms{
 
     @Override
     public void update() {
-        /*
-        if(game.getMouseListener().isHovering(1200, 360, 16, 16) && game.getMouseListener().leftClicked) {
-            game.getMouseListener().leftClicked = false;
-            game.getPlayer().setX(576);
-            game.getPlayer().setY(296);
-            game.getPlayer().setCurrentRoom(4);
-        }
-        */
         for (PotionTimer timer : timerList) {
             timer.update();
         }

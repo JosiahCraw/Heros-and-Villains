@@ -13,7 +13,7 @@ import java.awt.*;
 
 public class BattleState extends State {
 
-    private UIButton battleButton, backButton, nextCity, okButton, okButton2;
+    private UIButton battleButton, backButton, nextCity, okButton, okButton2, psychicButton;
     private RadioButtons heroSelect1, heroSelect2, heroSelect3;
     public MiniGame currMiniGame;
     public boolean battling;
@@ -26,14 +26,16 @@ public class BattleState extends State {
     private int radioTotalWidth1, radioTotalWidth2, radioTotalWidth3, taunt, reward;
     private String[] villainNames, villainTaunts;
     private String villainName;
+    private boolean nurse, psychic, psychicUsed, sacrifice, abitiy, useAbilityHovering;
 
     public BattleState(Game game) {
         super(game);
         nextCity = new UIButton(640-Assets.buttonWidth/2, 500, game, Assets.battleStateNext, Assets.buttonWidth, Assets.buttonHeight);
-        battleButton = new UIButton(640-Assets.buttonWidth/2, 200, game, Assets.battleStateBattle, Assets.buttonWidth, Assets.buttonHeight);
+        battleButton = new UIButton(640-Assets.buttonWidth/2, 350, game, Assets.battleStateBattle, Assets.buttonWidth, Assets.buttonHeight);
         okButton = new UIButton(640-Assets.buttonWidth/2, 250, game, Assets.battleStateOK, Assets.buttonWidth, Assets.buttonHeight);
         okButton2 = new UIButton(640-Assets.buttonWidth/2, 475, game, Assets.battleStateOK, Assets.buttonWidth, Assets.buttonHeight);
-        backButton = new UIButton(640-Assets.buttonWidth/2, 300, game, Assets.battleStateBack, Assets.buttonWidth, Assets.buttonHeight);
+        backButton = new UIButton(640-Assets.buttonWidth/2, 400, game, Assets.battleStateBack, Assets.buttonWidth, Assets.buttonHeight);
+        psychicButton = new UIButton(640-Assets.buttonWidth/2, 475, game, Assets.battleStateOK, Assets.buttonWidth, Assets.buttonHeight);
         radioTotalWidth1 = 50;
         radioTotalWidth2 = 10+100;
         radioTotalWidth3 = 20+150;
@@ -68,6 +70,7 @@ public class BattleState extends State {
         taunting = false;
         won = false;
         lost = false;
+        psychicUsed = false;
     }
 
     @Override
@@ -116,6 +119,47 @@ public class BattleState extends State {
                 return;
             }
         }
+        abitiy = game.getTeam().get(currHero).isAbilityUsed();
+        if(game.getTeam().get(currHero).getType() == "Psychic" && !abitiy) {
+            psychic = true;
+            nurse = false;
+            sacrifice = false;
+            if(game.getMouseListener().isHovering(990, 463, 144, 78) && game.getMouseListener().leftClicked) {
+                game.getMouseListener().leftClicked = false;
+                game.getTeam().get(currHero).setAbilityUsed(true);
+                psychicUsed = true;
+            }
+        }else if(game.getTeam().get(currHero).getType() == "Nurse" && !abitiy) {
+            nurse = true;
+            psychic = false;
+            sacrifice = false;
+            if (game.getMouseListener().isHovering(990, 463, 144, 78) && game.getMouseListener().leftClicked) {
+                game.getMouseListener().leftClicked = false;
+                game.getTeam().get(currHero).setAbilityUsed(true);
+                game.getTeam().get(currHero).setHealth(game.getTeam().get(currHero).getMaxHealth());
+            }
+        }else if(game.getTeam().get(currHero).getType() == "Sacrifice" && !abitiy) {
+            sacrifice = true;
+            nurse = false;
+            psychic = false;
+            if(game.getMouseListener().isHovering(990, 463, 144, 78) && game.getMouseListener().leftClicked) {
+                game.getMouseListener().leftClicked = false;
+                game.getTeam().get(currHero).setAbilityUsed(true);
+                game.getTeam().remove(currHero);
+                battleWon = true;
+            }
+        }else {
+            sacrifice = false;
+            nurse = false;
+            psychic = false;
+        }
+        if(psychicUsed) {
+            psychicButton.update();
+            if(psychicButton.click() && game.getMouseListener().leftClicked) {
+                game.getMouseListener().leftClicked = false;
+                psychicUsed = false;
+            }
+        }
         if(battleWon) {
             nextCity.update();
             reward = 50;
@@ -135,10 +179,9 @@ public class BattleState extends State {
                     game.getPlayer().money += reward;
                     game.getPlayer().setCurrentRoom(4);
                     game.getPlayer().setCurrentCity(game.getPlayer().getCurrentCity() + 1);
+                    game.getPlayer().setX(640 - (game.getPlayer().getWidth())/2);
+                    game.getPlayer().setY(360 - (game.getPlayer().getHeight())/2);
                     game.getStateHandler().setState(game.getGameState());
-
-
-
                     return;
                 } else {
                     game.endState.setWon(true);
@@ -186,6 +229,7 @@ public class BattleState extends State {
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
             battleButton.render(graphics);
             backButton.render(graphics);
+            DrawText.draw(graphics, "Do you want to battle?", 640, 300, true, Color.WHITE, Assets.smallFont);
             return;
         }
         if(battleWon) {
@@ -204,13 +248,18 @@ public class BattleState extends State {
 
 
         }
+        DrawText.draw(graphics, "Ability", 1066, 500, true, Color.GRAY, Assets.battleFont);
+        if((psychic || nurse || sacrifice) && !abitiy) {
+            DrawText.draw(graphics, "Ability", 1066, 500, true, Color.WHITE, Assets.battleFont);
+            if(game.getMouseListener().isHovering(990, 463, 144, 78) && !abitiy) {
+                DrawText.draw(graphics, "Ability", 1066, 500, true, Color.YELLOW, Assets.battleFont);
+            }
+        }
         DrawText.draw(graphics, currMiniGame.gameName, 1070, 80, true, Color.WHITE, Assets.battleFont);
         DrawText.draw(graphics, "Hero: " + game.getTeam().get(currHero).getName(), 1065, 347, true, Color.WHITE, Assets.smallFont);
         DrawText.draw(graphics, "Health: " + Integer.toString(game.getTeam().get(currHero).getHealth()), 1065, 407, true, Color.WHITE, Assets.smallFont);
-        //heroSelect.render(graphics);
         currMiniGame.render(graphics);
         if(won) {
-
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
             okButton.render(graphics);
 
@@ -228,6 +277,12 @@ public class BattleState extends State {
             DrawText.draw(graphics, " and you lost", 640, 450,true, Color.WHITE, Assets.invFont);
         }
         DrawText.draw(graphics, "Villain lives remaining: " + Integer.toString(currLives), 376, 97, true, Color.WHITE, Assets.smallFont);
+        if(psychicUsed) {
+            graphics.drawImage(Assets.battlePopup, 384, 168, null);
+            psychicButton.render(graphics);
+            DrawText.draw(graphics, "The villain will play:", 640, 350, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, currMiniGame.villainMoveWords, 640, 420, true, Color.WHITE, Assets.invFont);
+        }
     }
 
     public void won(int hero) {

@@ -1,22 +1,37 @@
 package Heroes_Villains.entities.items;
 
 import Heroes_Villains.Game;
-import Heroes_Villains.States.GameState;
-import Heroes_Villains.SystemUI.PotionTimer;
 import Heroes_Villains.cities.Citys;
 import Heroes_Villains.cities.rooms.Hospital;
 import Heroes_Villains.entities.heroes.Hero;
-import Heroes_Villains.graphics.Assets;
 
 import java.awt.image.BufferedImage;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Represents an Item used to heal a hero.
+ * Extends Item.
+ */
 public class HealingItem extends Item {
 
     private int healthAmount;
     private int applyTime;
 
+    /**
+     * Constructor sets the default class variables.
+     *
+     * @param id the id numble of the item.
+     * @param name the name of the item.
+     * @param image the image of the item.
+     * @param game the game object containing all objects and variables in the game.
+     * @param cityClass the object containing the array of City objects.
+     * @param healthAmount the amount of health that potion will heal to a hero.
+     * @param cost the amount that the item costs to buy.
+     * @param applyTime the amount of time is take for the item to full be
+     *                  used on the player.
+     * @param description the written description of the item.
+     */
     public HealingItem(int id, String name, BufferedImage image, Game game, Citys cityClass, int healthAmount, int cost, int applyTime, String description) {
         super(id, name, image, game, cityClass, description);
         this.healthAmount = healthAmount;
@@ -51,14 +66,7 @@ public class HealingItem extends Item {
             }
 
             System.out.println(loops);
-
-
-
-
-            //GameState currentState = (GameState)game.gameState;
             game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].hospital.getTimerList().get(game.getTeam().indexOf(hero)).setTimeRemaining((applyTime/4)*loops);
-            //PotionTimer test = new PotionTimer(200,200,hero,game,Assets.deleteButton, applyTime);
-
             TimerTask task = new TimerTask() {
                 int timerCounter = 0;
                 @Override
@@ -91,6 +99,10 @@ public class HealingItem extends Item {
 
     }
 
+    /**
+     * Returns a boolean if the item is able to be used.
+     * @return
+     */
     public boolean isUseable() {
         try {
 

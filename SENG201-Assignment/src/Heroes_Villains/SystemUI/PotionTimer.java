@@ -33,11 +33,15 @@ public class PotionTimer extends UIElement {
 
     @Override
     public void update() {
-
+        if (!hero.getUsingPotion()) {
+            previousCount = game.count;
+        }
         if (timeRemaining > 0) {
 
             if (previousCount < game.count) {
-                timeRemaining -= 1;
+                timeRemaining -= game.count - previousCount;
+
+
                 previousCount = game.count;
             }
         }

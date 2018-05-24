@@ -23,7 +23,7 @@ public class ControlsState extends State {
         backButton.update();
         if(game.getMouseListener().isLeftClicked() && backButton.click()){
             game.getMouseListener().leftClicked = false;
-            game.getStateHandler().setState(game.getMenuState());
+            game.getStateHandler().setState(game.getStateHandler().lastState);
         }
     }
 

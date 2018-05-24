@@ -2,6 +2,9 @@ package Heroes_Villains.utils;
 
 import java.util.Random;
 
+/**
+ * A class for generating a random number within a given bound
+ */
 public class RandomNum {
 
     /**

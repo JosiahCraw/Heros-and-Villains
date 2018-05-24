@@ -8,10 +8,17 @@ import Heroes_Villains.graphics.DrawText;
 
 import java.awt.*;
 
+/**
+ * Class for the game's control state, simply lists out the controls
+ */
 public class ControlsState extends State {
 
     private UIElement backButton;
 
+    /**
+     * Controls state constructor, initializes a back button
+     * @param game
+     */
     public ControlsState(Game game) {
         super(game);
         backButton = new UIButton(540, 483, game, Assets.backButton, 200, 35);
@@ -30,6 +37,9 @@ public class ControlsState extends State {
     @Override
     public void render(Graphics graphics) {
 
+        DrawText.draw(game.getGraphics(), "Set text field text ------> ENTER  ", game.width/2, (game.height/2)-290, true, Color.BLACK, Assets.smallFont);
+        DrawText.draw(game.getGraphics(), "Inventory item up --------> UP     ", game.width/2, (game.height/2)-260, true, Color.BLACK, Assets.smallFont);
+        DrawText.draw(game.getGraphics(), "Inventory item down ------> DOWN   ", game.width/2, (game.height/2)-230, true, Color.BLACK, Assets.smallFont);
         DrawText.draw(game.getGraphics(), "Move player up -----------> W      ", game.width/2, (game.height/2)-200, true, Color.BLACK, Assets.smallFont);
         DrawText.draw(game.getGraphics(), "Move player down ---------> S      ", game.width/2, (game.height/2)-170, true, Color.BLACK, Assets.smallFont);
         DrawText.draw(game.getGraphics(), "Move player left ---------> A      ", game.width/2, (game.height/2)-140, true, Color.BLACK, Assets.smallFont);

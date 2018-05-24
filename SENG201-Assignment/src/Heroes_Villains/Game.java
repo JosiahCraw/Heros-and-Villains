@@ -13,6 +13,9 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
+/**
+ * Main game object class that is passed through most other objects
+ */
 public class Game implements Runnable{ //Runnable allows the class to use threads
 
     /**

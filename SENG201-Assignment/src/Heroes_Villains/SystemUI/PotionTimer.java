@@ -8,22 +8,40 @@ import Heroes_Villains.graphics.DrawText;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-
+/**
+ * Class for a potion timer to display on screen
+ */
 public class PotionTimer extends UIElement {
 
     private Hero hero;
     private int previousCount;
 
+    /**
+     * Method for setting the remaining time on the timer
+     * @param timeRemaining integer, time value in seconds
+     */
     public void setTimeRemaining(int timeRemaining) {
         this.timeRemaining = timeRemaining;
     }
 
+    /**
+     * Method for getting the remaining time of the timer
+     * @return integer, time remaining
+     */
     public int getTimeRemaining() {
         return timeRemaining;
     }
 
     private int timeRemaining;
 
+    /**
+     * Constructor method for Potion timer
+     * @param x integer, x position on screen
+     * @param y integer, y position on screen
+     * @param hero hero object that timer applies to
+     * @param game game object
+     * @param images BufferedImage[] object, assets for the potion timer
+     */
     public PotionTimer(int x, int y, Hero hero, Game game, BufferedImage[] images) {
         super(x,y,game, images);
         this.hero = hero;

@@ -14,6 +14,9 @@ import com.sun.corba.se.spi.servicecontext.UEInfoServiceContext;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class for creating the games setup state, this allows the user to set a team name, the number of cities to explore, and the number of heros that will be on there team. From this state they progress to the team builder state
+ */
 public class SetupState extends State{
 
     private UIElement backButton;
@@ -25,7 +28,10 @@ public class SetupState extends State{
 
     //private UIElement testButton;
 
-
+    /**
+     * Constructor method for setup state, renders various radio buttons and buttons to obtain the values set by the class
+     * @param game game object, generic pass-through of all game variables
+     */
     public SetupState(Game game) {
         super(game);
         backButton = new UIButton(540, 553, game, Assets.backButton, 200, 35);

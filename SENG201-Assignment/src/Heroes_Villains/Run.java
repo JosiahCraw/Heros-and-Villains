@@ -1,5 +1,8 @@
 package Heroes_Villains;
 
+/**
+ * Class called when the game is run
+ */
 public class Run {
 
 

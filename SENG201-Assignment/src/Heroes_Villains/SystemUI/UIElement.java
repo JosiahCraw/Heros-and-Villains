@@ -5,6 +5,9 @@ import Heroes_Villains.Game;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ *  Abstract parent class for elements based on user interaction
+ */
 public abstract class UIElement {
 
     public int x, y;
@@ -16,7 +19,7 @@ public abstract class UIElement {
      * @param x integer, x position on screen
      * @param y integer, y position on screen
      * @param game Game object, passed down through code hierarchy
-     * @param images BufferedImage[] object with the assets for the button
+     * @param images BufferedImage[] object with the assets for the element
      */
     public UIElement(int x, int y, Game game, BufferedImage[] images) {
         this.x = x;

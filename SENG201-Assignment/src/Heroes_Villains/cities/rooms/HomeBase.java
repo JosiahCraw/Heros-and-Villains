@@ -10,6 +10,7 @@ import java.awt.*;
 
 /**
  * Represents the HomeBase room in each city.
+ * Extends Rooms
  */
 public class HomeBase extends Rooms{
 
@@ -21,6 +22,10 @@ public class HomeBase extends Rooms{
     private DoorWay rightDoor = new DoorWay(game, 1230, 310, Assets.doorWay, true, 2);
     private DoorWay topDoor = new DoorWay(game, 590, 0, Assets.doorWayH, false, 1);
     private DoorWay bottomDoor = new DoorWay(game, 590, 670, Assets.doorWayH, false, 3);
+
+    /**
+     * If hasMap is true the names of the rooms will drawn to the canvas.
+     */
     private boolean hasMap;
 
     /**
@@ -37,11 +42,6 @@ public class HomeBase extends Rooms{
     }
 
     @Override
-    /**
-     * update method for the HomeBase class this updates
-     * all the door objects in the room and checks if the
-     * city the room is contained in has a map.
-     */
     public void update() {
         hasMap = game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].isHasMap();
         leftDoor.update();
@@ -52,17 +52,6 @@ public class HomeBase extends Rooms{
     }
 
     @Override
-    /**
-     * Render method for the HomeBase class this checks if hasMap
-     * and if it does the words for the room names are drawn using
-     * the DrawText class.
-     *
-     * The room name is then drawn to the screen and the
-     * DoorWay objects are rendered
-     *
-     * @param graphics the graphics object that everything displayed on the current
-     *                 canvas is draw to
-     */
     public void render(Graphics graphics) {
         if(hasMap) {
             DrawText.draw(graphics, game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].rooms[0].roomName, 100, 300, true, Color.BLACK, Assets.smallFont);

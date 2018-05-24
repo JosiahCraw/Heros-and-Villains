@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Represents the Hospital room of each city.
+ * Extends Rooms
  */
 public class Hospital extends Rooms{
 
@@ -36,7 +37,11 @@ public class Hospital extends Rooms{
      * the variable for the name of the room in the abstract room class
      * and initiates the int offset variable.
      *
-     * @param game
+     * A potion timer is for each of the heroes
+     * in the team.
+     *
+     * @param game Game object this contains all objects and variables in the
+     *             game.
      */
     public Hospital(Game game) {
         super(game);
@@ -60,15 +65,11 @@ public class Hospital extends Rooms{
     public void render(Graphics graphics) {
         graphics.setFont(Assets.titleFont);
         graphics.drawString("Hospital", 650, 400);
-        //graphics.drawImage(Assets.purple, 1200, 360, null);
-
         for (PotionTimer timer : timerList) {
             if (timer.getTimeRemaining() > 0) {
                 timer.render(graphics);
             }
         }
-
-
         exit.render(graphics);
     }
 }

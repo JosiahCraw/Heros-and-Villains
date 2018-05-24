@@ -10,6 +10,7 @@ import java.awt.*;
 
 /**
  * Represents the HomeBase room in each city.
+ * Extends Rooms
  */
 public class HomeBase extends Rooms{
 
@@ -21,6 +22,10 @@ public class HomeBase extends Rooms{
     private DoorWay rightDoor = new DoorWay(game, 1230, 310, Assets.doorWay, true, 2);
     private DoorWay topDoor = new DoorWay(game, 590, 0, Assets.doorWayH, false, 1);
     private DoorWay bottomDoor = new DoorWay(game, 590, 670, Assets.doorWayH, false, 3);
+
+    /**
+     * If hasMap is true the names of the rooms will drawn to the canvas.
+     */
     private boolean hasMap;
 
     /**

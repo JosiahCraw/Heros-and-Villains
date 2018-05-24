@@ -15,14 +15,12 @@ import java.util.TimerTask;
 public class HealingItem extends Item {
 
     private int healthAmount;
-    private long currentTime;
     private int applyTime;
 
     public HealingItem(int id, String name, BufferedImage image, Game game, Citys cityClass, int healthAmount, int cost, int applyTime) {
         super(id, name, image, game, cityClass);
         this.healthAmount = healthAmount;
         this.cost = cost;
-        this.currentTime = 0;
         this.applyTime = applyTime;
     }
 

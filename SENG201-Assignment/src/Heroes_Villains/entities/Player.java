@@ -24,7 +24,6 @@ public class Player extends Living {
     public Game game;
     public Animation animUp, animDown, animLeft, animRight;
 
-    public String teamName;
     public int money;
     public Rectangle bounds;
 
@@ -51,6 +50,7 @@ public class Player extends Living {
 
 
     @Override
+
     public void update() {
         bounds.x = (int) x;
         bounds.y = (int) y;
@@ -277,14 +277,6 @@ public class Player extends Living {
 
     private BufferedImage getCurrentImage(Animation tempAnim) {
         return tempAnim.getCurrentImage();
-    }
-
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
     }
 
     public int getCurrentCity() {

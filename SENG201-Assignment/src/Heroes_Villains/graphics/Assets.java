@@ -4,6 +4,9 @@ package Heroes_Villains.graphics;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Loads all of the assests for the game, fonts, images, and image arrays.
+ */
 public class Assets {
 
     public static BufferedImage black, purple, playerUp, playerDown, playerLeft, playerRight, villain, innkeep, inn, innFloor, inventory, red, basicPotion, advancedPotion, masterPotion, coin, radio, radioHover, radioClicked, battlePopup, battleState, paper, scissors, rock, map, greenScroll, blueScroll, redScroll, stolenPopup;
@@ -18,6 +21,10 @@ public class Assets {
     //Buffered image arrays for animations
     public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, nurseButton, psychicButton, sacrificeButton, scoutButton, tankButton, thiefButton, invRadioButton, deleteButton, battleStateBattle, battleStateBack, battleStatePlay, battleStateNext, battleStateOK, playAgainButton;
 
+    /**
+     * Initiates the assets by loading them from their respective
+     * files into variables.
+     */
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
         SpriteSheet playerSheet = new SpriteSheet("/textures/sheets/PlayerSheet.png");

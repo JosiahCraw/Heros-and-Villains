@@ -5,6 +5,7 @@ import Heroes_Villains.SystemUI.RadioButtons;
 import Heroes_Villains.SystemUI.UIButton;
 import Heroes_Villains.SystemUI.UIElement;
 import Heroes_Villains.cities.rooms.HomeBase;
+import Heroes_Villains.entities.items.Item;
 import Heroes_Villains.graphics.Animation;
 import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.graphics.DrawText;
@@ -41,10 +42,12 @@ public class Player extends Living {
     private Inventory inventory;
 
     //Team checking
-    private UIElement okButton;
+    private UIElement okButton, robButton, giftButton;
     private RadioButtons heroSelector1, heroSelector2, heroSelector3;
     private int radioWidth1, radioWidth2, radioWidth3, currentlyClicked;
-    private boolean atributes;
+    private boolean atributes, robbed, gifted;
+    private String rob, gift;
+    private Item robItem, giftItem;
 
 
     @Override
@@ -102,7 +105,20 @@ public class Player extends Living {
                 heroSelector3.update();
             }
         }
-
+        if(robbed) {
+            robButton.update();
+            if(robButton.click() && game.getMouseListener().leftClicked) {
+                game.getMouseListener().leftClicked = false;
+                robbed = false;
+            }
+        }
+        if(gifted) {
+            giftButton.update();
+            if(giftButton.click() && game.getMouseListener().leftClicked) {
+                game.getMouseListener().leftClicked = false;
+                gifted = false;
+            }
+        }
         if (game.gameState.masterCities.cities[currentCity].rooms[currentRoom] instanceof HomeBase) {
 
             if (eventOccured == false) {
@@ -113,20 +129,30 @@ public class Player extends Living {
                     case 1:
                         money -= 20;
                         System.out.println("Robbed and lost 20 coins");
+                        robbed = true;
+                        rob = "You were robbed and lost 20 coins";
                         break;
                     case 2:
                         int testNum = RandomNum.getNum(inventory.items.size());
                         inventory.items.get(testNum).count -= 1;
                         System.out.println("You got robbed and lost a random item from your inventory");
+                        robbed = true;
+                        rob = "You got robbed and lost a ";
+                        robItem = inventory.items.get(testNum);
                         break;
                     case 3:
                         money += 20;
                         System.out.println("You were gifted 20 coins");
+                        gifted = true;
+                        gift = "You were gifted 20 coins";
                         break;
                     case 4:
                         int testNum2 = RandomNum.getNum(game.gameState.masterCities.cities[currentCity].inn.getInnKeeper().getItems().size());
                         inventory.addItem(game.gameState.masterCities.cities[currentCity].inn.getInnKeeper().getItems().get(testNum2));
                         System.out.println("You got gifted a random item");
+                        gifted = true;
+                        gift = "You got gifted ";
+                        giftItem = game.gameState.masterCities.cities[currentCity].inn.getInnKeeper().getItems().get(testNum2);
                         break;
                     default:
                         System.out.println("Nothing happened yol");
@@ -181,6 +207,28 @@ public class Player extends Living {
                 return;
             }
         }
+        if(robbed) {
+            if(rob == "You were robbed and lost 20 coins") {
+                graphics.drawImage(Assets.battlePopup, 384, 168, null);
+                robButton.render(graphics);
+                DrawText.draw(graphics, rob, 640, 360, true, Color.WHITE, Assets.smallFont);
+                return;
+            }
+            graphics.drawImage(Assets.stolenPopup, 384, 168, null);
+            graphics.drawImage(robItem.image,577,230, 128, 128, null);
+            DrawText.draw(graphics,  "A " + robItem.name + " was stolen", 640, 360, true, Color.WHITE, Assets.smallFont);
+        }
+        if(gifted) {
+            if(gift == "You were gifted 20 coins") {
+                graphics.drawImage(Assets.battlePopup, 384, 168, null);
+                giftButton.render(graphics);
+                DrawText.draw(graphics, gift, 640, 360, true, Color.WHITE, Assets.smallFont);
+                return;
+            }
+            graphics.drawImage(Assets.stolenPopup, 384, 168, null);
+            graphics.drawImage(giftItem.image,577,230, 128, 128, null);
+            DrawText.draw(graphics, "You were gifted: "+ giftItem.name, 640, 360, true, Color.WHITE, Assets.smallFont);
+        }
     }
 
     public Player(float x, float y, String name, Game game) {
@@ -190,6 +238,8 @@ public class Player extends Living {
         this.width = 128;
         this.height = 128;
         this.bounds = new Rectangle((int) x, (int) y, width, height);
+        robButton = new UIButton(640-Assets.buttonWidth/2, 450, game, Assets.battleStateOK, Assets.buttonWidth, Assets.buttonHeight);
+        giftButton = new UIButton(640-Assets.buttonWidth/2, 450, game, Assets.battleStateOK, Assets.buttonWidth, Assets.buttonHeight);
         inventory = new Inventory(game);
         animUp = new Animation(Assets.batUp, 300);
         animDown = new Animation(Assets.batDown, 300);

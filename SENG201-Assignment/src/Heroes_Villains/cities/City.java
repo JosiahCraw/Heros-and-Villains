@@ -14,7 +14,8 @@ public class City {
 
     private Game game;
 
-    public Rooms homeBase, hospital, inn, powerUpDen, villainRoom;
+    public Rooms homeBase, inn, powerUpDen, villainRoom;
+    public Hospital hospital;
 
     public City(int cityNo, Game game, Citys cities) {
         this.cityNo = cityNo;

@@ -1,9 +1,12 @@
 package Heroes_Villains.entities.items;
 
 import Heroes_Villains.Game;
+import Heroes_Villains.States.GameState;
+import Heroes_Villains.SystemUI.PotionTimer;
 import Heroes_Villains.cities.Citys;
 import Heroes_Villains.cities.rooms.Hospital;
 import Heroes_Villains.entities.heroes.Hero;
+import Heroes_Villains.graphics.Assets;
 
 import java.awt.image.BufferedImage;
 import java.util.Timer;
@@ -26,15 +29,23 @@ public class HealingItem extends Item {
     @Override
     public void use(Hero hero) {
 
-        if (hero.getHealth() < hero.getMaxHealth()) {
+        if ((hero.getHealth() < hero.getMaxHealth()) && !hero.getUsingPotion()) {
             count --;
             Timer timer = new Timer();
+            hero.setUsingPotion(true);
+
+
+
+            //GameState currentState = (GameState)game.gameState;
+            game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].hospital.test.setTimeRemaining(applyTime);
+            //PotionTimer test = new PotionTimer(200,200,hero,game,Assets.deleteButton, applyTime);
 
             TimerTask task = new TimerTask() {
                 int timerCounter = 0;
                 @Override
                 public void run() {
                     if (timerCounter >= 3) {
+                        hero.setUsingPotion(false);
                         timer.cancel();
                     }
                     if (hero.getHealth() + healthAmount/4 < hero.getMaxHealth()) {
@@ -43,9 +54,12 @@ public class HealingItem extends Item {
                         System.out.println(hero.getName() + ": " +hero.getHealth());
                         count--;
                         timerCounter ++;
+                        //test.update();
+                        //test.render(game.getGraphics());
                     } else {
                         hero.setHealth(hero.getMaxHealth());
                         System.out.println(hero.getName() + ": " +hero.getHealth());
+                        hero.setUsingPotion(false);
                         timer.cancel();
                     }
                 }

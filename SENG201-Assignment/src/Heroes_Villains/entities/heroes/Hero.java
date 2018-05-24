@@ -7,6 +7,7 @@ public class Hero {
     protected boolean abilityUsed;
     protected String type, name;
     protected int maxHealth;
+    private boolean isUsingPotion;
 
     public Hero(int health, String type, String name) {
         this.health = health;
@@ -15,6 +16,7 @@ public class Hero {
         abilityUsed = false;
         this.type = type;
         this.name = name;
+        isUsingPotion = false;
     }
 
     public boolean isAbilityUsed() {
@@ -51,5 +53,13 @@ public class Hero {
 
     public int getMaxHealth() {
         return maxHealth;
+    }
+
+    public void setUsingPotion(boolean using) {
+        isUsingPotion = using;
+    }
+
+    public boolean getUsingPotion() {
+        return isUsingPotion;
     }
 }

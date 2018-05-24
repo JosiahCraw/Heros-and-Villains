@@ -24,9 +24,11 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
     private Thread gameThread;
     private String title;
     private boolean running = false;
+    public int count;
 
     //State Variables
-    public State gameState, menuState, pauseState, battleState, controlsState, setupState, adminState, teamBuilderState;
+    public State menuState, pauseState, battleState, controlsState, setupState, adminState, teamBuilderState;
+    public GameState gameState;
     private StateHandler stateHandler = new StateHandler();
 
     //Keyboard Listener
@@ -124,7 +126,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         final long OPTIMAL_TIME = 1000000000 / FPS ;
         int lastFpsTime = 0;
         int fps = 0;
-        int count = 0;
+        count = 0;
 
         while(running){
             long timeNow = System.nanoTime();

@@ -93,6 +93,10 @@ public class TeamBuilderState extends State {
                 notFull = true;
             } else {
                 notFull = false;
+                game.gameState = new GameState(game);
+                game.player = ((GameState) game.gameState).player;
+                game.battleState = new BattleState(game);
+                game.adminState = new AdminState(game, ((GameState) game.gameState).masterCities, ((BattleState) game.battleState));
                 game.getStateHandler().setState(game.getGameState());
             }
 

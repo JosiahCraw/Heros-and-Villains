@@ -42,12 +42,6 @@ public class HomeBase extends Rooms{
         }
         graphics.setFont(Assets.titleFont);
         graphics.drawString("Home Base", 650, 400);
-        /*
-        graphics.drawImage(Assets.black, 1200, 360, null);
-        graphics.drawImage(Assets.black, 0, 360, null);
-        graphics.drawImage(Assets.black, 640, 0, null);
-        graphics.drawImage(Assets.black, 640, 680, null);
-        */
         leftDoor.render(graphics);
         rightDoor.render(graphics);
         topDoor.render(graphics);

@@ -1,14 +1,12 @@
 package Heroes_Villains.SystemUI;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 import Heroes_Villains.Game;
 import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.graphics.DrawText;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 
 public class TextField extends UIElement {
@@ -21,7 +19,7 @@ public class TextField extends UIElement {
     }
 
     private boolean editing;
-    private char[] toLoop = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' '};
+    private char[] toLoop = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', ' '};
     private ArrayList<Character> acceptedCharacters;
     private int maxInput, minInput;
     private boolean underLimit;
@@ -114,6 +112,10 @@ public class TextField extends UIElement {
         }
         //System.out.println("Just drew " + input + input.length());
 
+    }
+
+    public boolean isEditing() {
+        return editing;
     }
 
     @Override

@@ -2,6 +2,7 @@ package Heroes_Villains.States;
 
 import Heroes_Villains.Game;
 import Heroes_Villains.SystemUI.RadioButtons;
+import Heroes_Villains.SystemUI.TextField;
 import Heroes_Villains.SystemUI.UIButton;
 import Heroes_Villains.SystemUI.UIElement;
 import Heroes_Villains.cities.Citys;
@@ -10,6 +11,8 @@ import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.graphics.DrawText;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+
 
 public class AdminState extends State{
 
@@ -19,11 +22,15 @@ public class AdminState extends State{
     private Color colour;
     private Citys citysClass;
     private BattleState battleState;
+    private Heroes_Villains.SystemUI.TextField healthField;
+    private RadioButtons heroSelector;
 
     public AdminState(Game game, Citys citysClass, BattleState battleState) {
         super(game);
         this.citysClass = citysClass;
         this.battleState = battleState;
+        heroSelector = new RadioButtons(600, 500, game, Assets.testRadioButton, 3, 10, true, 50, 50);
+        healthField = new TextField(600, 600, 200, 25, game, Assets.textField, 3, 1);
         up = new UIButton(200, 550, game, Assets.blankButton, 200, 35);
         down = new UIButton(200, 650, game, Assets.blankButton, 200, 35);
         left = new UIButton(50, 600, game, Assets.blankButton, 200, 35);
@@ -39,6 +46,11 @@ public class AdminState extends State{
 
     @Override
     public void update() {
+        heroSelector.update();
+        if(game.getKeyboardListener().keyJustPressed(KeyEvent.VK_ENTER) && healthField.isEditing()) {
+            game.getTeam().get(heroSelector.currentlyClicked).setHealth(Integer.parseInt(healthField.getInput()));
+        }
+        healthField.update();
         for(int i=0; i<4; i++) {
         currRooms[i] = citysClass.cities[game.getPlayer().getCurrentCity()].rooms[i];
     }
@@ -74,6 +86,8 @@ public class AdminState extends State{
 
     @Override
     public void render(Graphics graphics) {
+        healthField.render(graphics);
+        heroSelector.render(graphics);
         up.render(graphics);
         down.render(graphics);
         left.render(graphics);

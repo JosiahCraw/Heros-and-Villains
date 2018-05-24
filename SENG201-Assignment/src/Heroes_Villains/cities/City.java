@@ -2,6 +2,7 @@ package Heroes_Villains.cities;
 
 import Heroes_Villains.Game;
 import Heroes_Villains.cities.rooms.*;
+import Heroes_Villains.entities.Player;
 import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.utils.RandomNum;
 
@@ -17,13 +18,13 @@ public class City {
     public Rooms homeBase, inn, powerUpDen, villainRoom;
     public Hospital hospital;
 
-    public City(int cityNo, Game game, Citys cities) {
+    public City(int cityNo, Game game, Citys cities, Player player) {
         this.cityNo = cityNo;
         this.game = game;
         rooms = new Rooms[5];
         homeBase = new HomeBase(game);
         hospital = new Hospital(game);
-        inn = new Inn(game, cities);
+        inn = new Inn(game, cities, player);
         powerUpDen = new PowerUpDen(game);
         villainRoom = new VillainRoom(game);
         rooms[4] = homeBase;
@@ -46,7 +47,7 @@ public class City {
     }
     public void render(Graphics graphics) {
         graphics.setFont(Assets.titleFont);
-        graphics.drawString("City: " + Integer.toString(cityNo)+1, 300, 400);
+        graphics.drawString("City: " + Integer.toString(cityNo+1), 300, 400);
         rooms[game.getPlayer().getCurrentRoom()].render(graphics);
 
     }

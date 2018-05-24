@@ -3,44 +3,37 @@ package Heroes_Villains.cities.rooms;
 import Heroes_Villains.Game;
 import Heroes_Villains.cities.Citys;
 import Heroes_Villains.entities.DoorWay;
-import Heroes_Villains.entities.items.Item;
-import Heroes_Villains.entities.items.ItemHandler;
+import Heroes_Villains.entities.Player;
+import Heroes_Villains.entities.npc.InnKeeper;
 import Heroes_Villains.graphics.Assets;
-import Heroes_Villains.shop.Shop;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Inn extends Rooms{
 
     private DoorWay exit = new DoorWay(game,1230, 310, Assets.doorWay, true, 4);
-    private Shop shop;
-    private ArrayList<Item> items;
-    private ItemHandler itemHandler;
+    //private Shop shop;
+    //private ArrayList<Item> items;
+    //private ItemHandler itemHandler;
+    private InnKeeper innKeeper;
 
-    public Inn(Game game, Citys cities) {
+    public Inn(Game game, Citys cities, Player player) {
         super(game);
+        innKeeper = new InnKeeper(640, 120, "Innkeeper", Assets.innkeep, game, cities, player, 72, 100);
         roomName = "Inn";
-        items = new ArrayList<>();
-        itemHandler = new ItemHandler(game, cities, game.getPlayer());
-        items.add(itemHandler.basicPotion);
-        items.add(itemHandler.advancedPotion);
-        items.add(itemHandler.masterPotion);
-        shop = new Shop(game, items);
+        //items = new ArrayList<>();
+        //itemHandler = new ItemHandler(game, cities, game.getPlayer());
+        //items.add(itemHandler.basicPotion);
+        //items.add(itemHandler.advancedPotion);
+        //items.add(itemHandler.masterPotion);
+        //shop = new Shop(game, items);
     }
 
     @Override
     public void update() {
-        /*
-        if(game.getMouseListener().isHovering(1200, 360, 16, 16) && game.getMouseListener().leftClicked) {
-            game.getMouseListener().leftClicked = false;
-            game.getPlayer().setX(576);
-            game.getPlayer().setY(296);
-            game.getPlayer().setCurrentRoom(4);
-        }
-        */
         exit.update();
-        shop.update();
+        //shop.update();
+        innKeeper.update();
 
     }
 
@@ -51,15 +44,15 @@ public class Inn extends Rooms{
         graphics.setColor(Color.WHITE);
         graphics.setFont(Assets.titleFont);
         graphics.drawString("Inn", 650, 400);
-        //graphics.drawImage(Assets.purple, 1200, 360, null);
-        graphics.drawImage(Assets.innkeep, 576, 70, 72, 100, null);
-        if(!game.getPlayer().getInventory().open) {
-            if(game.getMouseListener().isHovering(576, 70, 72, 100) && game.getMouseListener().leftClicked) {
-                game.getMouseListener().leftClicked = false;
-                shop.open = !shop.open;
-            }
-            shop.render(graphics);
-        }
+        //graphics.drawImage(Assets.innkeep, 576, 70, 72, 100, null);
+        //if(!game.getPlayer().getInventory().open) {
+            //if(game.getMouseListener().isHovering(576, 70, 72, 100) && game.getMouseListener().leftClicked) {
+                //game.getMouseListener().leftClicked = false;
+                //shop.open = !shop.open;
+            //}
+            //shop.render(graphics);
+        //}
         exit.render(graphics);
+        innKeeper.render(graphics);
     }
 }

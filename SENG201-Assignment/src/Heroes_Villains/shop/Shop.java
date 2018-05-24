@@ -8,7 +8,6 @@ import Heroes_Villains.graphics.DrawText;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Shop {
 
@@ -49,6 +48,9 @@ public class Shop {
 
     public void render(Graphics graphics) {
         if(!open) {
+            return;
+        }
+        if(game.getPlayer().getInventory().open) {
             return;
         }
 

@@ -19,7 +19,7 @@ public class GameState extends State {
     public GameState(Game game) {
         super(game);
         player = new Player(100, 400, "Da Boi", game);
-        masterCities = new Citys(game);
+        masterCities = new Citys(game, player);
         player.setCurrentCity(0);
         player.setCurrentRoom(4);
         itemHandler = new ItemHandler(game, masterCities, player);

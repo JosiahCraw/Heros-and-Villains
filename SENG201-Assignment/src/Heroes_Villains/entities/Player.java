@@ -18,6 +18,7 @@ public class Player extends Living {
 
     public String teamName;
     public int money;
+    public Rectangle bounds;
 
     //City and room location information
     private int currentCity;
@@ -32,20 +33,22 @@ public class Player extends Living {
 
     @Override
     public void update() {
+        bounds.x = (int) x;
+        bounds.y = (int) y;
         animUp.update();
         animDown.update();
         animLeft.update();
         animRight.update();
-        if(game.getKeyboardListener().up /*|| game.getKeyboardListener().arrowUp*/) {
+        if(game.getKeyboardListener().up) {
             y-=20;
         }
-        if(game.getKeyboardListener().left || game.getKeyboardListener().arrowLeft) {
+        if(game.getKeyboardListener().left) {
             x-=20;
         }
-        if(game.getKeyboardListener().down /*|| game.getKeyboardListener().arrowDown*/) {
+        if(game.getKeyboardListener().down) {
             y+=20;
         }
-        if(game.getKeyboardListener().right || game.getKeyboardListener().arrowRight) {
+        if(game.getKeyboardListener().right) {
             x+=20;
         }
         inventory.update();
@@ -69,7 +72,6 @@ public class Player extends Living {
 
     @Override
     public void render(Graphics graphics) {
-
         //graphics.drawImage(Assets.playerDown, (int) x, (int) y, null);
 
         if(game.getKeyboardListener().up || game.getKeyboardListener().arrowUp) {
@@ -99,6 +101,7 @@ public class Player extends Living {
         this.name = name;
         this.width = 128;
         this.height = 128;
+        this.bounds = new Rectangle((int) x, (int) y, width, height);
         inventory = new Inventory(game);
         animUp = new Animation(Assets.batUp, 300);
         animDown = new Animation(Assets.batDown, 300);

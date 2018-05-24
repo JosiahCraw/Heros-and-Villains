@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Game implements Runnable{ //Runnable allows the class to use threads
 
@@ -88,8 +87,6 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
         if(stateHandler.state != null) {
             stateHandler.state.render(graphics);
         }
-
-
         //Graphics end
         buffer.show();
         graphics.dispose();

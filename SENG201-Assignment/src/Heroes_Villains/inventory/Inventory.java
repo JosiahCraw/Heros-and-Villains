@@ -1,9 +1,7 @@
 package Heroes_Villains.inventory;
 
 import Heroes_Villains.Game;
-import Heroes_Villains.SystemUI.RadioButton;
 import Heroes_Villains.SystemUI.RadioButtons;
-import Heroes_Villains.SystemUI.UIElement;
 import Heroes_Villains.entities.items.Item;
 import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.graphics.DrawText;
@@ -27,14 +25,18 @@ public class Inventory {
     private int countX = 1076, countY = 241;
     private int listSpacing = 47;
     private int currentIndex = 0;
-    private int totalWidth;
-    private RadioButtons heroSelector;
+    private int totalWidth1, totalWidth2, totalWidth3;
+    private RadioButtons heroSelector1, heroSelector2, heroSelector3;
 
     public Inventory(Game game) {
         this.game = game;
         items = new ArrayList<>();
-        totalWidth = (game.noOfHeros-1)*10 + 50*game.noOfHeros;
-        heroSelector = new RadioButtons(countX-(totalWidth/2), countY+150, game, Assets.invRadioButton, game.noOfHeros, 10, true, 50, 50);
+        totalWidth1 = 50;
+        totalWidth2 = 10 + 100;
+        totalWidth3 = 20 + 150;
+        heroSelector1 = new RadioButtons(countX-(totalWidth1/2), countY+150, game, Assets.invRadioButton, 1, 10, true, 50, 50);
+        heroSelector2 = new RadioButtons(countX-(totalWidth2/2), countY+150, game, Assets.invRadioButton, 2, 10, true, 50, 50);
+        heroSelector3 = new RadioButtons(countX-(totalWidth3/2), countY+150, game, Assets.invRadioButton, 3, 10, true, 50, 50);
     }
 
     public void addItem(Item item) {
@@ -50,8 +52,19 @@ public class Inventory {
 
 
     public void update() {
-        heroSelector.update();
+        if(game.getTeam().size()==1) {
+            heroSelector1.update();
+        }
+        if(game.getTeam().size()==2) {
+            heroSelector2.update();
+        }
+        if(game.getTeam().size()==3) {
+            heroSelector3.update();
+        }
         if(game.getKeyboardListener().keyJustPressed(KeyEvent.VK_E)) {
+            heroSelector1.clicked(0);
+            heroSelector2.clicked(0);
+            heroSelector3.clicked(0);
             open = !open;
         }
         if(!open) {
@@ -106,14 +119,45 @@ public class Inventory {
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.WHITE, Assets.invFont);
             if(game.getMouseListener().isLeftClicked()) {
                 game.getMouseListener().leftClicked = false;
-                System.out.println(game.getTeam().get(heroSelector.currentlyClicked).getName() + ": " +game.getTeam().get(heroSelector.currentlyClicked).getHealth());
-                items.get(currentIndex).use(game.getTeam().get(heroSelector.currentlyClicked));
+                if(game.getTeam().size()==1) {
+                    System.out.println(game.getTeam().get(heroSelector1.currentlyClicked).getName() + ": " +game.getTeam().get(heroSelector1.currentlyClicked).getHealth());
+                    items.get(currentIndex).use(game.getTeam().get(heroSelector1.currentlyClicked));
+                }
+                if(game.getTeam().size()==2) {
+                    System.out.println(game.getTeam().get(heroSelector2.currentlyClicked).getName() + ": " +game.getTeam().get(heroSelector2.currentlyClicked).getHealth());
+                    items.get(currentIndex).use(game.getTeam().get(heroSelector2.currentlyClicked));
+                }
+                if(game.getTeam().size()==3) {
+                    System.out.println(game.getTeam().get(heroSelector3.currentlyClicked).getName() + ": " +game.getTeam().get(heroSelector3.currentlyClicked).getHealth());
+                    items.get(currentIndex).use(game.getTeam().get(heroSelector3.currentlyClicked));
+                }
             }
         }else if(items.get(currentIndex).isUseable()) {
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.YELLOW, Assets.invFont);
         }else {
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.GRAY, Assets.invFont);
         }
-        heroSelector.render(graphics);
+        if(game.getTeam().size()==1) {
+            heroSelector1.render(graphics);
+        }
+        if(game.getTeam().size()==2) {
+            heroSelector2.render(graphics);
+        }
+        if(game.getTeam().size()==3) {
+            heroSelector3.render(graphics);
+        }
+        if(game.getTeam().size()==1) {
+            DrawText.draw(graphics, game.getTeam().get(heroSelector1.currentlyClicked).getName(), countX, countY+225, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, "Health: "+Integer.toString(game.getTeam().get(heroSelector1.currentlyClicked).getHealth()), countX, countY+240, true, Color.WHITE, Assets.smallFont);
+        }
+        if(game.getTeam().size()==2) {
+            DrawText.draw(graphics, game.getTeam().get(heroSelector2.currentlyClicked).getName(), countX, countY+225, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, "Health: "+Integer.toString(game.getTeam().get(heroSelector2.currentlyClicked).getHealth()), countX, countY+240, true, Color.WHITE, Assets.smallFont);
+        }
+        if(game.getTeam().size()==3) {
+            DrawText.draw(graphics, game.getTeam().get(heroSelector3.currentlyClicked).getName(), countX, countY+225, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, "Health: "+Integer.toString(game.getTeam().get(heroSelector3.currentlyClicked).getHealth()), countX, countY+240, true, Color.WHITE, Assets.smallFont);
+        }
+
     }
 }

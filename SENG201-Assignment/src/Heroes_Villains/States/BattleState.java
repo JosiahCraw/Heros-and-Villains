@@ -3,7 +3,6 @@ package Heroes_Villains.States;
 import Heroes_Villains.Game;
 import Heroes_Villains.SystemUI.RadioButtons;
 import Heroes_Villains.SystemUI.UIButton;
-import Heroes_Villains.SystemUI.UIElement;
 import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.graphics.DrawText;
 import Heroes_Villains.minigames.MiniGame;
@@ -15,7 +14,7 @@ import java.awt.*;
 public class BattleState extends State {
 
     private UIButton battleButton, backButton, nextCity, okButton, okButton2;
-    private RadioButtons heroSelect;
+    private RadioButtons heroSelect1, heroSelect2, heroSelect3;
     public MiniGame currMiniGame;
     public boolean battling;
     private MiniGameHandler miniGameHandler;
@@ -24,7 +23,7 @@ public class BattleState extends State {
     private int currLives;
     private boolean won, lost, battleWon, taunting;
     private int currHero, currDead;
-    private int radioTotalWidth, taunt;
+    private int radioTotalWidth1, radioTotalWidth2, radioTotalWidth3, taunt;
     private String[] villainNames, villainTaunts;
 
     public BattleState(Game game) {
@@ -34,9 +33,15 @@ public class BattleState extends State {
         okButton = new UIButton(640-Assets.buttonWidth/2, 250, game, Assets.battleStateOK, Assets.buttonWidth, Assets.buttonHeight);
         okButton2 = new UIButton(640-Assets.buttonWidth/2, 475, game, Assets.battleStateOK, Assets.buttonWidth, Assets.buttonHeight);
         backButton = new UIButton(640-Assets.buttonWidth/2, 300, game, Assets.battleStateBack, Assets.buttonWidth, Assets.buttonHeight);
-        radioTotalWidth = (game.noOfHeros-1)*10 + 50*game.noOfHeros;
-        heroSelect = new RadioButtons(1070-(radioTotalWidth/2), 211, game, Assets.invRadioButton, game.noOfHeros, 10, true, 50, 50);
-        heroSelect.clicked(0);
+        radioTotalWidth1 = 50;
+        radioTotalWidth2 = 10+100;
+        radioTotalWidth3 = 20+150;
+        heroSelect1 = new RadioButtons(1070-(radioTotalWidth1/2), 211, game, Assets.invRadioButton, 1, 10, true, 50, 50);
+        heroSelect1.clicked(0);
+        heroSelect2 = new RadioButtons(1070-(radioTotalWidth2/2), 211, game, Assets.invRadioButton, 2, 10, true, 50, 50);
+        heroSelect2.clicked(0);
+        heroSelect3 = new RadioButtons(1070-(radioTotalWidth3/2), 211, game, Assets.invRadioButton, 3, 10, true, 50, 50);
+        heroSelect3.clicked(0);
         battling = false;
         miniGameHandler = new MiniGameHandler(game);
         villainNames = new String[6];
@@ -66,7 +71,15 @@ public class BattleState extends State {
 
     @Override
     public void update() {
-        currHero = heroSelect.currentlyClicked;
+        if(game.getTeam().size()==1) {
+            currHero = heroSelect1.currentlyClicked;
+        }
+        if(game.getTeam().size()==2) {
+            currHero = heroSelect2.currentlyClicked;
+        }
+        if(game.getTeam().size()==3) {
+            currHero = heroSelect3.currentlyClicked;
+        }
         if(!battling) {
             battleButton.update();
             backButton.update();
@@ -114,8 +127,15 @@ public class BattleState extends State {
             return;
         }
         currMiniGame.update();
-        heroSelect.update();
-
+        if(game.getTeam().size()==1) {
+            heroSelect1.update();
+        }
+        if(game.getTeam().size()==2) {
+            heroSelect2.update();
+        }
+        if(game.getTeam().size()==3) {
+            heroSelect3.update();
+        }
         if(won || lost) {
             okButton.update();
             if(okButton.click() && game.getMouseListener().leftClicked) {
@@ -129,8 +149,17 @@ public class BattleState extends State {
 
     @Override
     public void render(Graphics graphics) {
-        heroSelect.render(graphics);
         graphics.drawImage(Assets.battleState, 0, 0, null);
+        if(game.getTeam().size()==1) {
+            heroSelect1.render(graphics);
+        }
+        if(game.getTeam().size()==2) {
+            heroSelect2.render(graphics);
+        }
+        if(game.getTeam().size()==3) {
+            heroSelect3.render(graphics);
+        }
+
         if(!battling){
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
             battleButton.render(graphics);
@@ -155,7 +184,7 @@ public class BattleState extends State {
         DrawText.draw(graphics, currMiniGame.gameName, 1070, 80, true, Color.WHITE, Assets.battleFont);
         DrawText.draw(graphics, "Hero: " + game.getTeam().get(currHero).getName(), 1065, 347, true, Color.WHITE, Assets.smallFont);
         DrawText.draw(graphics, "Health: " + Integer.toString(game.getTeam().get(currHero).getHealth()), 1065, 407, true, Color.WHITE, Assets.smallFont);
-        heroSelect.render(graphics);
+        //heroSelect.render(graphics);
         currMiniGame.render(graphics);
         if(won) {
 
@@ -195,9 +224,14 @@ public class BattleState extends State {
         if(game.getTeam().get(hero).getHealth() <= 0) {
             game.getTeam().get(currHero).setHealth(0);
             game.getTeam().get(hero).setDead(true);
+            game.getTeam().remove(currHero);
+            currHero = 0;
+            heroSelect1.clicked(0);
+            heroSelect2.clicked(0);
+            heroSelect3.clicked(0);
             currDead++;
             if(currDead == game.getNoOfHeros()) {
-                //TODO game.endGame();
+                game.stop();
             }
         }
 

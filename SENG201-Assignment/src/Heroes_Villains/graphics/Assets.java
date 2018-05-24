@@ -16,7 +16,7 @@ public class Assets {
     public static int buttonHeight, buttonWidth;
 
     //Buffered image arrays for animations
-    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, gamblerButton, psychicButton, sacrificeButton, scoutButton, tankButton, thiefButton, invRadioButton, deleteButton, battleStateBattle, battleStateBack, battleStatePlay, battleStateNext, battleStateOK;
+    public static BufferedImage[] walkingUp, startButton, menuButton, backButton, batUp, batDown, batLeft, batRight, battleButton, testRadioButton, exitButton, controlsButton, doorWay, doorWayH, textField, teamButton, blankButton, gamblerButton, psychicButton, sacrificeButton, scoutButton, tankButton, thiefButton, invRadioButton, deleteButton, battleStateBattle, battleStateBack, battleStatePlay, battleStateNext, battleStateOK, playAgainButton;
 
     public static void init() {
         SpriteSheet sheet1 = new SpriteSheet("/textures/sheets/tiles.png");
@@ -53,6 +53,7 @@ public class Assets {
         battleStateNext = new BufferedImage[2];
         deleteButton = new BufferedImage[2];
         battleStateOK = new BufferedImage[2];
+        playAgainButton = new BufferedImage[2];
 
 
         //Setting default button width and height
@@ -122,6 +123,9 @@ public class Assets {
 
         deleteButton[1] = ImageHandler.loadImage("/textures/DeleteButton1.png");
         deleteButton[0] = ImageHandler.loadImage("/textures/DeleteButton2.png");
+
+        playAgainButton[1] = ImageHandler.loadImage("/textures/PlayAgainButton1.png");
+        playAgainButton[0] = ImageHandler.loadImage("/textures/PlayAgainButton2.png");
 
         //Player animation frame to crop
         walkingUp[0] = playerSheet.getImage(0, 0, widthPlayerSheet, heightPlayerSheet);

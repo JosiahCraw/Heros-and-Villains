@@ -96,6 +96,7 @@ public class TeamBuilderState extends State {
                 game.gameState = new GameState(game);
                 game.player = ((GameState) game.gameState).player;
                 game.battleState = new BattleState(game);
+                game.endState = new EndState(game);
                 if (game.teamName.equals("ADMIN")) {
                     game.adminState = new AdminState(game, ((GameState) game.gameState).masterCities, ((BattleState) game.battleState));
                 }

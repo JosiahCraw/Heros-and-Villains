@@ -55,6 +55,10 @@ public class Hero {
         return maxHealth;
     }
 
+    public void setMaxHealth(int max) {
+        maxHealth = max;
+    }
+
     public void setUsingPotion(boolean using) {
         isUsingPotion = using;
     }

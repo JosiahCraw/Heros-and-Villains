@@ -25,6 +25,7 @@ public class BattleState extends State {
     private int currHero, currDead;
     private int radioTotalWidth1, radioTotalWidth2, radioTotalWidth3, taunt, reward;
     private String[] villainNames, villainTaunts;
+    private String villainName;
 
     public BattleState(Game game) {
         super(game);
@@ -50,7 +51,7 @@ public class BattleState extends State {
         villainNames[2] = "PotatoWhale the scavenger";
         villainNames[3] = "Maccas the temptress";
         villainNames[4] = "Smirnoff the foul";
-        villainNames[5] = "Spaceman the pointless";
+        villainNames[5] = "Spaceman (Super Villain)";
         villainTaunts = new String[10];
         villainTaunts[0] = "'Just why do you suck?'";
         villainTaunts[1] = "'Wait who?'";
@@ -98,6 +99,11 @@ public class BattleState extends State {
                 taunt = RandomNum.getNum(10);
                 battling = true;
                 taunting = true;
+                if(game.getPlayer().getCurrentCity() + 1 < game.getNoOfCities()) {
+                    villainName = villainNames[game.getPlayer().getCurrentCity()];
+                }else {
+                    villainName = villainNames[5];
+                }
             }
             return;
         }
@@ -184,15 +190,15 @@ public class BattleState extends State {
         }
         if(battleWon) {
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
-            DrawText.draw(graphics, "You won " + Integer.toString(reward), 640, 350, true, Color.WHITE, Assets.smallFont);
-            DrawText.draw(graphics,villainNames[game.getPlayer().getCurrentCity()] + " was defeated", 640, 300, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, "You won " + Integer.toString(reward) + " Coins", 640, 350, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics,villainName + " was defeated", 640, 300, true, Color.WHITE, Assets.smallFont);
             nextCity.render(graphics);
             return;
         }
         if(taunting) {
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
             okButton2.render(graphics);
-            DrawText.draw(graphics, "Battling: " + villainNames[game.getPlayer().getCurrentCity()], 640, 350, true, Color.WHITE, Assets.tinyFont);
+            DrawText.draw(graphics, "Battling: " + villainName, 640, 350, true, Color.WHITE, Assets.tinyFont);
             DrawText.draw(graphics, villainTaunts[taunt], 640, 400, true, Color.WHITE, Assets.tinyFont);
             return;
 
@@ -208,8 +214,8 @@ public class BattleState extends State {
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
             okButton.render(graphics);
 
-            DrawText.draw(graphics, "The villain played:", 640, 350,true, Color.WHITE, Assets.invFont);
-            DrawText.draw(graphics, currMiniGame.villainMoveWords, 640, 400,true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, villainName, 640, 350,true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, "Played: " + currMiniGame.villainMoveWords, 640, 400,true, Color.WHITE, Assets.invFont);
             DrawText.draw(graphics, " and you beat him", 640, 450,true, Color.WHITE, Assets.invFont);
         }
         if(lost) {
@@ -217,8 +223,8 @@ public class BattleState extends State {
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
             okButton.render(graphics);
 
-            DrawText.draw(graphics, villainNames[game.getPlayer().getCurrentCity()] + " played:", 640, 350,true, Color.WHITE, Assets.invFont);
-            DrawText.draw(graphics, currMiniGame.villainMoveWords, 640, 400,true, Color.WHITE, Assets.invFont);
+            DrawText.draw(graphics, villainName, 640, 350,true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, "Played: " + currMiniGame.villainMoveWords, 640, 400,true, Color.WHITE, Assets.invFont);
             DrawText.draw(graphics, " and you lost", 640, 450,true, Color.WHITE, Assets.invFont);
         }
         DrawText.draw(graphics, "Villain lives remaining: " + Integer.toString(currLives), 376, 97, true, Color.WHITE, Assets.smallFont);

@@ -51,7 +51,7 @@ public class PotionTimer extends UIElement {
 
     @Override
     public void render(Graphics graphics) {
-        DrawText.draw(graphics, "Time Remaining for Hero: " + hero.getName() + " = " + timeRemaining, 200, 200, true, Color.BLACK, Assets.smallFont);
+        DrawText.draw(graphics, "Time Remaining for Hero: " + hero.getName() + " = " + timeRemaining, x, y, true, Color.BLACK, Assets.smallFont);
     }
 
     @Override

@@ -6,21 +6,26 @@ import Heroes_Villains.entities.DoorWay;
 import Heroes_Villains.graphics.Assets;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Hospital extends  Rooms{
 
     private DoorWay exit = new DoorWay(game,1230, 310, Assets.doorWay, true, 4);
 
-    public PotionTimer getTest() {
-        return test;
+    public ArrayList<PotionTimer> getTimerList() {
+        return  timerList;
     }
 
-    public PotionTimer test = new PotionTimer(200,200,game.getTeam().get(0),game,Assets.deleteButton);
-
+    public ArrayList<PotionTimer> timerList = new ArrayList<PotionTimer>();
 
     public Hospital(Game game) {
         super(game);
         roomName = "Hospital";
+        int offSet = 0;
+        for (int i = 0; i < game.getTeam().size(); i++) {
+            timerList.add(new PotionTimer(game.width/2,(game.height-400)/2 + offSet, game.getTeam().get(i), game, Assets.deleteButton));
+            offSet += 20;
+        }
     }
 
     @Override
@@ -33,7 +38,9 @@ public class Hospital extends  Rooms{
             game.getPlayer().setCurrentRoom(4);
         }
         */
-        test.update();
+        for (PotionTimer timer : timerList) {
+            timer.update();
+        }
         exit.update();
     }
 
@@ -42,7 +49,14 @@ public class Hospital extends  Rooms{
         graphics.setFont(Assets.titleFont);
         graphics.drawString("Hospital", 650, 400);
         //graphics.drawImage(Assets.purple, 1200, 360, null);
-        test.render(graphics);
+
+        for (PotionTimer timer : timerList) {
+            if (timer.getTimeRemaining() > 0) {
+                timer.render(graphics);
+            }
+        }
+
+
         exit.render(graphics);
     }
 }

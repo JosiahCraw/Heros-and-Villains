@@ -217,7 +217,7 @@ public class Player extends Living {
             robButton.render(graphics);
             graphics.drawImage(Assets.stolenPopup, 384, 168, null);
             graphics.drawImage(robItem.image,577,230, 128, 128, null);
-            DrawText.draw(graphics,  "A " + robItem.name + " was stolen", 640, 360, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics,  "A " + robItem.name + " was stolen", 640, 380, true, Color.WHITE, Assets.smallFont);
         }
         if(gifted) {
             if(gift == "You were gifted 20 coins") {
@@ -229,7 +229,7 @@ public class Player extends Living {
             giftButton.render(graphics);
             graphics.drawImage(Assets.stolenPopup, 384, 168, null);
             graphics.drawImage(giftItem.image,577,230, 128, 128, null);
-            DrawText.draw(graphics, "You were gifted: "+ giftItem.name, 640, 360, true, Color.WHITE, Assets.smallFont);
+            DrawText.draw(graphics, "You were gifted: "+ giftItem.name, 640, 380, true, Color.WHITE, Assets.smallFont);
         }
     }
 

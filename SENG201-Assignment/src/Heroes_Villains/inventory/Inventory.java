@@ -11,6 +11,9 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Contains the items and the system to use them.
+ */
 public class Inventory {
 
     private Game game;
@@ -28,6 +31,10 @@ public class Inventory {
     private int totalWidth1, totalWidth2, totalWidth3, clicked;
     private RadioButtons heroSelector1, heroSelector2, heroSelector3;
 
+    /**
+     * Constructs the inventory and places objects.
+     * @param game the object containing all the objects and variables in the game.
+     */
     public Inventory(Game game) {
         this.game = game;
         items = new ArrayList<>();
@@ -39,6 +46,12 @@ public class Inventory {
         heroSelector3 = new RadioButtons(countX-(totalWidth3/2), countY+150, game, Assets.invRadioButton, 3, 10, true, 50, 50);
     }
 
+    /**
+     * Adds an item to the inventory by checking if an item with the same id
+     * already exists and if it does the count of the existing item increases else
+     * the item is added to the inventory array list.
+     * @param item the item to be added to the inventory.
+     */
     public void addItem(Item item) {
         for(Iterator<Item> iterator = items.listIterator(); iterator.hasNext();){
             Item currItem = iterator.next();
@@ -51,6 +64,9 @@ public class Inventory {
     }
 
 
+    /**
+     * Updates all of the variables in and below the inventory.
+     */
     public void update() {
         if(game.getTeam().size()==1) {
             heroSelector1.update();
@@ -93,6 +109,11 @@ public class Inventory {
         }
     }
 
+    /**
+     * Draw all inventory object and all objects below it on to the
+     * graphics objects.
+     * @param graphics the object everything is draw to.
+     */
     public void render(Graphics graphics) {
         if(!open) {
             return;
@@ -170,6 +191,11 @@ public class Inventory {
 
     }
 
+    /**
+     * Returns index of the hero selector radio button in the inventory currently
+     * clicked.
+     * @return the index of the currently clicked hero selector radio buttons.
+     */
     public int getClicked() {
         return clicked;
     }

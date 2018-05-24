@@ -4,6 +4,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Arrays;
 
+/**
+ * Listens for keyboard inputs and updates the appropriate variables.
+ * Implements KEyListener.
+ */
 public class KeyboardListener implements KeyListener {
 
     public boolean[] keys, justPressed, cantPress;
@@ -13,6 +17,10 @@ public class KeyboardListener implements KeyListener {
     public Boolean esc;
     public Boolean invOpen;
 
+    /**
+     * Constructs the keyboard listener with an array of keys
+     * with the index for the array to correspond to the key code of the key.
+     */
     public KeyboardListener() {
         keys = new boolean[256];
         Arrays.fill(keys, false);
@@ -21,6 +29,11 @@ public class KeyboardListener implements KeyListener {
         cantPress = new boolean[keys.length];
     }
 
+    /**
+     * Checks which key were pressed last tick and which keys can no longer be clicked
+     * the variables corresponding with the required key inputs are assigned to the current their key code
+     * values in the keys array.
+     */
     public void update() {
         for(int i=0; i<keys.length; i++) {
             if(cantPress[i] && !keys[i]) {
@@ -54,6 +67,11 @@ public class KeyboardListener implements KeyListener {
         p = keys[KeyEvent.VK_P];
     }
 
+    /**
+     * Checks if a key for a given key code was pressed last update call.
+     * @param keyCode the code to check for the key.
+     * @return if the key has just been pressed
+     */
     public boolean keyJustPressed(int keyCode){
         if(keyCode < 0 || keyCode >= keys.length)
             return false;
@@ -65,24 +83,21 @@ public class KeyboardListener implements KeyListener {
         //Unused
     }
 
-    @Override
+    /**
+     * Takes a key event and set that event to its corresponding index for pressed in the keys array.
+     * @param e the key event of the key just pressed.
+     */
     public void keyPressed(KeyEvent e) {
-        /*if(e.getKeyCode() == KeyEvent.VK_E) {
-            if(invOpen == true) {
-                invOpen = false;
-            }
-            else {
-                invOpen = true;
-            }
-            return;
-        }*/
         if(e.getKeyCode() < 0 || e.getKeyCode() >= keys.length) {
             return;
         }
         keys[e.getKeyCode()] = true;
     }
 
-    @Override
+    /**
+     * Takes a key event and set that event to its corresponding index for released in the keys array.
+     * @param e the key event of the key just released.
+     */
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode() < 0 || e.getKeyCode() >= keys.length) {
             return;

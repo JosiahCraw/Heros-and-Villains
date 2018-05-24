@@ -142,7 +142,7 @@ public class Game implements Runnable{ //Runnable allows the class to use thread
             	//System.out.println("(FPS: "+fps+")");
             	//System.out.println(delta);
                 count ++;
-                System.out.println(count);
+                //System.out.println(count);
             	lastFpsTime = 0;
             	fps = 0;
             }

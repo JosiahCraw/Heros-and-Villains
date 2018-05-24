@@ -34,11 +34,31 @@ public class HealingItem extends Item {
             Timer timer = new Timer();
             hero.setUsingPotion(true);
             //for a commit
+            int loops = 0;
+            boolean done = false;
+            int testHealth = hero.getHealth();
+            int testMax = hero.getHealth() + healthAmount;
+
+            if (testMax > hero.getMaxHealth()) {
+                testMax = hero.getMaxHealth();
+            }
+
+            while (!done) {
+                if (testHealth + healthAmount/4 <= testMax) {
+                    testHealth += healthAmount/4;
+                    loops += 1;
+                } else {
+                    done = true;
+                }
+            }
+
+            System.out.println(loops);
+
 
 
 
             //GameState currentState = (GameState)game.gameState;
-            game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].hospital.test.setTimeRemaining(applyTime);
+            game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].hospital.test.setTimeRemaining((applyTime/4)*loops);
             //PotionTimer test = new PotionTimer(200,200,hero,game,Assets.deleteButton, applyTime);
 
             TimerTask task = new TimerTask() {
@@ -52,14 +72,15 @@ public class HealingItem extends Item {
                     if (hero.getHealth() + healthAmount/4 < hero.getMaxHealth()) {
                         hero.setHealth(hero.getHealth() + healthAmount/4);
                         System.out.println("Used " + name);
+                        System.out.println("first");
                         System.out.println(hero.getName() + ": " +hero.getHealth());
-                        count--;
                         timerCounter ++;
                         //test.update();
                         //test.render(game.getGraphics());
                     } else {
                         hero.setHealth(hero.getMaxHealth());
                         System.out.println(hero.getName() + ": " +hero.getHealth());
+                        System.out.println("second");
                         hero.setUsingPotion(false);
                         timer.cancel();
                     }
@@ -69,15 +90,6 @@ public class HealingItem extends Item {
             timer.schedule(task, ((int)((applyTime * 1000)/4)), ((int)((applyTime * 1000)/4)));
 
         }
-
-
-
-
-
-
-
-
-
 
     }
 

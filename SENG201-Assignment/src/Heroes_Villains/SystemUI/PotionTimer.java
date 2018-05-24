@@ -35,6 +35,7 @@ public class PotionTimer extends UIElement {
     public void update() {
         if (!hero.getUsingPotion()) {
             previousCount = game.count;
+            timeRemaining = 0;
         }
         if (timeRemaining > 0) {
 

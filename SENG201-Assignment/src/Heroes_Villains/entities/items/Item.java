@@ -16,6 +16,7 @@ public abstract class Item {
     protected Citys cityClass;
     public int cost;
 
+
     public Item(int id, String name, BufferedImage image, Game game, Citys cityClass) {
         this.id = id;
         this.name = name;

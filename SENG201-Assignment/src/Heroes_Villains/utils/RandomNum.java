@@ -4,6 +4,11 @@ import java.util.Random;
 
 public class RandomNum {
 
+    /**
+     * Method that returns a number between 0 and the bound exclusively
+     * @param bound integer parameter for the bound
+     * @return integer value between 0 and the bound
+     */
     public static int getNum(int bound) {
         int output;
         Random number = new Random();

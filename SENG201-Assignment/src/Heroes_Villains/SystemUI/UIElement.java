@@ -11,6 +11,13 @@ public abstract class UIElement {
     protected Game game;
     protected BufferedImage[] images;
 
+    /**
+     * Constructor method for UIElement
+     * @param x integer, x position on screen
+     * @param y integer, y position on screen
+     * @param game Game object, passed down through code hierarchy
+     * @param images BufferedImage[] object with the assets for the button
+     */
     public UIElement(int x, int y, Game game, BufferedImage[] images) {
         this.x = x;
         this.y = y;

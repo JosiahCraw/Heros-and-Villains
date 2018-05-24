@@ -232,7 +232,7 @@ public class Player extends Living {
 
     public Player(float x, float y, String name, Game game) {
         super(x, y);
-        speed = 20;
+        speed = 10;
         this.name = name;
         this.width = 128;
         this.height = 128;

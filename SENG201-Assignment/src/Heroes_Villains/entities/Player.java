@@ -1,9 +1,11 @@
 package Heroes_Villains.entities;
 
 import Heroes_Villains.Game;
+import Heroes_Villains.cities.rooms.HomeBase;
 import Heroes_Villains.graphics.Animation;
 import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.inventory.Inventory;
+import Heroes_Villains.utils.RandomNum;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -27,6 +29,8 @@ public class Player extends Living {
     private int width;
     private int height;
     private int speed;
+
+    private boolean eventOccured;
 
     //Inventory
     private Inventory inventory;
@@ -65,6 +69,45 @@ public class Player extends Living {
         }
         if (game.getPlayer().getY() > game.height - game.getPlayer().getHeight()) {
             game.getPlayer().setY(game.height - game.getPlayer().getHeight());
+        }
+
+        if (game.gameState.masterCities.cities[currentCity].rooms[currentRoom] instanceof HomeBase) {
+
+            if (eventOccured == false) {
+
+                int tempNum = RandomNum.getNum(10)+1;
+
+                switch (tempNum) {
+                    case 1:
+                        money -= 20;
+                        System.out.println("Robbed and lost 20 coins");
+                        break;
+                    case 2:
+                        int testNum = RandomNum.getNum(inventory.items.size());
+                        inventory.items.get(testNum).count -= 1;
+                        System.out.println("You got robbed and lost a random item from your inventory");
+                        break;
+                    case 3:
+                        money += 20;
+                        System.out.println("You were gifted 20 coins");
+                        break;
+                    case 4:
+                        int testNum2 = RandomNum.getNum(game.gameState.masterCities.cities[currentCity].inn.getInnKeeper().getItems().size());
+                        inventory.addItem(game.gameState.masterCities.cities[currentCity].inn.getInnKeeper().getItems().get(testNum2));
+                        System.out.println("You got gifted a random item");
+                        break;
+                    default:
+                        System.out.println("Nothing happened yol");
+                }
+
+                eventOccured = true;
+                //System.out.println("Set event occurred to true");
+            }
+
+
+        } else {
+            eventOccured = false;
+            //System.out.println("Set event occurred to false");
         }
 
     }
@@ -117,6 +160,7 @@ public class Player extends Living {
         currentRoom = 0;
         currentCity = 0;
         money = 100;
+        eventOccured = false;
     }
 
     private BufferedImage getCurrentImage(Animation tempAnim) {

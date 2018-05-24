@@ -55,4 +55,8 @@ public class Inn extends Rooms{
         exit.render(graphics);
         innKeeper.render(graphics);
     }
+
+    public InnKeeper getInnKeeper() {
+        return innKeeper;
+    }
 }

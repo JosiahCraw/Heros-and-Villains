@@ -56,4 +56,8 @@ public class InnKeeper extends NPC {
         graphics.drawImage(image, (int) x, (int) y, width, height, null);
         shop.render(graphics);
     }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
 }

@@ -6,24 +6,10 @@ import Heroes_Villains.graphics.Assets;
 
 import java.awt.*;
 
-/**
- * Represents the Power up Den Room in the city.
- * Extends Rooms.
- */
 public class PowerUpDen extends Rooms{
 
-    /**
-     * Places DoorWay in the room
-     */
     private DoorWay exit = new DoorWay(game,1230, 310, Assets.doorWay, true, 4);
 
-    /**
-     * Constructor applying game to the super class
-     * and setting the room name to 'Power up den'.
-     *
-     * @param game object containing all of the objects and variables in the
-     *             game.
-     */
     public PowerUpDen(Game game) {
         super(game);
         roomName = "Power Up Den";
@@ -31,6 +17,14 @@ public class PowerUpDen extends Rooms{
 
     @Override
     public void update() {
+        /*
+        if(game.getMouseListener().isHovering(1200, 360, 16, 16) && game.getMouseListener().leftClicked) {
+            game.getMouseListener().leftClicked = false;
+            game.getPlayer().setX(576);
+            game.getPlayer().setY(296);
+            game.getPlayer().setCurrentRoom(4);
+        }
+        */
         exit.update();
     }
 
@@ -38,6 +32,7 @@ public class PowerUpDen extends Rooms{
     public void render(Graphics graphics) {
         graphics.setFont(Assets.titleFont);
         graphics.drawString("Power up den", 650, 400);
+        //graphics.drawImage(Assets.purple, 1200, 360, null);
         exit.render(graphics);
     }
 }

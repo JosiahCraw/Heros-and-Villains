@@ -11,6 +11,9 @@ import Heroes_Villains.utils.RandomNum;
 
 import java.awt.*;
 
+/**
+ * Class for battle state of the game, manages battles and minigames against villains
+ */
 public class BattleState extends State {
 
     private UIButton battleButton, backButton, nextCity, okButton, okButton2, psychicButton;
@@ -28,6 +31,10 @@ public class BattleState extends State {
     private String villainName;
     private boolean nurse, psychic, psychicUsed, sacrifice, abitiy, useAbilityHovering;
 
+    /**
+     * Constructor for battle state, defines buttons and villain taunts and hero selection
+     * @param game game object, generic pass-through
+     */
     public BattleState(Game game) {
         super(game);
         nextCity = new UIButton(640-Assets.buttonWidth/2, 500, game, Assets.battleStateNext, Assets.buttonWidth, Assets.buttonHeight);
@@ -285,6 +292,10 @@ public class BattleState extends State {
         }
     }
 
+    /**
+     * Method that gets called when a particular minigame gets won, reduced the current lives of the villain by 1 and sets won to true
+     * @param hero hero object that won the minigame
+     */
     public void won(int hero) {
         currLives -= 1;
         if(currLives <= 0) {
@@ -295,6 +306,10 @@ public class BattleState extends State {
         won = true;
     }
 
+    /**
+     * Method that gets called when a particular minigame gets lost by a particular hero
+     * @param hero hero object, hero that loses the game
+     */
     public void lost(int hero) {
         game.getTeam().get(hero).setHealth(game.getTeam().get(hero).getHealth()-HEALTH_LOST_ON_LOSS);
         battleWon = false;
@@ -316,23 +331,26 @@ public class BattleState extends State {
 
     }
 
+    /**
+     * Method for generating a random new minigame after the current game is won or lost
+     */
     public void nextGame() {
         MiniGameHandler tempHandler = new MiniGameHandler(game);
         currMiniGame = tempHandler.getGame();
     }
 
-    public void winBattle() {
-
-    }
-
-    public void loseBattle() {
-
-    }
-
+    /**
+     * Method for getting the current minigame being played
+     * @return MiniGame object, current game being played
+     */
     public MiniGame getCurrMiniGame() {
         return currMiniGame;
     }
 
+    /**
+     * Method for getting the index of the current hero selected
+     * @return int, index of current hero
+     */
     public int getCurrHero() {
         return currHero;
     }

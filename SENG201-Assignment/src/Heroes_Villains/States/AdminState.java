@@ -13,7 +13,9 @@ import Heroes_Villains.graphics.DrawText;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-
+/**
+ * Class of admin state of the game, used to bring up an admin control pane when the team is named 'ADMIN'
+ */
 public class AdminState extends State{
 
     public int buttonClicked;
@@ -25,6 +27,12 @@ public class AdminState extends State{
     private Heroes_Villains.SystemUI.TextField healthField;
     private RadioButtons heroSelector;
 
+    /**
+     * Contructor for admie state, generates radio buttons for selecting heros to add health to using a text field, and buttons for teleporting and seeing villain moves
+     * @param game game object, generic pass-through
+     * @param citysClass Citys object
+     * @param battleState the current battlestate of the game
+     */
     public AdminState(Game game, Citys citysClass, BattleState battleState) {
         super(game);
         this.citysClass = citysClass;

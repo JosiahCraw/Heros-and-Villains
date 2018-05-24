@@ -12,6 +12,9 @@ import Heroes_Villains.utils.RandomNum;
 
 import java.awt.*;
 
+/**
+ * Class for the PaperScissorsRock mini game that gets played in the battle state of the game
+ */
 public class PaperScissorsRock extends MiniGame {
 
     private UIElement buttons, okButton;
@@ -19,6 +22,11 @@ public class PaperScissorsRock extends MiniGame {
     private boolean draw, played;
     private int currHero, radioTotalWidth;
 
+    /**
+     * PaperScissorsRock constructor method, defines a radio button cluster for selecting the choice
+     * @param villainMove integer, the number value of the move that the villain will play
+     * @param game game object, generic pass-through
+     */
     public PaperScissorsRock(int villainMove, Game game) {
         super(villainMove, game, "Paper, Scissors, Rock");
         radioTotalWidth = (2)*25 + 100*3;

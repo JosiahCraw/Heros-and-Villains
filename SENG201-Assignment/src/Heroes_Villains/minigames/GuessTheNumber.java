@@ -11,6 +11,9 @@ import Heroes_Villains.utils.RandomNum;
 
 import java.awt.*;
 
+/**
+ * Class for the guess the number minigame, player can pick a number, and will then be told whether their guess was too high or too low, and has a final guess
+ */
 public class GuessTheNumber extends MiniGame {
 
     private UIElement numberSelector, playButton;
@@ -18,6 +21,11 @@ public class GuessTheNumber extends MiniGame {
     private int currHero, currClicked;
     private boolean lower, higher, playing;
 
+    /**
+     * Constructor for GuessTheNumber
+     * @param villainMove integer, number of the villains move
+     * @param game game object, generic pass-through
+     */
     public GuessTheNumber(int villainMove, Game game) {
         super(villainMove, game, "Guess the number");
         numberSelector = new RadioButtons(235, 517, game, Assets.invRadioButton, 10, 7, true, 50, 50);

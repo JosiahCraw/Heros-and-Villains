@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+/**
+ * Class for bringing up the shop overlay in the Inn, allows for purchasing of items from the InnKeeper
+ */
 public class Shop {
 
     public boolean open;
@@ -24,11 +27,19 @@ public class Shop {
     private int listSpacing = 47;
     private int currentIndex = 0;
 
+    /**
+     * Constructor for shop class, initializes the items in the shop to the passed array list
+     * @param game game object, generic pass-through
+     * @param shopItems the items that the shop will sell
+     */
     public Shop(Game game, ArrayList<Item> shopItems) {
         this.game = game;
         this.shopItems = shopItems;
     }
 
+    /**
+     * Method for updating the functionality of the shop 60 times a second, mainly deals with navigation and items of zero count
+     */
     public void update() {
 
         if(game.getKeyboardListener().keyJustPressed(KeyEvent.VK_UP)) {
@@ -46,6 +57,10 @@ public class Shop {
 
     }
 
+    /**
+     * Method for rendering the aesthetics of the shop 60 times a second and also handles purchasing as the render methods need to be placed in this method
+     * @param graphics graphics object that the game draws to
+     */
     public void render(Graphics graphics) {
         if(!open) {
             return;

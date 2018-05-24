@@ -30,7 +30,8 @@ public class Display {
     }
 
     /**
-     * Crea
+     * Creates the JFrame and canvas and sets the given width and heights.
+     * Adds the canvas to the JFrame and packs the Frame.
      */
     private void createDisplay(){
 
@@ -55,10 +56,18 @@ public class Display {
 
     }
 
+    /**
+     * Returns the JFrame object.
+     * @return JFrame object.
+     */
     public JFrame getFrame() {
         return frame;
     }
 
+    /**
+     * Returns the canvas object.
+     * @return Canvas object.
+     */
     public Canvas getCanvas() {
         return canvas;
     }

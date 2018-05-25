@@ -37,13 +37,14 @@ public class Villain extends NPC {
 
     @Override
     public void update() {
-        if(game.getPlayer().bounds.intersects(bounds) && game.getKeyboardListener().keyJustPressed(KeyEvent.VK_F)) {
-            game.getStateHandler().setState(game.getBattleState());
+        if(game.getPlayer().bounds.intersects(bounds) && game.getKeyboardListener().keyJustPressed(KeyEvent.VK_F)) { //Checks if the player is overlapping with the villain and player is pressing f
+            game.getStateHandler().setState(game.getBattleState()); //Change the state to the battle state
         }
     }
 
     @Override
     public void render(Graphics graphics) {
+        //Render the villain
         graphics.drawImage(image, (int) x, (int) y, width, height, null);
     }
 

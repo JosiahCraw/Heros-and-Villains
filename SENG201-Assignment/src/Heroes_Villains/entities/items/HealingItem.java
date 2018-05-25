@@ -45,18 +45,16 @@ public class HealingItem extends Item {
         if ((hero.getHealth() < hero.getMaxHealth()) && !hero.getUsingPotion()) {
             count --;
             Timer timer = new Timer();
-            hero.setUsingPotion(true);
-            //for a commit
+            hero.setUsingPotion(true); //Make the hero be currently using the potion
             int loops = 0;
             boolean done = false;
             int testHealth = hero.getHealth();
             int testMax = hero.getHealth() + healthAmount;
-
-            if (testMax > hero.getMaxHealth()) {
+            if (testMax > hero.getMaxHealth()) { //If the healing effect would be increasing the hero to more that max health set to max health
                 testMax = hero.getMaxHealth();
             }
 
-            while (!done) {
+            while (!done) { //While the potion iss still applying
                 if (testHealth + healthAmount/4 <= testMax) {
                     testHealth += healthAmount/4;
                     loops += 1;
@@ -64,9 +62,7 @@ public class HealingItem extends Item {
                     done = true;
                 }
             }
-
-            System.out.println(loops);
-            game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].hospital.getTimerList().get(game.getTeam().indexOf(hero)).setTimeRemaining((applyTime/4)*loops);
+            game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].hospital.getTimerList().get(game.getTeam().indexOf(hero)).setTimeRemaining((applyTime/4)*loops); //Changes the time remaining a a heal in the hospital in the city the hero is currently in
             TimerTask task = new TimerTask() {
                 int timerCounter = 0;
                 @Override
@@ -81,8 +77,6 @@ public class HealingItem extends Item {
                         System.out.println("first");
                         System.out.println(hero.getName() + ": " +hero.getHealth());
                         timerCounter ++;
-                        //test.update();
-                        //test.render(game.getGraphics());
                     } else {
                         hero.setHealth(hero.getMaxHealth());
                         System.out.println(hero.getName() + ": " +hero.getHealth());
@@ -106,7 +100,7 @@ public class HealingItem extends Item {
     public boolean isUseable() {
         try {
 
-            if (cityClass.cities[game.getPlayer().getCurrentCity()].getRooms()[game.getPlayer().getCurrentRoom()] instanceof Hospital) {
+            if (cityClass.cities[game.getPlayer().getCurrentCity()].getRooms()[game.getPlayer().getCurrentRoom()] instanceof Hospital) { //Checks if the player is in the hospital and if they are allow the player to use the item
                 return true;
             }
         } catch (NullPointerException e) {

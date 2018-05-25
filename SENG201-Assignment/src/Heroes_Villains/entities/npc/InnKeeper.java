@@ -44,10 +44,14 @@ public class InnKeeper extends NPC {
         this.game = game;
         this.width = width;
         this.height = height;
-        bounds = new Rectangle((int) x, (int) y, width, height);
+        bounds = new Rectangle((int) x, (int) y, width, height); //The bounding rectangle of the InnKeeper.
         this.image = image;
-        items = new ArrayList<>();
+        items = new ArrayList<>(); //The Array list of items to be added to the shop
+
+        //Creating the item handler
         itemHandler = new ItemHandler(game, cities, player);
+
+        //Adding items to the shop from the item handler
         items.add(itemHandler.basicPotion);
         items.add(itemHandler.advancedPotion);
         items.add(itemHandler.masterPotion);
@@ -55,26 +59,33 @@ public class InnKeeper extends NPC {
         items.add(itemHandler.healthScroll);
         items.add(itemHandler.speedScroll);
         items.add(itemHandler.map);
+
+        //Creating a new shop
         shop = new Shop(game, items);
     }
 
     @Override
     public void update() {
-        if(bounds.intersects(game.getPlayer().bounds) && game.getKeyboardListener().keyJustPressed(KeyEvent.VK_F)) {
-            shop.open = !shop.open;
-        }else if(shop.open && game.getKeyboardListener().keyJustPressed(KeyEvent.VK_F)) {
+        if(bounds.intersects(game.getPlayer().bounds) && game.getKeyboardListener().keyJustPressed(KeyEvent.VK_F)) { //Checking if the player is overlapping with the innkeeper
+            shop.open = !shop.open; //Toggle the shop
+        }else if(shop.open && game.getKeyboardListener().keyJustPressed(KeyEvent.VK_F)) { //If the shop is open a f is just pressed close the shop
             shop.open = false;
         }
+
+        //Update
         shop.update();
     }
 
     @Override
     public void render(Graphics graphics) {
+        //Drawing the image of the innkeeper
         graphics.drawImage(image, (int) x, (int) y, width, height, null);
+
+        //Updating
         shop.render(graphics);
     }
 
     public ArrayList<Item> getItems() {
         return items;
-    }
+    } //Returns the Array list of items in the shop
 }

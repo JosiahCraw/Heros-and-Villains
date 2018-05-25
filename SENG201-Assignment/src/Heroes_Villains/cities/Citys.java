@@ -25,7 +25,9 @@ public class Citys {
         this.game = game;
         this.player = player;
         noOfCities = game.noOfCities;
-        cities = new City[game.noOfCities];
+        cities = new City[game.noOfCities]; //Create array to the size of the number of cities in the game.
+
+        //create the array of City objects
         init();
     }
 
@@ -34,9 +36,9 @@ public class Citys {
      * at each index.
      */
     public void init() {
-        for(int x=0; x < noOfCities; x++) {
-            City tempCity = new City(x, game, this, player);
-            cities[x] = tempCity;
+        for(int x=0; x < noOfCities; x++) { //Cycle index from 0 to the required number of cities
+            City tempCity = new City(x, game, this, player); //Create new city
+            cities[x] = tempCity; //Set the city (num) to index (num)
         }
     }
 
@@ -46,7 +48,7 @@ public class Citys {
      */
     public void update() {
         cities[game.getPlayer().getCurrentCity()].update();
-    }
+    } //Update the city the player is currently in
 
     /**
      * Calls the render method for the city at the index the
@@ -55,5 +57,5 @@ public class Citys {
      */
     public void render(Graphics graphics) {
         cities[game.getPlayer().getCurrentCity()].render(graphics);
-    }
+    } //Render the city the player is currently in
 }

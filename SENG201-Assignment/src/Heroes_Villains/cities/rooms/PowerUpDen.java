@@ -15,7 +15,7 @@ public class PowerUpDen extends Rooms{
     /**
      * Places DoorWay in the room
      */
-    private DoorWay exit = new DoorWay(game,1230, 310, Assets.doorWay, true, 4);
+    private DoorWay exit = new DoorWay(game,1230, 310, Assets.doorWay, true, 4); //Create door
 
     /**
      * Constructor applying game to the super class
@@ -31,6 +31,7 @@ public class PowerUpDen extends Rooms{
 
     @Override
     public void update() {
+        //Update objects
         exit.update();
     }
 
@@ -38,6 +39,7 @@ public class PowerUpDen extends Rooms{
     public void render(Graphics graphics) {
         graphics.setFont(Assets.titleFont);
         graphics.drawString("Power up den", 650, 400);
+        //Update objects
         exit.render(graphics);
     }
 }

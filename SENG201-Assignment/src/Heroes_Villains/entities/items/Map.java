@@ -32,11 +32,11 @@ public class Map extends Item {
     @Override
     public void use(Hero hero) {
         count--;
-        cityClass.cities[game.getPlayer().getCurrentCity()].setHasMap(true);
+        cityClass.cities[game.getPlayer().getCurrentCity()].setHasMap(true); //Sets the city the player is currently in to have a map
     }
 
     @Override
     public boolean isUseable() {
         return true;
-    }
+    } //The map is usable every where
 }

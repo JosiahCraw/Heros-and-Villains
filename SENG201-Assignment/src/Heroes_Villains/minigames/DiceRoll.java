@@ -47,7 +47,7 @@ public class DiceRoll extends MiniGame {
             }
 
         }
-        if (draw) {
+        if (draw) { //If a draw create a popup and make player acknowledge
             okButton.update();
             if (okButton.click() && game.getMouseListener().leftClicked) {
                 game.getMouseListener().leftClicked = false;
@@ -66,6 +66,7 @@ public class DiceRoll extends MiniGame {
             DrawText.draw(graphics, "Go", 130, 552, true, Color.YELLOW, Assets.invFont);
         }
         if(draw) {
+            //Render Draw
             graphics.drawImage(Assets.battlePopup, 384, 168, null);
             DrawText.draw(graphics, "You Both rolled:", 640, 250, true, Color.WHITE, Assets.invFont);
             DrawText.draw(graphics, villainMoveWords, 640, 300, true, Color.WHITE, Assets.invFont);

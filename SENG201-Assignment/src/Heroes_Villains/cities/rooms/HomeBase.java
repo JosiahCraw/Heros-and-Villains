@@ -38,12 +38,14 @@ public class HomeBase extends Rooms{
     public HomeBase(Game game, City city) {
         super(game);
         roomName = "Home Base";
-        hasMap = city.isHasMap();
+        hasMap = city.isHasMap(); //Checks if the city has a map
     }
 
     @Override
     public void update() {
-        hasMap = game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].isHasMap();
+        hasMap = game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].isHasMap(); //Continually checks if the city has a map
+
+        //Update objects
         leftDoor.update();
         rightDoor.update();
         topDoor.update();
@@ -53,14 +55,16 @@ public class HomeBase extends Rooms{
 
     @Override
     public void render(Graphics graphics) {
-        if(hasMap) {
+        if(hasMap) { //If the city has a map render the name of each room near by the door
             DrawText.draw(graphics, game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].rooms[0].roomName, 100, 300, true, Color.BLACK, Assets.smallFont);
             DrawText.draw(graphics, game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].rooms[1].roomName, 640, 100, true, Color.BLACK, Assets.smallFont);
             DrawText.draw(graphics, game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].rooms[2].roomName, 1180, 300, true, Color.BLACK, Assets.smallFont);
             DrawText.draw(graphics, game.gameState.masterCities.cities[game.getPlayer().getCurrentCity()].rooms[3].roomName, 640, 620, true, Color.BLACK, Assets.smallFont);
         }
         graphics.setFont(Assets.titleFont);
-        graphics.drawString("Home Base", 650, 400);
+        graphics.drawString("Home Base", 650, 400); //Draw the Home base name to the canvas
+
+        //Render the objects
         leftDoor.render(graphics);
         rightDoor.render(graphics);
         topDoor.render(graphics);

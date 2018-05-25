@@ -30,19 +30,19 @@ public class MiniGameHandler {
         MiniGame miniGame;
         RandomNum randomNum;
         randomNum = new RandomNum();
-            pickedGame = randomNum.getNum(3);
+            pickedGame = randomNum.getNum(3); //Get new game
             if(pickedGame == 0) {
-                villainMove = randomNum.getNum(3);
+                villainMove = randomNum.getNum(3); //Set random villain move within the correct bound
                 miniGame = new PaperScissorsRock(villainMove, game);
                 return miniGame;
             }
             else if(pickedGame == 1) {
-                villainMove = randomNum.getNum(6) + 1;
+                villainMove = randomNum.getNum(6) + 1; //Set random villain move within the correct bound
                 miniGame = new DiceRoll(villainMove, game);
                 return miniGame;
             }
             else{
-                villainMove = randomNum.getNum(10) + 1;
+                villainMove = randomNum.getNum(10) + 1; //Set random villain move within the correct bound
                 miniGame = new GuessTheNumber(villainMove, game);
                 return miniGame;
             }
@@ -53,7 +53,4 @@ public class MiniGameHandler {
       * @param cityNum integer, index of the current city in the main city array
      * @return Minigame object, current mini game being played
      */
-    public MiniGame getCurrentGame(int cityNum) {
-        return miniGames[cityNum];
-    }
 }

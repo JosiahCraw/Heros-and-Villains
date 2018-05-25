@@ -37,6 +37,7 @@ public class PowerUpItem extends Item {
     @Override
     public void use(Hero hero) {
         count --;
+        //Checks the type of the power up item
         if (type.equals("HEALTH")) {
             hero.setMaxHealth(hero.getMaxHealth() + 50);
         } else if (type.equals("ABILITY")) {
@@ -53,7 +54,7 @@ public class PowerUpItem extends Item {
      */
     public boolean isUseable() {
         try {
-            if (cityClass.cities[game.getPlayer().getCurrentCity()].rooms[game.getPlayer().getCurrentRoom()] instanceof PowerUpDen) {
+            if (cityClass.cities[game.getPlayer().getCurrentCity()].rooms[game.getPlayer().getCurrentRoom()] instanceof PowerUpDen) { //Checks if the player is currently in the power up den to use the power up item
                 return true;
             }
         } catch (NullPointerException e) {

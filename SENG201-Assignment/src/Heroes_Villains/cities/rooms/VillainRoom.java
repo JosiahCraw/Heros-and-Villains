@@ -16,7 +16,7 @@ public class VillainRoom extends Rooms {
      * Places a DoorWay object and a villain object
      * in the room
      */
-    private DoorWay exit = new DoorWay(game,1230, 310, Assets.doorWay, true, 4);
+    private DoorWay exit = new DoorWay(game,1230, 310, Assets.doorWay, true, 4); //Create objects
     private Villain villain = new Villain(50, 328, Assets.villain, 128, 128, game);
 
     /**
@@ -32,6 +32,7 @@ public class VillainRoom extends Rooms {
 
     @Override
     public void update() {
+        //Update objects
         exit.update();
         villain.update();
     }
@@ -40,6 +41,7 @@ public class VillainRoom extends Rooms {
     public void render(Graphics graphics) {
         graphics.setFont(Assets.titleFont);
         graphics.drawString("Villain Room", 650, 400);
+        //Render objects
         exit.render(graphics);
         villain.render(graphics);
     }

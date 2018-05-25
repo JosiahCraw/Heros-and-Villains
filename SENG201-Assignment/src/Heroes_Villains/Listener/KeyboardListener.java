@@ -36,16 +36,17 @@ public class KeyboardListener implements KeyListener {
      */
     public void update() {
         for(int i=0; i<keys.length; i++) {
-            if(cantPress[i] && !keys[i]) {
-                cantPress[i] = false;
-            }else if(justPressed[i]) {
-                cantPress[i] = true;
-                justPressed[i] = false;
+            if(cantPress[i] && !keys[i]) {//if the key is not being help down and the key cant be press
+                cantPress[i] = false; //Key can be pressed
+            }else if(justPressed[i]) { //If key just pressed
+                cantPress[i] = true; //Key cant be pressed
+                justPressed[i] = false; //Key is no longer just pressed
             }
-            if(!cantPress[i] && keys[i]) {
-                justPressed[i] = true;
+            if(!cantPress[i] && keys[i]) { //If can press and is being pressed
+                justPressed[i] = true; //KEy is just pressed
             }
         }
+        //Setting key variables to keys array at index key
         esc = keys[KeyEvent.VK_ESCAPE];
 
         up = keys[KeyEvent.VK_W];

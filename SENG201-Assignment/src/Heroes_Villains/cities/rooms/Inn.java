@@ -34,12 +34,13 @@ public class Inn extends Rooms{
      */
     public Inn(Game game, Citys cities, Player player) {
         super(game);
-        innKeeper = new InnKeeper(640, 120, "Innkeeper", Assets.innkeep, game, cities, player, 72, 100);
+        innKeeper = new InnKeeper(640, 120, "Innkeeper", Assets.innkeep, game, cities, player, 72, 100); //Create innkeeper
         roomName = "Inn";
     }
 
     @Override
     public void update() {
+        //Update objects
         exit.update();
         innKeeper.update();
 
@@ -47,11 +48,13 @@ public class Inn extends Rooms{
 
     @Override
     public void render(Graphics graphics) {
+        //Drawing Inn elements
         graphics.drawImage(Assets.innFloor, 0, 0, null);
         graphics.drawImage(Assets.inn, 0, 0, null);
         graphics.setColor(Color.WHITE);
         graphics.setFont(Assets.titleFont);
         graphics.drawString("Inn", 650, 400);
+        //Render objects
         exit.render(graphics);
         innKeeper.render(graphics);
     }
@@ -62,5 +65,5 @@ public class Inn extends Rooms{
      */
     public InnKeeper getInnKeeper() {
         return innKeeper;
-    }
+    } //Getters
 }

@@ -36,13 +36,16 @@ public class City {
     public City(int cityNo, Game game, Citys cities, Player player) {
         this.cityNo = cityNo;
         this.game = game;
+        //Create Rooms
         rooms = new Rooms[5];
         homeBase = new HomeBase(game, this);
         hospital = new Hospital(game);
         inn = new Inn(game, cities, player);
         powerUpDen = new PowerUpDen(game);
         villainRoom = new VillainRoom(game);
+        //Add the Home base to the middle room (last index)
         rooms[4] = homeBase;
+        //Assign the rooms a random index
         init(hospital);
         init(inn);
         init(powerUpDen);
@@ -57,10 +60,10 @@ public class City {
      */
     public void init(Rooms room) {
         int index = RandomNum.getNum(4);
-        while(rooms[index] != null) {
+        while(rooms[index] != null) { //Continue until the room finds a free index
             index = RandomNum.getNum(4);
         }
-        rooms[index] = room;
+        rooms[index] = room; //When free index found add room to index
     }
 
     /**
@@ -75,7 +78,7 @@ public class City {
                 hasMap = true;
             }
         }
-        rooms[game.getPlayer().getCurrentRoom()].update();
+        rooms[game.getPlayer().getCurrentRoom()].update(); //Update the room the player is currently in
     }
 
     /**
@@ -87,7 +90,7 @@ public class City {
     public void render(Graphics graphics) {
         graphics.setFont(Assets.titleFont);
         graphics.drawString("City: " + Integer.toString(cityNo+1), 300, 400);
-        rooms[game.getPlayer().getCurrentRoom()].render(graphics);
+        rooms[game.getPlayer().getCurrentRoom()].render(graphics); //Render the room the player is currently in
 
     }
 

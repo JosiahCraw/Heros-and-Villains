@@ -48,14 +48,14 @@ public class Hospital extends Rooms{
         roomName = "Hospital";
         int offSet = 0;
         for (int i = 0; i < game.getTeam().size(); i++) {
-            timerList.add(new PotionTimer(50, 100 + offSet, game.getTeam().get(i), game, Assets.blankButton));
+            timerList.add(new PotionTimer(50, 100 + offSet, game.getTeam().get(i), game, Assets.blankButton)); //Adds timers to an array list
             offSet += 170;
         }
     }
 
     @Override
     public void update() {
-        for (PotionTimer timer : timerList) {
+        for (PotionTimer timer : timerList) { //Cycles through the timers and updates them
             timer.update();
         }
         exit.update();
@@ -65,11 +65,11 @@ public class Hospital extends Rooms{
     public void render(Graphics graphics) {
         graphics.setFont(Assets.titleFont);
         graphics.drawString("Hospital", 650, 400);
-        for (PotionTimer timer : timerList) {
+        for (PotionTimer timer : timerList) { //Cycles through the timers and renders them
             if (timer.getTimeRemaining() > 0) {
                 timer.render(graphics);
             }
         }
-        exit.render(graphics);
+        exit.render(graphics); //renders the door
     }
 }

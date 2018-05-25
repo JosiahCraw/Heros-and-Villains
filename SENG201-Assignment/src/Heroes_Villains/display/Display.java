@@ -38,7 +38,7 @@ public class Display {
         //JFrame creation and init
         frame = new JFrame(title);
         frame.setSize(width, height);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Made the game shut down on close
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

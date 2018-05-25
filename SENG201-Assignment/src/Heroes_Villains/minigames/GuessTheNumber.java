@@ -1,13 +1,10 @@
 package Heroes_Villains.minigames;
 
 import Heroes_Villains.Game;
-import Heroes_Villains.States.BattleState;
 import Heroes_Villains.SystemUI.RadioButtons;
-import Heroes_Villains.SystemUI.UIButton;
 import Heroes_Villains.SystemUI.UIElement;
 import Heroes_Villains.graphics.Assets;
 import Heroes_Villains.graphics.DrawText;
-import Heroes_Villains.utils.RandomNum;
 
 import java.awt.*;
 
@@ -43,7 +40,7 @@ public class GuessTheNumber extends MiniGame {
         currHero = battleState.getCurrHero();
         numberSelector.update();
         currClicked = ((RadioButtons) numberSelector).currentlyClicked;
-        if((game.getMouseListener().isHovering(55, 520, 150, 66) && game.getMouseListener().leftClicked) && numMoves > 0 && playing) {
+        if((game.getMouseListener().isHovering(55, 520, 150, 66) && game.getMouseListener().leftClicked) && numMoves > 0 && playing) { //If the go button is clicked and the player still has turns and the game is still playing
             numMoves--;
             game.getMouseListener().leftClicked = false;
             if ((((RadioButtons) numberSelector).currentlyClicked + 1) == villainMove) {
@@ -53,12 +50,12 @@ public class GuessTheNumber extends MiniGame {
                 if (numMoves >= 1) {
                     lower = true;
                 }
-                playing = true;
+                playing = true; //Continue playing once
             } else if ((((RadioButtons) numberSelector).currentlyClicked + 1) < villainMove) {
                 if (numMoves >= 1) {
                     higher = true;
                 }
-                playing = true;
+                playing = true; //Continue playing once
             }
             if(numMoves <= 0 && (((RadioButtons) numberSelector).currentlyClicked + 1 != villainMove)) {
                 numMoves = 2;

@@ -139,7 +139,7 @@ public class Inventory {
         DrawText.draw(graphics, Integer.toString(items.get(currentIndex).getCount()), countX, countY, true, Color.WHITE, Assets.invFont);
         DrawText.draw(graphics, "Coins: " + Integer.toString(game.getPlayer().money), countX, countY+300, true, Color.WHITE, Assets.invFont);
 
-        if(items.get(currentIndex).isUseable() && game.getMouseListener().isHovering(inventoryX+583, inventoryY+258, 144, 64)) {
+        if(items.get(currentIndex).isUseable() && game.getMouseListener().isHovering(inventoryX+583, inventoryY+258, 144, 64)) { //If the item is usable and the mouse is hovering over the use button
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.WHITE, Assets.invFont);
             if(game.getMouseListener().isLeftClicked()) {
                 game.getMouseListener().leftClicked = false;
@@ -156,7 +156,7 @@ public class Inventory {
                     items.get(currentIndex).use(game.getTeam().get(heroSelector3.currentlyClicked));
                 }
             }
-        }else if(items.get(currentIndex).isUseable()) {
+        }else if(items.get(currentIndex).isUseable()) { //If the selected item is usable
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.YELLOW, Assets.invFont);
         }else {
             DrawText.draw(graphics, ">USE<", 655+inventoryX, 290+inventoryY,true, Color.GRAY, Assets.invFont);

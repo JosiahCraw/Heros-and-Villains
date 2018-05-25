@@ -51,7 +51,7 @@ public class DoorWay extends Entities{
     public void update() {
         Rectangle doorRect = new Rectangle((int) x, (int) y, images[0].getWidth(), images[0].getHeight());
         Rectangle playerRect = new Rectangle((int) game.getPlayer().getX(), (int) game.getPlayer().getY(), game.getPlayer().getWidth(), game.getPlayer().getHeight());
-        if (doorRect.intersects(playerRect)) {
+        if (doorRect.intersects(playerRect)) { //Checks if the player and the door overlap
             isColliding = true;
             if (game.getKeyboardListener().f) {
                 game.getKeyboardListener().f = false;

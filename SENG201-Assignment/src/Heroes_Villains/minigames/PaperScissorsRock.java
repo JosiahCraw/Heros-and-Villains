@@ -2,7 +2,6 @@ package Heroes_Villains.minigames;
 
 import Heroes_Villains.Game;
 import Heroes_Villains.States.BattleState;
-import Heroes_Villains.SystemUI.RadioButton;
 import Heroes_Villains.SystemUI.RadioButtons;
 import Heroes_Villains.SystemUI.UIButton;
 import Heroes_Villains.SystemUI.UIElement;
@@ -52,7 +51,7 @@ public class PaperScissorsRock extends MiniGame {
         currHero = battleState.getCurrHero();
         buttons.update();
         //goButton.update();
-        if(played) {
+        if(played) { //If the player has selected a move
             played = false;
             playerChoice = ((RadioButtons) buttons).currentlyClicked;
             if(villainMove == playerChoice) {
